@@ -127,16 +127,127 @@
       </div>
     </section>
     <section id="buttons">
-      <h3>Buttons</h3>
+      <h2>Buttons</h2>
+      <hr>
       <div>
         <a href="#buttons" class="btn">View more</a>
         <button class="btn">Real button</button>
       </div>
     </section>
     <section id="svg-hover">
-      <h3>Hover Icons</h3>
-      <div>
-        <button class="btn" :class="svgClass" @click="changeSvgHover">Change hover</button>
+      <h2>Icons</h2>
+      <hr>
+      <div class="showroom">
+        <button class="btn" :class="svgClass" @click="randomSvgHover">Random hover</button>
+        <img src="/Audrey.jpg" alt="Audrey" :class="svgClass">
+      </div>
+      <h3>Pick an icon</h3>
+      <div class="category">
+        <div class="category-title">
+          <h5>Commissioned</h5><span></span>
+        </div>
+        <category-svg type="chaussure" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="top" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="sac" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="tshirt" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="rougealevre" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="parfum" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="oeil" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="appareil" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="ouverture" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+      </div>
+      <div class="category">
+        <div class="category-title">
+          <h5>Escape</h5><span></span>
+        </div>
+        <category-svg type="nuage" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="scooter" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="sac" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="appareil" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="avion" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="chaussure" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="telephone" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="boussole" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="ouverture" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+      </div>
+      <div class="category">
+        <div class="category-title">
+          <h5>Faces</h5><span></span>
+        </div>
+        <category-svg type="oeil" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="levres" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="poudre" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="lunettes" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="miroir" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="pinceau" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="mascara" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="appareil" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="ouverture" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+      </div>
+      <div class="category">
+        <div class="category-title">
+          <h5>Mom & Kids</h5><span></span>
+        </div>
+        <category-svg type="ballon" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="lune" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="biberon" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="chaussette" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="dodo" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="slop" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="tetine" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="berceau" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="hochet" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="appareil" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+      </div>
+      <div class="category">
+        <div class="category-title">
+          <h5>Stills</h5><span></span>
+        </div>
+        <category-svg type="etoiles" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="coquillage" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="cactus" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="branche" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="avion" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="feather" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="main" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="appareil" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="avocat" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="ouverture" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+      </div>
+      <div class="category">
+        <div class="category-title">
+          <h5>Stories</h5><span></span>
+        </div>
+        <category-svg type="donut" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="oeil" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="levres" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="etoiles" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="gobelet" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="avocat" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="croissant" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="lunettes" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="tshirt" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="appareil" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+      </div>
+      <div class="category">
+        <div class="category-title">
+          <h5>Videos</h5><span></span>
+        </div>
+        <category-svg type="movie" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="camera" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+      </div>
+      <div class="category">
+        <div class="category-title">
+          <h5>Mariage</h5><span></span>
+        </div>
+        <category-svg type="ballon" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="appareil" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="guirelande" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="bagues" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="gateau" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="diamant" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="drink" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
+        <category-svg type="oeil" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
       </div>
     </section>
   </main>
@@ -144,6 +255,7 @@
 
 <script>
 import JpHero from '~/components/JpHero.vue'
+import CategorySvg from '~/components/CategorySvg.vue'
 
 const svgList = [
   'svg-appareil',
@@ -209,12 +321,16 @@ export default {
     }
   },
   components: {
-    JpHero
+    JpHero,
+    CategorySvg
   },
   methods: {
-    changeSvgHover() {
+    randomSvgHover() {
       const randNum =  Math.floor(Math.random() * svgList.length)
       this.svgClass = svgList[randNum]
+    },
+    changeSvgHover(type) {
+      this.svgClass = 'svg-' + type
     }
   }
 }
@@ -236,6 +352,7 @@ export default {
       > h2
         line-height: 1
         margin-bottom: 0
+        margin-top: 3em
 
   .gradient-figure
     --grad-height: 30px
@@ -262,8 +379,26 @@ export default {
     display: grid
     grid-template-columns: 1fr 1fr
 
-  #svg-hover > div
+  #svg-hover > div.showroom
     text-align: center
+    img
+      max-width: 360px
+      display: block
+      margin: 0 auto
+
+  .category-title
+    display: grid
+    grid-template-columns: auto 1fr
+    grid-gap: 15px
+    align-items: center
+    span::after
+      content: ""
+      display: block
+      background: $black
+      height: 2px
+      width: 100%
+    h5
+      margin: 5px 0
 
   hr
     margin-bottom: 2em

@@ -67,6 +67,7 @@ export default {
     width: 100vw
     img
       height: 100%
+      width: auto
       justify-self: start
     .menu-trigger
       display: grid
