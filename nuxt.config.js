@@ -10,7 +10,8 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Julie Portfolio' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { type: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:100i,300,400,700,900' }
     ]
   },
   /*
