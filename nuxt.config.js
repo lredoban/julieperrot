@@ -9,7 +9,7 @@ module.exports = {
     },
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' },
       { hid: 'description', name: 'description', content: 'Julie Perrot Portfolio' },
       { property: 'og:title', content: 'Julie Perrot' },
       { property: 'og:site_name', content: 'Julie Perrot' },
@@ -53,10 +53,5 @@ module.exports = {
   css: [
     '@/assets/sass/style.sass'
   ],
-  render: {
-    csp: {
-      enabled: true
-    }
-  },
   loading: false
 }
