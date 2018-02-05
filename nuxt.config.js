@@ -3,15 +3,17 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'julieperrot',
+    title: 'Julie Perrot',
+    htmlAttrs: {
+      lang: 'fr'
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Julie Portfolio' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { type: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:100i,300,400,700,900' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
   /*
@@ -43,5 +45,10 @@ module.exports = {
   },
   css: [
     '@/assets/sass/style.sass'
-  ]
+  ],
+  render: {
+    csp: {
+      enabled: true
+    }
+  }
 }
