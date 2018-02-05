@@ -9,8 +9,15 @@ module.exports = {
     },
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Julie Portfolio' }
+      { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' },
+      { hid: 'description', name: 'description', content: 'Julie Perrot Portfolio' },
+      { property: 'og:title', content: 'Julie Perrot' },
+      { property: 'og:site_name', content: 'Julie Perrot' },
+      { property: 'og:url', content: 'https://juliperrot.com' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:description', content: 'Julie Perrot Portfolio' },
+      { property: 'og:image', content: 'img/Audrey.jpg' },
+      { name: 'theme-color', content: '#FCF0D9' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -46,9 +53,5 @@ module.exports = {
   css: [
     '@/assets/sass/style.sass'
   ],
-  render: {
-    csp: {
-      enabled: true
-    }
-  }
+  loading: false
 }

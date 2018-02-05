@@ -2,7 +2,7 @@
   <section class="container">
     <section>Last Projects</section>
     <section>About Me.</section>
-    <a class="btn">CLick me I'm Famous</a>
+    <nuxt-link class="btn" to="/charte">Charte</nuxt-link>
     <section>
       <h4>Contact Form</h4>
     </section>

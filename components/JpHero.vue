@@ -1,5 +1,5 @@
 <template>
-  <div id="hero" :style="{'background-image': `url(${bgUrl})`}">
+  <div id="hero">
     <h1>
       <slot>The h1 title</slot>
     </h1>
@@ -8,7 +8,10 @@
 
 <script>
 export default {
-  props: ['bgUrl']
+  props: ['bgUrl'],
+  beforeMount () {
+    document.body.style.setProperty('--bg-image', `url(${this.bgUrl})`);
+  }
 }
 </script>
 
@@ -16,6 +19,7 @@ export default {
   @import "~assets/sass/helpers"
 
   #hero
+    --gradient-angle: 123deg
     position: relative
     margin-top: 50px
     width: 100vw
@@ -26,6 +30,7 @@ export default {
     height: 154px
     padding: 20px
     padding-bottom: 32px
+    background-image: var(--bg-image, none)
     @media #{$xsmall-up}
       padding: 36px
       padding-bottom: 52px
