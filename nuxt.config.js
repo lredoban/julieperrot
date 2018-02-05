@@ -53,10 +53,5 @@ module.exports = {
   css: [
     '@/assets/sass/style.sass'
   ],
-  render: {
-    csp: {
-      enabled: true
-    }
-  },
   loading: false
 }
