@@ -26,8 +26,11 @@ export default {
     width: fit-content
     line-height: 0
     box-sizing: border-box
-    padding-right: 21px
-    padding-bottom: 16px
+    padding-right: var(--gradient-border-right)
+    padding-bottom: var(--gradient-border-bottom)
+    @media #{$small-up}
+      --gradient-border-right: 21px
+      --gradient-border-bottom: 16px
     &.svg-right::after
       content: var(--svg-url, url("/images/svg/avocat.svg"))
       position: absolute
@@ -49,16 +52,16 @@ export default {
     .border-right
       --gradient-angle: to top
       position: absolute
-      height: calc(100% - 16px)
-      width: 21px
+      height: calc(100% - var(--gradient-border-bottom))
+      width: var(--gradient-border-right)
       transform-origin: left
       transform: skewY(37deg)
     .border-bottom
       position: absolute
       bottom: 0
       left: 0
-      height: 16px
-      width: calc(100% - 21px)
+      height: var(--gradient-border-bottom)
+      width: calc(100% - var(--gradient-border-right))
       transform-origin: top
       transform: skewX(53deg)
 </style>

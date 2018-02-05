@@ -410,7 +410,7 @@ export default {
       > h2
         line-height: 1
         margin-bottom: 0
-        margin-top: 3em
+        margin-top: 2em
 
   .colors h3
       margin: 3rem 0 0.7rem
