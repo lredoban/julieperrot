@@ -420,6 +420,7 @@ export default {
 
   #buttons > div
     justify-items: center
+    align-items: center
     display: grid
     grid-template-columns: 1fr 1fr
 
