@@ -132,14 +132,21 @@
       <div>
         <a href="#buttons" class="btn">View more</a>
         <button class="btn">Real button</button>
+        <button class="btn btn-small">Small</button>
+        <button class="btn btn-small btn-active">Active</button>
       </div>
     </section>
     <section id="svg-hover">
       <h2>Icons</h2>
       <hr>
       <div class="showroom">
-        <button class="btn" :class="svgClass" @click="randomSvgHover">Random hover</button>
-        <img src="/Audrey.jpg" alt="Audrey" :class="svgClass">
+        <button class="btn" :class="'svg-' + svgClass" @click="randomSvgHover">Random hover</button>
+        <div class="btn-list">
+          <button class="btn btn-small" :class="['svg-' + svgClass, svgTop === 'left' ? 'btn-active' : '']" @click="svgTop = 'left'">Left</button>
+          <button class="btn btn-small" :class="['svg-' + svgClass, svgTop === 'right' ? 'btn-active' : '']" @click="svgTop = 'right'">Right</button>
+          <button class="btn btn-small" :class="{'btn-active': svgTop !== 'right' && svgTop !== 'left' }" @click="svgTop = false">💩</button>
+        </div>
+        <jp-image class="showroom-img" :svg-type="svgClass" :svg-top="svgTop" img-src="/Audrey.jpg"/>
       </div>
       <h3>Pick an icon</h3>
       <div class="category">
@@ -256,73 +263,76 @@
 <script>
 import JpHero from '~/components/JpHero.vue'
 import CategorySvg from '~/components/CategorySvg.vue'
+import JpImage from '~/components/JpImage.vue'
 
 const svgList = [
-  'svg-appareil',
-  'svg-avion',
-  'svg-avocat',
-  'svg-bagues',
-  'svg-balle',
-  'svg-ballon',
-  'svg-ballon_1',
-  'svg-berceau',
-  'svg-biberon',
-  'svg-bobine',
-  'svg-boussole',
-  'svg-bouton',
-  'svg-branche',
-  'svg-bulles',
-  'svg-cactus',
-  'svg-camera',
-  'svg-chaussette',
-  'svg-chaussure',
-  'svg-coco',
-  'svg-coquillage',
-  'svg-croissant',
-  'svg-diamant',
-  'svg-dodo',
-  'svg-donut',
-  'svg-drink',
-  'svg-epingle',
-  'svg-etoiles',
-  'svg-feather',
-  'svg-gateau',
-  'svg-gobelet',
-  'svg-guirelande',
-  'svg-hochet',
-  'svg-levres',
-  'svg-lune',
-  'svg-lunettes',
-  'svg-main',
-  'svg-mascara',
-  'svg-menu',
-  'svg-miroir',
-  'svg-movie',
-  'svg-nuage',
-  'svg-oeil',
-  'svg-ouverture',
-  'svg-parfum',
-  'svg-pinceau',
-  'svg-poudre',
-  'svg-rougealevre',
-  'svg-sac',
-  'svg-scooter',
-  'svg-slop',
-  'svg-telephone',
-  'svg-tetine',
-  'svg-top',
-  'svg-tshirt'
+  'appareil',
+  'avion',
+  'avocat',
+  'bagues',
+  'balle',
+  'ballon',
+  'ballon_1',
+  'berceau',
+  'biberon',
+  'bobine',
+  'boussole',
+  'bouton',
+  'branche',
+  'bulles',
+  'cactus',
+  'camera',
+  'chaussette',
+  'chaussure',
+  'coco',
+  'coquillage',
+  'croissant',
+  'diamant',
+  'dodo',
+  'donut',
+  'drink',
+  'epingle',
+  'etoiles',
+  'feather',
+  'gateau',
+  'gobelet',
+  'guirelande',
+  'hochet',
+  'levres',
+  'lune',
+  'lunettes',
+  'main',
+  'mascara',
+  'menu',
+  'miroir',
+  'movie',
+  'nuage',
+  'oeil',
+  'ouverture',
+  'parfum',
+  'pinceau',
+  'poudre',
+  'rougealevre',
+  'sac',
+  'scooter',
+  'slop',
+  'telephone',
+  'tetine',
+  'top',
+  'tshirt'
 ]
 
 export default {
   data () {
     return {
-      svgClass: 'svg-nuage'
+      svgClass: 'nuage',
+      svgTop: 'right'
     }
   },
   components: {
     JpHero,
-    CategorySvg
+    CategorySvg,
+    JpImage
   },
   methods: {
     randomSvgHover() {
@@ -330,7 +340,7 @@ export default {
       this.svgClass = svgList[randNum]
     },
     changeSvgHover(type) {
-      this.svgClass = 'svg-' + type
+      this.svgClass = type
     }
   }
 }
@@ -399,6 +409,10 @@ export default {
       width: 100%
     h5
       margin: 5px 0
+
+  .showroom-img
+    max-width: 320px
+    margin: 0 auto
 
   hr
     margin-bottom: 2em

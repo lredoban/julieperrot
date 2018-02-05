@@ -22,6 +22,11 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    postcss: {
+      plugins: {
+        'postcss-custom-properties': false
+      }
+    },
     /*
     ** Run ESLint on save
     */
@@ -35,5 +40,8 @@ module.exports = {
         })
       }
     }
-  }
+  },
+  css: [
+    '@/assets/sass/style.sass'
+  ]
 }

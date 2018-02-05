@@ -32,9 +32,18 @@ a
   font-family: $roboto
   font-size: 14px
   cursor: pointer
-  margin: 2rem 0
+  margin: 1rem 0
   @media #{$small-up}
     font-size: 16px
+  &.btn-small
+    font-size: 10px
+    margin: 0.5rem 0
+    padding: 12px
+    @media #{$small-up}
+      font-size: 12px
+  &.btn-active
+    background: $beige
+
   &:after
     position: absolute
     content: ""
@@ -45,8 +54,15 @@ a
     left: 3px
     z-index: -1
     transition: all 0.3s ease-out
-  &:active::after, &:hover::after
+  &:active::after, &:hover::after, &.btn-active::after
     transform: translate(-6px, -6px)
+
+.btn-list
+  > .btn
+    margin-right: 15px
+    margin-bottom: 1rem
+    &:last-child
+      margin-right: 0
 
 input:focus,
 select:focus,
