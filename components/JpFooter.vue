@@ -44,11 +44,22 @@ export default {
     background: $beige
     .main
       padding: 2em 4em
+      display: grid
+      grid-row-gap: 40px
+      @media #{$xsmall-up}
+        padding: 2em 6em
+      @media #{$small-up}
+        padding: 2em 8em
+      @media #{$medium-up}
+        padding: 4em 4em
+        grid-template-columns: auto 1fr 1fr 1fr
+        justify-items: center
+        align-items: start
     h3
       text-transform: none
       margin: 0 0 2rem 0
     h4
-      margin-top: 2rem
+      margin-top: 0
     ul
       margin-top: 1.5rem
       li
