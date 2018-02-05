@@ -144,7 +144,7 @@
         <div class="btn-list">
           <button class="btn btn-small" :class="['svg-' + svgClass, svgTop === 'left' ? 'btn-active' : '']" @click="svgTop = 'left'">Left</button>
           <button class="btn btn-small" :class="['svg-' + svgClass, svgTop === 'right' ? 'btn-active' : '']" @click="svgTop = 'right'">Right</button>
-          <button class="btn btn-small" :class="{'btn-active': svgTop !== 'right' && svgTop !== 'left' }" @click="svgTop = false">💩</button>
+          <button class="btn btn-small" :class="{'btn-active': svgTop !== 'right' && svgTop !== 'left' }" @click="svgTop = false">X</button>
         </div>
         <jp-image class="showroom-img" :svg-type="svgClass" :svg-top="svgTop" img-src="/Audrey.jpg"/>
       </div>
@@ -368,6 +368,13 @@ export default {
     CategorySvg,
     JpImage
   },
+  mounted () {
+    const gradients = document.querySelectorAll('.gradient-figure > div')
+    Object.keys(gradients).map(key => {
+      const rgb = window.getComputedStyle(gradients[key], null).getPropertyValue('background-color')
+      gradients[key].setAttribute('data-bg-color', this.hex(rgb))
+    })
+  },
   methods: {
     randomSvgHover() {
       const randNum =  Math.floor(Math.random() * svgList.length)
@@ -375,8 +382,15 @@ export default {
     },
     changeSvgHover(type) {
       this.svgClass = type
+    },
+    hex: function (orig){
+      let rgb = orig.replace(/\s/g,'').match(/^rgba?\((\d+),(\d+),(\d+)/i)
+      return (rgb && rgb.length === 4) ? "#" +
+        ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
+        ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
+        ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : orig
     }
-  }
+  },
 }
 </script>
 
@@ -398,6 +412,9 @@ export default {
         margin-bottom: 0
         margin-top: 3em
 
+  .colors h3
+      margin: 3rem 0 0.7rem
+
   .gradient-figure
     --grad-height: 30px
     display: grid
@@ -408,6 +425,19 @@ export default {
       grid-gap: 80px
     > div
       height: var(--grad-height)
+      &:nth-child(odd)
+        position: relative
+        &::before
+          content: attr(data-bg-color)
+          color: rgba($black, 0.8)
+          bottom: -15px
+          position: absolute
+          font-weight: 600
+          font-size: 10px
+          text-transform: uppercase
+          @media #{$small-up}
+            font-weight: 800
+            font-size: 11px
 
   .typo > div
     display: grid
