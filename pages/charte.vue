@@ -503,6 +503,9 @@ export default {
         height: 20px
         width: 100%
 
+  .btn-list
+    margin-bottom: 1em
+
   hr
     margin-bottom: 2em
 
