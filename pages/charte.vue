@@ -257,6 +257,38 @@
         <category-svg type="oeil" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
       </div>
     </section>
+    <section id="img-gradient">
+      <h2>Image border gradient</h2>
+      <hr>
+      <div class="gradient-selector">
+        <jp-image :svg-type="svgClass" :svg-top="svgTop" img-src="/Audrey.jpg" :right-gradient="rightGradient" :bottom-gradient="bottomGradient"/>
+        <ul class="gradient-selector-right">
+          <li class="gradient1" @click="rightGradient = 1"></li>
+          <li class="gradient2" @click="rightGradient = 2"></li>
+          <li class="gradient3" @click="rightGradient = 3"></li>
+          <li class="gradient4" @click="rightGradient = 4"></li>
+          <li class="gradient5" @click="rightGradient = 5"></li>
+          <li class="gradient6" @click="rightGradient = 6"></li>
+          <li class="gradient7" @click="rightGradient = 7"></li>
+          <li class="gradient8" @click="rightGradient = 8"></li>
+          <li class="gradient9" @click="rightGradient = 9"></li>
+          <li class="gradient10" @click="rightGradient = 10"></li>
+        </ul>
+        <ul class="gradient-selector-bottom">
+          <li class="gradient1" @click="bottomGradient = 1"></li>
+          <li class="gradient2" @click="bottomGradient = 2"></li>
+          <li class="gradient3" @click="bottomGradient = 3"></li>
+          <li class="gradient4" @click="bottomGradient = 4"></li>
+          <li class="gradient5" @click="bottomGradient = 5"></li>
+          <li class="gradient6" @click="bottomGradient = 6"></li>
+          <li class="gradient7" @click="bottomGradient = 7"></li>
+          <li class="gradient8" @click="bottomGradient = 8"></li>
+          <li class="gradient9" @click="bottomGradient = 9"></li>
+          <li class="gradient10" @click="bottomGradient = 10"></li>
+        </ul>
+
+      </div>
+    </section>
   </main>
 </template>
 
@@ -326,7 +358,9 @@ export default {
   data () {
     return {
       svgClass: 'nuage',
-      svgTop: 'right'
+      svgTop: 'right',
+      rightGradient: 3,
+      bottomGradient: 4,
     }
   },
   components: {
@@ -413,6 +447,30 @@ export default {
   .showroom-img
     max-width: 320px
     margin: 0 auto
+
+  #img-gradient .gradient-selector
+    box-sizing: border-box
+    max-width: 500px
+    display: grid
+    grid-row-gap: 36px
+    grid-template-columns: 1fr 68px
+    margin: 0 auto
+    ul.gradient-selector-right
+      display: grid
+      justify-items: end
+      --gradient-angle: to top
+      li
+        cursor: crosshair
+        width: 20px
+        height: 100%
+    ul.gradient-selector-bottom
+      grid-column: span 2
+      display: grid
+      grid-template-columns: repeat(auto-fit, minmax(88px, 1fr))
+      li
+        cursor: crosshair
+        height: 20px
+        width: 100%
 
   hr
     margin-bottom: 2em
