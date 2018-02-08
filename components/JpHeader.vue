@@ -4,6 +4,7 @@
       <img class="svg-avocat" src="/images/logo.png" alt="Julie Perrot Logo">
       <nav class="desktop">
         <ul>
+          <nuxt-link tag="li" to="/charte" title="Charte">Charte</nuxt-link>
           <li title="Commissioned">Commissioned</li>
           <li title="Escape">Escape</li>
           <li title="faces">faces</li>

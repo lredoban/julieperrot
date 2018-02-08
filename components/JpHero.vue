@@ -10,9 +10,9 @@
 <script>
 export default {
   props: ['bgUrl'],
-  beforeMount () {
+ /* beforeMount () {
     document.body.style.setProperty('--bg-image', `url(${this.bgUrl})`);
-  }
+  }*/
 }
 </script>
 

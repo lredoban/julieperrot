@@ -1,3 +1,5 @@
+const contentful = require('./plugins/contentful.js');
+
 module.exports = {
   /*
   ** Headers of the page
@@ -53,5 +55,22 @@ module.exports = {
   css: [
     '@/assets/sass/style.sass'
   ],
+  env: {
+    space: process.env.JULIEPERROT_SPACE,
+    accessToken: process.env.JULIEPERROT_TOKEN
+  },
+  generate: {
+    routes: function () {
+      return contentful.getCMSData()
+      .then( data => {
+        return data.collections.map(col => {
+          return {
+            route: `/collections/${col.slug}`,
+            payload: col
+          }
+        })
+      })
+    }
+  },
   loading: false
 }
