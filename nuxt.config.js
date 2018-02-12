@@ -38,6 +38,9 @@ module.exports = {
         'postcss-custom-properties': false
       }
     },
+    babel: {
+      presets: ['vue-app', 'es2015']
+    },
     /*
     ** Run ESLint on save
     */
@@ -60,15 +63,33 @@ module.exports = {
     accessToken: process.env.JULIEPERROT_TOKEN
   },
   generate: {
-    routes: function () {
-      return contentful.getCMSData()
+    routes: function (callback) {
+      contentful.getCMSData()
       .then( data => {
-        return data.collections.map(col => {
+        const collectionTypesRoutes = data.collectionTypes.map( type => {
           return {
-            route: `/collections/${col.slug}`,
-            payload: col
+            route: `/${type.slug}/`,
+            payload: type
           }
         })
+        const collectionsRoutes = data.collectionTypes.reduce((acc ,type) => {
+          acc.push(...type.collections.map(col => {
+            const currentType = contentful.getIndexOfType(data, type.slug)
+            const currentIndex = contentful.getSideColllections(currentType.collections, col.slug)
+            return {
+              route: `/${type.slug}/${col.slug}`,
+              payload: {
+                ...col,
+                prev: currentIndex === 0 ? false : currentType.collections[currentIndex - 1].slug,
+                next: currentType.collections[currentIndex + 1] ? currentType.collections[currentIndex + 1].slug : false,
+                hero: currentType.hero,
+                type: currentType.title
+              }
+            }
+          }))
+          return acc
+        }, [])
+        callback(null, [...collectionTypesRoutes, ...collectionsRoutes])
       })
     }
   },

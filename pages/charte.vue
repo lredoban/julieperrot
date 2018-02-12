@@ -397,20 +397,15 @@ export default {
 <style lang="sass" scoped>
   @import "~assets/sass/helpers"
 
-  main
-    padding-top: 0
-    margin: 0 auto
-    display: grid
-    justify-items: center
-    section
-      max-width: 1100px
-      padding: 0 50px
-      box-sizing: border-box
-      width: 100%
-      > h2
-        line-height: 1
-        margin-bottom: 0
-        margin-top: 2em
+  section
+    max-width: 1100px
+    padding: 0 50px
+    box-sizing: border-box
+    width: 100%
+    > h2
+      line-height: 1
+      margin-bottom: 0
+      margin-top: 2em
 
   .colors h3
       margin: 3rem 0 0.7rem

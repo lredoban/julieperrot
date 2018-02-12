@@ -5,16 +5,16 @@
       <div>
         <h4>More ...</h4>
         <ul>
-          <li>Mariage</li>
-          <li>Mom and kids</li>
+          <li><nuxt-link to="/mariage">Mariage</nuxt-link></li>
+          <li><nuxt-link to="/mom-n-kidz">Mom & kidz</nuxt-link></li>
         </ul>
       </div>
       <div>
         <h4>Follow</h4>
         <ul>
-          <li>Instagram</li>
-          <li>Twitter</li>
-          <li>Facebook</li>
+          <li><a href="https://www.instagram.com/julieperrot/" target="_blank">Instagram</a></li>
+          <li><a href="https://twitter.com/JuliePerrot" target="_blank">Twitter</a></li>
+          <li><a href="https://www.facebook.com/julieperrotphotography" target="_blank">Facebook</a></li>
         </ul>
       </div>
       <div>

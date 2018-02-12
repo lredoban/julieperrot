@@ -1,9 +1,9 @@
-var contentful = require('contentful')
+const contentful = require('contentful')
 const marked = require('marked')
 
 const client = contentful.createClient({
-  space: process.env.space,
-  accessToken: process.env.accessToken
+  space: process.env.JULIEPERROT_SPACE || process.env.space,
+  accessToken: process.env.JULIEPERROT_TOKEN || process.env.accessToken
 })
 
 const options = { gfm: true, tables: true, sanitize: false }
@@ -41,7 +41,7 @@ function cleanImage(image) {
 
 function cleanEntries(entries) {
   const cleaned = {}
-  cleaned.collections = entries.collections.map(collection => {
+  cleaned.collections = entries.collections.map((collection, i) => {
     return {
       slug: collection.fields.slug,
       title: collection.fields.title,
@@ -50,21 +50,48 @@ function cleanEntries(entries) {
       images: collection.fields.images.map(img => cleanImage(img))
     }
   })
+  cleaned.collectionTypes = entries.collectionTypes.map(type => {
+    return {
+      slug: type.fields.slug,
+      title: type.fields.title,
+      hero: type.fields.hero.fields.file.url,
+      collections: cleaned.collections.filter(col => col.type.includes(type.fields.title))
+    }
+  })
   cleaned.homePage = {
     presentation: marked(entries.homePage[0].fields.presentation, options),
     featured: entries.homePage[0].fields.featured.map(feat => {
       return {
         slug: feat.fields.slug,
         title: feat.fields.title,
-        image: cleanImage(feat.fields.images[0])
+        image: cleanImage(feat.fields.images[0]),
+        type: feat.fields.type ? feat.fields.type[0].fields.slug : '' 
       }
     })
   }
   return cleaned
 }
 
-export async function getCMSData() {
+const getCMSData = async function () {
   let entries = await client.getEntries()
   const sorted = sortByContentType(entries)
   return cleanEntries(sorted)
 }
+
+const getSideColllections = function (collections, slug) {
+  return collections.reduce((currentIndex, col, i) => {
+    if (currentIndex !== false) return currentIndex
+    if (col.slug === slug) {
+      return i
+    }
+    return false
+  }, false)
+}
+
+const getIndexOfType = function (data, type) {
+  return data.collectionTypes.filter(cType => cType.slug === type)[0]
+}
+
+exports.getCMSData = getCMSData
+exports.getSideColllections = getSideColllections
+exports.getIndexOfType = getIndexOfType

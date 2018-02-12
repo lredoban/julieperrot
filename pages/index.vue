@@ -4,8 +4,8 @@
       <h2>Last Projects</h2>
       <div v-html="homePage.presentation"></div>
       <ul>
-        <li v-for="{ slug, image, title} in homePage.featured" :key="title">
-          <nuxt-link :to="'/collections/' + slug">
+        <li v-for="{ slug, image, title, type} in homePage.featured" :key="title">
+          <nuxt-link :to="`/${type}/${slug}`">
             <img :src="image.url" :alt="title">
           </nuxt-link>
         </li>
@@ -20,15 +20,12 @@
 </template>
 
 <script>
-import { getCMSData } from '~/plugins/contentful.js'
+const contentful = require('~/plugins/contentful.js')
 
 export default {
   async asyncData () {
-    let raw = await getCMSData()
+    let raw = await contentful.getCMSData()
     return raw ? {...raw} : {}
-  },
-  mounted: function () {
-    console.warn(this.collections, 'shiit')
   }
 }
 </script>
