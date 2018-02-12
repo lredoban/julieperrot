@@ -1,3 +1,5 @@
+const contentful = require('./plugins/contentful.js');
+
 module.exports = {
   /*
   ** Headers of the page
@@ -36,6 +38,9 @@ module.exports = {
         'postcss-custom-properties': false
       }
     },
+    babel: {
+      presets: ['vue-app', 'es2015']
+    },
     /*
     ** Run ESLint on save
     */
@@ -53,5 +58,40 @@ module.exports = {
   css: [
     '@/assets/sass/style.sass'
   ],
+  env: {
+    space: process.env.JULIEPERROT_SPACE,
+    accessToken: process.env.JULIEPERROT_TOKEN
+  },
+  generate: {
+    routes: function (callback) {
+      contentful.getCMSData()
+      .then( data => {
+        const collectionTypesRoutes = data.collectionTypes.map( type => {
+          return {
+            route: `/${type.slug}/`,
+            payload: type
+          }
+        })
+        const collectionsRoutes = data.collectionTypes.reduce((acc ,type) => {
+          acc.push(...type.collections.map(col => {
+            const currentType = contentful.getIndexOfType(data, type.slug)
+            const currentIndex = contentful.getSideColllections(currentType.collections, col.slug)
+            return {
+              route: `/${type.slug}/${col.slug}`,
+              payload: {
+                ...col,
+                prev: currentIndex === 0 ? false : currentType.collections[currentIndex - 1].slug,
+                next: currentType.collections[currentIndex + 1] ? currentType.collections[currentIndex + 1].slug : false,
+                hero: currentType.hero,
+                type: currentType.title
+              }
+            }
+          }))
+          return acc
+        }, [])
+        callback(null, [...collectionTypesRoutes, ...collectionsRoutes])
+      })
+    }
+  },
   loading: false
 }

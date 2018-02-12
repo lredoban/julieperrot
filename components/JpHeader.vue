@@ -1,15 +1,16 @@
 <template>
   <header>
     <div id="top">
-      <img class="svg-avocat" src="/images/logo.png" alt="Julie Perrot Logo">
+      <nuxt-link to="/"><img class="svg-avocat" src="/images/logo.png" alt="Julie Perrot Logo"></nuxt-link>
       <nav class="desktop">
         <ul>
-          <li title="Commissioned">Commissioned</li>
-          <li title="Escape">Escape</li>
-          <li title="faces">faces</li>
-          <li title="stills">stills</li>
-          <li title="stories">stories</li>
-          <li title="video">video</li>
+          <nuxt-link to="/charte" title="Charte" tag="li">Charte</nuxt-link>
+          <nuxt-link to="/commissioned" title="Commissioned" tag="li">Commissioned</nuxt-link>
+          <nuxt-link to="/escape" title="Escape" tag="li">Escape</nuxt-link>
+          <nuxt-link to="/faces" title="Faces" tag="li">Faces</nuxt-link>
+          <nuxt-link to="/stills" title="Stills" tag="li">Stills</nuxt-link>
+          <nuxt-link to="/stories" title="Stories" tag="li">Stories</nuxt-link>
+          <nuxt-link to="/video" title="Video" tag="li">Video</nuxt-link>
         </ul>
       </nav>
       <div class="menu-trigger" @click="toggleMenu">
@@ -21,12 +22,13 @@
     </div>
     <nav class="mobile" :class="{open: isMenuOpen}">
       <ul>
-        <li>Commissioned</li>
-        <li>Escape</li>
-        <li>faces</li>
-        <li>stills</li>
-        <li>stories</li>
-        <li>video</li>
+        <nuxt-link tag="li" to="/charte">Charte</nuxt-link>
+        <nuxt-link tag="li" to="/commissioned">Commissioned</nuxt-link>
+        <nuxt-link tag="li" to="/escape">Escape</nuxt-link>
+        <nuxt-link tag="li" to="/faces">Faces</nuxt-link>
+        <nuxt-link tag="li" to="/stills">Stills</nuxt-link>
+        <nuxt-link tag="li" to="/stories">Stories</nuxt-link>
+        <nuxt-link tag="li" to="/video">Video</nuxt-link>
       </ul>
     </nav>
   </header>
@@ -65,6 +67,8 @@ export default {
     justify-items: end
     box-sizing: border-box
     width: 100vw
+    a
+      height: 40px
     img
       height: 100%
       width: auto
@@ -91,7 +95,6 @@ export default {
     color: $white
     background: $black
     padding: 42px 30px
-    margin-top: 50px
     left: 100%
     font-weight: 100
     font-size: 15px
@@ -106,16 +109,18 @@ export default {
 
   nav.desktop
     display: none
+    margin-top: 4px
     @media #{$medium-up}
       display: block
     li
+      cursor: pointer
       display: inline-block
       font-weight: 300
       font-size: 13px
       letter-spacing: 0.3em
       text-transform: uppercase
       margin-left: 2em
-      &:hover
+      &:hover, &.nuxt-link-active
         font-weight: 700
         text-decoration: underline
       &::after
