@@ -79,3 +79,18 @@ main
   margin: 0 auto
   > section
     margin: 0 auto
+
+ul.doted
+  > li
+    margin-top: 1rem
+    font-weight: 100
+    display: grid
+    grid-template-columns: auto 1fr
+    grid-column-gap: 9px
+    align-items: center
+    &::before
+      content: ''
+      height: 8px
+      width: 8px
+      border-radius: 4px
+      background: $black

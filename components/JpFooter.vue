@@ -4,14 +4,14 @@
       <h3>julie perrot</h3>
       <div>
         <h4>More ...</h4>
-        <ul>
+        <ul class="doted">
           <li><nuxt-link to="/mariage">Mariage</nuxt-link></li>
           <li><nuxt-link to="/mom-n-kidz">Mom & kidz</nuxt-link></li>
         </ul>
       </div>
       <div>
         <h4>Follow</h4>
-        <ul>
+        <ul class="doted">
           <li><a href="https://www.instagram.com/julieperrot/" target="_blank">Instagram</a></li>
           <li><a href="https://twitter.com/JuliePerrot" target="_blank">Twitter</a></li>
           <li><a href="https://www.facebook.com/julieperrotphotography" target="_blank">Facebook</a></li>
@@ -19,7 +19,7 @@
       </div>
       <div>
         <h4>Contact</h4>
-        <ul>
+        <ul class="doted">
           <li>Write me</li>
         </ul>
       </div>
@@ -62,19 +62,7 @@ export default {
       margin-top: 0
     ul
       margin-top: 1.5rem
-      li
-        margin-top: 1rem
-        font-weight: 100
-        display: grid
-        grid-template-columns: auto 1fr
-        grid-column-gap: 9px
-        align-items: center
-        &::before
-          content: ''
-          height: 8px
-          width: 8px
-          border-radius: 4px
-          background: $black
+
     .copyright
       border-top: 1px solid rgba($black, .5)
       text-align: center
