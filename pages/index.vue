@@ -63,7 +63,6 @@ export default {
     display: grid
     justify-items: center
     align-items: center
-    box-sizing: border-box
     &::before
       content: ""
       position: absolute

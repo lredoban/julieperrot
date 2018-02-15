@@ -65,7 +65,6 @@ export default {
     grid-template-columns: auto 1fr
     align-items: center
     justify-items: end
-    box-sizing: border-box
     width: 100vw
     a
       height: 40px
@@ -88,7 +87,6 @@ export default {
         box-shadow: 1px 1px
 
   nav.mobile
-    box-sizing: border-box
     position: fixed
     height: calc(100vh - 42px)
     width: calc(80vw)

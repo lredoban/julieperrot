@@ -23,7 +23,6 @@ export default {
     position: relative
     margin-top: 50px
     width: 100vw
-    box-sizing: border-box
     background-size: cover
     display: grid
     //background-image: var(--bg-image, none)

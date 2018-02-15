@@ -25,7 +25,6 @@ export default {
     position: relative
     width: fit-content
     line-height: 0
-    box-sizing: border-box
     padding-right: var(--gradient-border-right)
     padding-bottom: var(--gradient-border-bottom)
     @media #{$small-up}

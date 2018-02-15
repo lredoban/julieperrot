@@ -400,7 +400,6 @@ export default {
   section
     max-width: 1100px
     padding: 0 50px
-    box-sizing: border-box
     width: 100%
     > h2
       line-height: 1
@@ -475,7 +474,6 @@ export default {
     margin: 0 auto
 
   #img-gradient .gradient-selector
-    box-sizing: border-box
     max-width: 500px
     display: grid
     grid-row-gap: 36px
