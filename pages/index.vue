@@ -26,7 +26,20 @@
         <button class="btn" @click="TBD">View More</button>
       </div>
     </section>
-    <section>About Me.</section>
+    <section class="about-container">
+      <div class="about">
+        <div class="about-text" v-html="homePage.about.presentation"></div>
+        <div class="about-image">
+          <jp-image
+            :key="homePage.about.image.url"
+            :svg-type="homePage.about.image.icon"
+            :svg-top="homePage.about.image.iconPosition"
+            :img-src="homePage.about.image.url"
+            :right-gradient="homePage.about.image.rightBorder"
+            :bottom-gradient="homePage.about.image.bottomBorder"/>
+        </div>
+      </div>
+    </section>
     <section>
       <h4>Contact Form</h4>
     </section>
@@ -37,14 +50,16 @@
 <script>
 const contentful = require('~/plugins/contentful.js')
 import JpGallery from '~/components/JpGallery.vue'
+import JpImage from '~/components/JpImage.vue'
 
 export default {
   async asyncData () {
     let raw = await contentful.getCMSData()
-    return raw ? {...raw} : {}
+    return raw ? raw : {}
   },
   components: {
-    JpGallery
+    JpGallery,
+    JpImage
   },
   methods: {
     TBD () {
@@ -137,4 +152,39 @@ export default {
   .more
     margin: 4em
     text-align: center
+  
+  .about-container
+    background: $gradientBeta
+    margin-top: 150px
+  .about
+    margin: 0 auto
+    max-width: 1240px
+    padding: 0 30px 60px
+    display: grid
+    justify-items: center
+    align-items: center
+    grid-auto-flow: dense
+    grid-row-gap: 50px
+    @media #{$xsmall-up}
+      grid-column-gap: 20px
+      grid-template-columns: 1fr 1fr
+      padding-bottom: 0
+      .about-text
+        grid-column-start: 2
+        align-self: start
+      .about-image
+        padding: 15% 0
+    @media #{$small-up}
+      grid-column-gap: 100px
+      padding: 0 60px
+</style>
+
+<style lang="sass">
+  @import '~assets/sass/helpers'
+
+  .about h2
+    max-width: 42px
+    margin-top: -36px
+    @media #{$small-up}
+      margin-top: -45px
 </style>

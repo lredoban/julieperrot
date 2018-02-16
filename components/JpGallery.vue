@@ -40,7 +40,6 @@ export default {
       const image = item.getElementsByTagName('img')[0] || false
       const nbRow = image ? Math.floor(image.height / fractionHeight) + 4 : Math.floor(this.getHeight(item) / fractionHeight)
       const colIndex = Math.floor((item.getBoundingClientRect().x - gallery.getBoundingClientRect().x) / item.getBoundingClientRect().width)
-      console.warn(colIndex, nbRow, item.getBoundingClientRect().x, item.getBoundingClientRect().width, image)
       item.style.gridRowEnd = `span ${nbRow}`
       if (typeof nbRowsByColumn[colIndex] === 'undefined') {
         nbRowsByColumn[colIndex] = 0
@@ -49,9 +48,6 @@ export default {
     })
     const gradientAngle = ['to right', 'to left', 'to top', 'to bottom']
     const NMax = Math.max(...nbRowsByColumn)
-
-    console.log(nbRowsByColumn)
-
     nbRowsByColumn.sort().map((n, i) => {
       gallery.insertAdjacentHTML('beforeend', `
         <div class="gallery__filling" 

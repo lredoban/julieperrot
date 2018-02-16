@@ -13,7 +13,8 @@ function sortByContentType(entries) {
   const contentTypes = {
     collection: 'collections',
     collectionType: 'collectionTypes',
-    homePage: 'homePage'
+    homePage: 'homePage',
+    about: 'about'
   }
 
   entries.items.map( entry => {
@@ -67,7 +68,11 @@ function cleanEntries(entries) {
         image: cleanImage(feat.fields.images[0]),
         type: feat.fields.type ? feat.fields.type[0].fields.slug : '' 
       }
-    })
+    }),
+    about: {
+      presentation:  marked(entries.about[0].fields.presentation, options),
+      image: cleanImage(entries.about[0].fields.image),
+    }
   }
   return cleaned
 }
