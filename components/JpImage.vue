@@ -28,8 +28,8 @@ export default {
     padding-right: var(--gradient-border-right)
     padding-bottom: var(--gradient-border-bottom)
     @media #{$small-up}
-      --gradient-border-right: 21px
-      --gradient-border-bottom: 16px
+      --gradient-border-right: 13px
+      --gradient-border-bottom: 10px
     &.svg-right::after
       content: var(--svg-url, url("/images/svg/avocat.svg"))
       position: absolute

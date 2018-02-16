@@ -23,7 +23,7 @@
         <h2>Last Pro- jects</h2>
       </jp-gallery>
       <div class="more">
-        <button class="btn">View More</button>
+        <button class="btn" @click="TBD">View More</button>
       </div>
     </section>
     <section>About Me.</section>
@@ -45,6 +45,11 @@ export default {
   },
   components: {
     JpGallery
+  },
+  methods: {
+    TBD () {
+      alert('Lol genre le site est fini')
+    }
   }
 }
 </script>
