@@ -20,15 +20,15 @@
         <div></div>
       </div>
     </div>
-    <nav class="mobile" :class="{open: isMenuOpen}">
+    <nav class="mobile" :class="{open: showMenu}">
       <ul>
-        <nuxt-link tag="li" to="/charte">Charte</nuxt-link>
-        <nuxt-link tag="li" to="/commissioned">Commissioned</nuxt-link>
-        <nuxt-link tag="li" to="/escape">Escape</nuxt-link>
-        <nuxt-link tag="li" to="/faces">Faces</nuxt-link>
-        <nuxt-link tag="li" to="/stills">Stills</nuxt-link>
-        <nuxt-link tag="li" to="/stories">Stories</nuxt-link>
-        <nuxt-link tag="li" to="/video">Video</nuxt-link>
+        <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/charte">Charte</nuxt-link>
+        <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/commissioned">Commissioned</nuxt-link>
+        <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/escape">Escape</nuxt-link>
+        <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/faces">Faces</nuxt-link>
+        <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/stills">Stills</nuxt-link>
+        <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/stories">Stories</nuxt-link>
+        <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/video">Video</nuxt-link>
       </ul>
     </nav>
   </header>
@@ -38,13 +38,13 @@
 export default {
   data () {
     return {
-      isMenuOpen: false
+      showMenu: false
     }
   },
   methods: {
     toggleMenu () {
-      this.isMenuOpen = !this.isMenuOpen
-      document.querySelector('body').style.overflow = this.isMenuOpen ? 'hidden' : ''
+      this.showMenu = !this.showMenu
+      document.querySelector('body').style.overflow = this.showMenu ? 'hidden' : ''
     }
   }
 }
