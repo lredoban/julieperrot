@@ -19,14 +19,11 @@
       </div>
     </section>
     <section>
-      <h2>Last Projects</h2>
-      <div v-html="homePage.presentation"></div>
-      <div id="last-projects">
-        <div v-for="{ slug, image, title, type} in homePage.featured" :key="title">
-          <nuxt-link :to="`/${type}/${slug}`">
-            <img :src="image.url" :alt="title">
-          </nuxt-link>
-        </div>
+      <jp-gallery :images="homePage.featured">
+        <h2>Last Pro- jects</h2>
+      </jp-gallery>
+      <div class="more">
+        <button class="btn">View More</button>
       </div>
     </section>
     <section>About Me.</section>
@@ -39,11 +36,15 @@
 
 <script>
 const contentful = require('~/plugins/contentful.js')
+import JpGallery from '~/components/JpGallery.vue'
 
 export default {
   async asyncData () {
     let raw = await contentful.getCMSData()
     return raw ? {...raw} : {}
+  },
+  components: {
+    JpGallery
   }
 }
 </script>
@@ -127,10 +128,8 @@ export default {
         align-self: start
         .h2
           text-transform: lowercase
-
-  #last-projects
-    display: grid
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))
-    grid-gap: 20px
-
+  
+  .more
+    margin: 4em
+    text-align: center
 </style>
