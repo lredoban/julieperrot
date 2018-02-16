@@ -3,6 +3,7 @@
     <slot></slot>
     <div class="gallery__dummy" v-if="$slots.default"></div>
     <div class="gallery__dummy" v-if="$slots.default"></div>
+    <div class="gallery__dummy" v-if="$slots.default"></div>
     <div class="gallery__item" v-for="{ slug, image, title, type} in images" :key="title">
       <nuxt-link :to="`/${type}/${slug}`">
         <jp-image
@@ -38,7 +39,8 @@ export default {
     galleryItems.map((item, i) => {
       const image = item.getElementsByTagName('img')[0] || false
       const nbRow = image ? Math.floor(image.height / fractionHeight) + 4 : Math.floor(this.getHeight(item) / fractionHeight)
-      const colIndex = Math.floor(item.getBoundingClientRect().x / item.getBoundingClientRect().width)
+      const colIndex = Math.floor((item.getBoundingClientRect().x - gallery.getBoundingClientRect().x) / item.getBoundingClientRect().width)
+      console.warn(colIndex, nbRow, item.getBoundingClientRect().x, item.getBoundingClientRect().width, image)
       item.style.gridRowEnd = `span ${nbRow}`
       if (typeof nbRowsByColumn[colIndex] === 'undefined') {
         nbRowsByColumn[colIndex] = 0
@@ -47,7 +49,10 @@ export default {
     })
     const gradientAngle = ['to right', 'to left', 'to top', 'to bottom']
     const NMax = Math.max(...nbRowsByColumn)
-    nbRowsByColumn.map((n, i) => {
+
+    console.log(nbRowsByColumn)
+
+    nbRowsByColumn.sort().map((n, i) => {
       gallery.insertAdjacentHTML('beforeend', `
         <div class="gallery__filling" 
           style="
@@ -75,7 +80,7 @@ export default {
   .gallery
     padding: 0 60px
     margin: -1em auto 0
-    max-width: 1200px
+    max-width: 1240px
     display: grid
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))
     grid-auto-rows: 27px
