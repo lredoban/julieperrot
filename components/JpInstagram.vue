@@ -1,5 +1,5 @@
 <template>
-  <section id="instagram">
+  <section id="instagram" v-basicscroll="'test'">
     <h2>Follow Me!</h2>
     <a
       v-for="img in IGImages"
@@ -30,22 +30,6 @@ export default {
       window.jsonpCallback = this.jsonpCallback
       scrElement.setAttribute( 'src', `${this.$_baseUri}${this.$_token}&callback=jsonpCallback&count=11`)
       document.body.appendChild( scrElement )
-
-      const basicscroll = require('~/node_modules/basicscroll/src/scripts/main.js')
-      window.basicscroll = basicscroll
-      this.$_instance = basicscroll.create({
-      elem: document.querySelector('#instagram'),
-      from: 'top-bottom',
-      to: 'bottom-middle',
-      props: {
-        '--opacity': {
-          from: .01,
-          to: .99
-        }
-      }
-    })
-    window.instance = this.$_instance
-    this.$_instance.start()
     }
   },
   methods: {
