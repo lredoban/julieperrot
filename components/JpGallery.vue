@@ -76,7 +76,7 @@ export default {
   .gallery
     padding: 0 60px
     margin: -1em auto 0
-    max-width: 1240px
+    max-width: var(--max-width)
     display: grid
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))
     grid-auto-rows: 27px

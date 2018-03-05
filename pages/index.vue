@@ -160,7 +160,7 @@ export default {
     margin-top: 150px
   .about
     margin: 0 auto
-    max-width: 1240px
+    max-width: var(--max-width)
     padding: 0 30px 60px
     display: grid
     justify-items: center
