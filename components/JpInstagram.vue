@@ -1,5 +1,5 @@
 <template>
-  <section id="instagram" v-basicscroll="'test'">
+  <section id="instagram">
     <h2>Follow Me!</h2>
     <a
       v-for="img in IGImages"
@@ -64,8 +64,4 @@ export default {
       width: min-content 
       grid-row-end: span 2
       grid-column: 1 / span 3
-    img
-      opacity: var(--opacity, 1)
-      will-change: opacity
-      transition: opacity .1s
 </style>

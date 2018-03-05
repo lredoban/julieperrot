@@ -89,6 +89,9 @@ export default {
     .gallery__dummy
       grid-row-end: span 4
     .gallery__item
+      opacity: var(--opacity, 1)
+      will-change: opacity
+      transition: opacity .1s
       h4
         margin: 5px 0
     .gallery__filling
