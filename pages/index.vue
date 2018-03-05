@@ -40,9 +40,7 @@
         </div>
       </div>
     </section>
-    <section>
-      <h4>Contact Form</h4>
-    </section>
+    <jp-contact></jp-contact>
     <jp-instagram></jp-instagram>
   </main>
 </template>
@@ -52,6 +50,7 @@ const contentful = require('~/plugins/contentful.js')
 import JpGallery from '~/components/JpGallery.vue'
 import JpImage from '~/components/JpImage.vue'
 import JpInstagram from '~/components/JpInstagram.vue'
+import JpContact from '~/components/JpContact.vue'
 
 export default {
   async asyncData () {
@@ -61,7 +60,8 @@ export default {
   components: {
     JpGallery,
     JpImage,
-    JpInstagram
+    JpInstagram,
+    JpContact
   },
   methods: {
     TBD () {
