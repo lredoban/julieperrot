@@ -1,8 +1,18 @@
 <template>
   <section id="contact">
     <form action="contact">
-      <textarea v-model="message"></textarea>
-      <button type="submit" class="btn" @click.prevent="'dummy'">Send My message</button>
+      <div class="step" v-if="step === 1">
+        <textarea v-model="message" placeholder="Write me your message here"></textarea>
+        <button class="btn" @click.prevent="step = 2">Send a message</button>
+      </div>
+      <div class="step" v-if="step === 2">
+        <input type="textarea" name="name" id="name" placeholder="Ok. What is your name?" v-model="name">
+        <button class="btn" @click.prevent="step = 3">Send my Name?</button>
+      </div>
+      <div class="step" v-if="step === 3">
+        <input type="email" name="email" id="email" placeholder="leave my your email" v-model="email">
+        <button type="submit" class="btn" @click.prevent="step = 1">Send my email</button>
+      </div>
     </form>
   </section>
 </template>
@@ -11,7 +21,10 @@
 export default {
   data (){
     return {
-      message: 'Write me your message here'
+      message: '',
+      name: '',
+      email: '',
+      step: 1
     }
   }
 }
@@ -30,9 +43,16 @@ export default {
     text-align: center
     line-height: 1.5
     letter-spacing: 0.2rem
+    border: none
+    resize: none
+  ::placeholder
+    color: rgba($black, .55)
 
   #contact
     max-width: var(--max-width)
     text-align: center
     padding: 50px 0
+  form
+    display: grid
+    justify-items: center
 </style>
