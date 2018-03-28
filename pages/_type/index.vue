@@ -2,15 +2,7 @@
   <main>
     <jp-hero :bg-url="hero">{{ title }}</jp-hero>
     <div>
-      <nuxt-link v-for="col in collections" :to="`/${slug}/${col.slug}`" :key="col.slug">
-        <jp-image 
-          :key="col.images[0].url"
-          :svg-type="col.images[0].icon"
-          :svg-top="col.images[0].iconPosition"
-          :img-src="col.images[0].url"
-          :right-gradient="col.images[0].rightBorder"
-          :bottom-gradient="col.images[0].bottomBorder"/>
-      </nuxt-link>
+      <jp-gallery :images="convertedCollections"/>
     </div>
   </main>
 </template>
@@ -19,6 +11,7 @@
 const contentful = require('~/plugins/contentful.js')
 import JpImage from '~/components/JpImage.vue'
 import JpHero from '~/components/JpHero.vue'
+import JpGallery from '~/components/JpGallery.vue'
 
 export default {
   async asyncData ({ params, error, payload }) {
@@ -30,7 +23,20 @@ export default {
   },
   components: {
     JpImage,
-    JpHero
+    JpHero,
+    JpGallery
+  },
+  computed: {
+    convertedCollections () {
+      return this.collections.map(col => {
+        return {
+          slug: col.slug,
+          image: col.images[0],
+          title: col.title,
+          type: this.$route.params.type
+        }
+      })
+    }
   }
 }
 </script>

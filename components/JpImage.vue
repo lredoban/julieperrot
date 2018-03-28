@@ -23,7 +23,7 @@ export default {
 
   .jp-img-container
     position: relative
-    width: fit-content
+    height: fit-content
     line-height: 0
     padding-right: var(--gradient-border-right)
     padding-bottom: var(--gradient-border-bottom)
