@@ -52,7 +52,12 @@ export default {
     max-width: var(--max-width)
     text-align: center
     padding: 50px 0
-  form
+  form, .step
     display: grid
     justify-items: center
+    width: 100%
+  .step
+    > *:first-child
+      width: 100%
+  
 </style>
