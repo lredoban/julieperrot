@@ -1,0 +1,6 @@
+{
+  "name": "JpImage UI Extension",
+  "id": "ui-extension-jp-image",
+  "fieldTypes": ["Object"],
+  "src": "http://localhost:8080/"
+}
