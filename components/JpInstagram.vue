@@ -43,8 +43,7 @@ export default {
           alt: item.caption ? item.caption.text : "No caption image",
           link: item.link,
           transform: i % 2 ? randomTranslation : -randomTranslation,
-          offset: 0,
-          onload
+          offset: 0
         })
       })
     },

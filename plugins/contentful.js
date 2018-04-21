@@ -32,11 +32,10 @@ function sortByContentType(entries) {
 function cleanImage(image) {
   return {
     url: image.fields.image.fields.file.url,
-    border: image.fields.border ? image.fields.border : false,
-    rightBorder: image.fields.rightBorder ? image.fields.rightBorder : false,
-    bottomBorder: image.fields.bottomBorder ? image.fields.bottomBorder : false,
-    iconPosition: image.fields.iconPosition ? image.fields.iconPosition : false,
-    icon: image.fields.icon ? image.fields.icon : false,
+    rightBorder: image.fields.features.rightGradient ? image.fields.features.rightGradient : false,
+    bottomBorder: image.fields.features.bottomGradient ? image.fields.features.bottomGradient : false,
+    iconPosition: image.fields.features.svgTop ? image.fields.features.svgTop : false,
+    icon: image.fields.features.svgType ? image.fields.features.svgType : false,
   }
 }
 
