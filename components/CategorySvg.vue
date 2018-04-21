@@ -7,7 +7,7 @@ export default {
   props: ['type', 'changeClass', 'currentSvg'],
   computed: {
     getSrc: function () {
-      return `/images/svg/${this.type}.svg`
+      return '/images/svg/' + this.type + '.svg'
     },
     isCurrent: function () {
       return this.currentSvg === this.type

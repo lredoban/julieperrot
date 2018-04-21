@@ -3,7 +3,7 @@
     <button v-if="imgSrc" class="btn btn-small" @click="showtime">{{ show ? 'Hide' : 'Show'}} Image features</button>
     <div id="edit-JpImage" v-if="imgSrc" :class="{show}">
       <div class="svgContainer">
-        <category-svg v-for="svgItem in $_svgList" :type="svgItem" :changeClass="changeSvgHover" :currentSvg="svgType"/>
+        <category-svg v-for="svgItem in $_svgList" :type="svgItem" :changeClass="changeSvgHover" :currentSvg="svgType" :key="svgItem"/>
         <div :type="false" :class="{active: !svgType, gradientNull: true}" @click="svgType = false">
           <img src="/images/svg/tshirt.svg" alt="dummy">
         </div>
@@ -121,7 +121,7 @@ export default {
   name: 'app',
   data () {
     return {
-      imgSrc: 'https://source.unsplash.com/featured/270',
+      imgSrc: false,
       svgType: false,
       svgTop: false,
       rightGradient: false,
@@ -136,6 +136,11 @@ export default {
   created () {
     this.$_api = null
     this.$_svgList = svgList
+
+    // if the page is loaded outside Contenful (outside an iframe)
+    if ( window.self === window.top ) {
+      this.imgSrc = 'https://source.unsplash.com/featured/270'
+    }
 
     cfExtension.init((api) => {
       this.$_api = api
