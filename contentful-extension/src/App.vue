@@ -6,7 +6,9 @@
       :svgType="svgType"
       :svgTop="svgTop"
       :rightGradient="rightGradient"
-      :bottomGradient="bottomGradient"/>
+      :bottomGradient="bottomGradient"
+      @load="updateHeight"/>
+    <h3 v-else>You must select an image first</h3>
   </div>
 </template>
 
@@ -19,7 +21,7 @@ export default {
   name: 'app',
   data () {
     return {
-      imgSrc: false,
+      imgSrc: null,
       svgType: false,
       svgTop: false,
       rightGradient: false,
@@ -30,35 +32,52 @@ export default {
     JpImage
   },
   created () {
+    this.$_api = null
+
     cfExtension.init((api) => {
       console.warn('init')
-      const imageLink = api.entry.fields.image
-      const imageId = imageLink.getValue().sys.id
-      api.space.getAsset(imageId).then((data) => {
-        console.warn('yo', data)
-        this.imgSrc = data.fields.file['fr-FR'].url + '?w=270'
-      })
+      this.$_api = api
+      const link = api.entry.fields.image
+
+      this.setJpImageSrc(link.getValue())
+      link.onValueChanged(this.setJpImageSrc)
 
       const {svgType, svgTop, rightGradient, bottomGradient} = api.field.getValue()
       this.svgType = svgType
       this.svgTop = svgTop
       this.rightGradient = rightGradient
       this.bottomGradient = bottomGradient
-
-      setTimeout(() => api.window.updateHeight(), 2000) //lancer après le chargement de l'image
     })
-    // this.svgType = "levres"
-    // this.svgTop = "left"
-    // this.rightGradient = 5
-    // this.bottomGradient = 5
+  },
+  methods: {
+    setJpImageSrc (imageLink) {
+      if (!imageLink) {
+        this.imgSrc = null
+        this.$nextTick(() => {
+          this.$_api.window.updateHeight()
+        })
+        return
+      }
+      console.warn('image param', imageLink)
+      const imageId = imageLink.sys.id
+      this.$_api.space.getAsset(imageId).then((data) => {
+        console.warn('yo', data)
+        this.imgSrc = data.fields.file['fr-FR'].url + '?w=270'
+      })
+    },
+    updateHeight() {
+      console.warn('LOADED')
+      this.$_api.window.updateHeight()
+    }
   }
 }
 </script>
 
-<style lang="scss">
-  #app {
-    max-width: 270px;
-    padding-top: 3em;
+<style lang="sass">
+  body
+    overflow: hidden
+  #app
+    max-width: 270px
+    padding-top: 3em
     margin: 0 auto
-  }
 </style>

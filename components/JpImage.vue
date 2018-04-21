@@ -1,6 +1,6 @@
 <template>
   <div class="jp-img-container" :class="['svg-url-' + svgType, getSvgTop]">
-    <img :src="imgSrc" :alt="imgSrc" :class="'svg-' + svgType">
+    <img :src="imgSrc" :alt="imgSrc" :class="'svg-' + svgType" @load="$emit('load')">
     <span class="border-right" :class="'gradient' + rightGradient"></span>
     <span class="border-bottom" :class="'gradient' + bottomGradient"></span>
   </div>
