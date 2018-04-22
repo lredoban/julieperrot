@@ -1,6 +1,6 @@
 <template>
   <div class="jp-img-container" :class="['svg-url-' + svgType, getSvgTop]">
-    <img :src="imgSrc" :alt="imgSrc" :class="'svg-' + svgType">
+    <img :src="imgSrc" :alt="imgSrc" :class="'svg-' + svgType" @load="$emit('load')">
     <span class="border-right" :class="'gradient' + rightGradient"></span>
     <span class="border-bottom" :class="'gradient' + bottomGradient"></span>
   </div>
@@ -8,29 +8,33 @@
 
 <script>
 export default {
-  props: ['imgSrc', 'svgType', 'svgTop', 'border-right', 'border-bottom', 'right-gradient', 'bottom-gradient'],
+  props: ['imgSrc', 'svgType', 'svgTop', 'right-gradient', 'bottom-gradient'],
   computed: {
-    getSvgTop () {
-      return this.svgTop === 'right' ? "svg-right" :
-              this.svgTop === 'left' ? "svg-left" : false
+    getSvgTop: function () {
+      if ( this.svgTop !== 'right' && this.svgTop !== 'left') return false
+      return 'svg-' + this.svgTop
     }
   }
 }
 </script>
 
 <style lang="sass" scoped>
-  @import "~assets/sass/helpers"
+  @import "../assets/sass/helpers"
+  @import "../assets/sass/cursor"
 
   .jp-img-container
+    --gradient-border-right: 13px
+    --gradient-border-bottom: 10px
     position: relative
-    width: fit-content
+    height: fit-content
     line-height: 0
-    box-sizing: border-box
     padding-right: var(--gradient-border-right)
     padding-bottom: var(--gradient-border-bottom)
+    img
+      width: 100%
     @media #{$small-up}
-      --gradient-border-right: 21px
-      --gradient-border-bottom: 16px
+      --gradient-border-right: 13px
+      --gradient-border-bottom: 10px
     &.svg-right::after
       content: var(--svg-url, url("/images/svg/avocat.svg"))
       position: absolute
@@ -50,6 +54,8 @@ export default {
     &:hover::after, &:hover::before
       opacity: 0
     .border-right
+      top: 0
+      right: 0
       --gradient-angle: to top
       position: absolute
       height: calc(100% - var(--gradient-border-bottom))
@@ -57,6 +63,7 @@ export default {
       transform-origin: left
       transform: skewY(37deg)
     .border-bottom
+      --gradient-angle: to right
       position: absolute
       bottom: 0
       left: 0

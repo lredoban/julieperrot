@@ -13,7 +13,8 @@ function sortByContentType(entries) {
   const contentTypes = {
     collection: 'collections',
     collectionType: 'collectionTypes',
-    homePage: 'homePage'
+    homePage: 'homePage',
+    about: 'about'
   }
 
   entries.items.map( entry => {
@@ -31,11 +32,10 @@ function sortByContentType(entries) {
 function cleanImage(image) {
   return {
     url: image.fields.image.fields.file.url,
-    border: image.fields.border ? image.fields.border : false,
-    rightBorder: image.fields.rightBorder ? image.fields.rightBorder : false,
-    bottomBorder: image.fields.bottomBorder ? image.fields.bottomBorder : false,
-    iconPosition: image.fields.iconPosition ? image.fields.iconPosition : false,
-    icon: image.fields.icon ? image.fields.icon : false,
+    rightBorder: image.fields.features.rightGradient ? image.fields.features.rightGradient : false,
+    bottomBorder: image.fields.features.bottomGradient ? image.fields.features.bottomGradient : false,
+    iconPosition: image.fields.features.svgTop ? image.fields.features.svgTop : false,
+    icon: image.fields.features.svgType ? image.fields.features.svgType : false,
   }
 }
 
@@ -67,7 +67,11 @@ function cleanEntries(entries) {
         image: cleanImage(feat.fields.images[0]),
         type: feat.fields.type ? feat.fields.type[0].fields.slug : '' 
       }
-    })
+    }),
+    about: {
+      presentation:  marked(entries.about[0].fields.presentation, options),
+      image: cleanImage(entries.about[0].fields.image),
+    }
   }
   return cleaned
 }

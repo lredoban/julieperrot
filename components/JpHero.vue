@@ -4,6 +4,9 @@
     <h1>
       <slot>The h1 title</slot>
     </h1>
+    <div class="subtitle">
+      <slot name="subtitle"></slot>
+    </div>
   </div>
 </template>
 
@@ -23,17 +26,19 @@ export default {
     position: relative
     margin-top: 50px
     width: 100vw
-    box-sizing: border-box
     background-size: cover
     display: grid
     //background-image: var(--bg-image, none)
     h1
-      position: absolute
       margin: 0
       line-height: 1
+    h1, .subtitle
+      position: absolute
       left: 7vw
       bottom: calc(23.8636364% - 5px)
       @media #{$small-up}
         left: 17vw
         bottom: calc(23.8636364% - 8px)
+    .subtitle
+      transform: translateY(100%)
 </style>

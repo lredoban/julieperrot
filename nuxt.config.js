@@ -56,6 +56,7 @@ module.exports = {
     }
   },
   css: [
+    'modern-normalize/modern-normalize.css',
     '@/assets/sass/style.sass'
   ],
   env: {
