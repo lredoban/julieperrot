@@ -26,6 +26,11 @@ export default {
     JpHero,
     JpGallery
   },
+  head () {
+    return {
+      title: 'Julie Perrot - ' + this.title
+    }
+  },
   computed: {
     convertedCollections () {
       return this.collections.map(col => {

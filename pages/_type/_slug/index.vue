@@ -48,6 +48,11 @@ export default {
     JpImage,
     JpHero
   },
+  head () {
+    return {
+      title: 'Julie Perrot - ' + this.title
+    }
+  },
   mounted () {
     const gallery = document.querySelector('.images') // if there is multiple galleries?
     const images = [...gallery.children]
