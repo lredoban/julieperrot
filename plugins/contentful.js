@@ -30,12 +30,18 @@ function sortByContentType(entries) {
 }
 
 function cleanImage(image) {
+  const features = image.fields.features ? image.fields.features : {
+    rightGradient: false,
+    bottomGradient: false,
+    svgTop: false,
+    svgType: false
+  }
   return {
     url: image.fields.image.fields.file.url,
-    rightBorder: image.fields.features.rightGradient ? image.fields.features.rightGradient : false,
-    bottomBorder: image.fields.features.bottomGradient ? image.fields.features.bottomGradient : false,
-    iconPosition: image.fields.features.svgTop ? image.fields.features.svgTop : false,
-    icon: image.fields.features.svgType ? image.fields.features.svgType : false,
+    rightBorder: features.rightGradient ? features.rightGradient : false,
+    bottomBorder: features.bottomGradient ? features.bottomGradient : false,
+    iconPosition: features.svgTop ? features.svgTop : false,
+    icon: features.svgType ? features.svgType : false,
   }
 }
 
