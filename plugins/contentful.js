@@ -16,7 +16,7 @@ function sortByContentType(entries) {
     homePage: 'homePage',
     about: 'about'
   }
-
+  
   entries.items.map( entry => {
     const contentTypeId = entry.sys.contentType.sys.id
     if (typeof contentTypes[contentTypeId] !== "undefined") {
@@ -83,7 +83,7 @@ function cleanEntries(entries) {
 }
 
 const getCMSData = async function () {
-  let entries = await client.getEntries()
+  let entries = await client.getEntries({limit: 1000})
   const sorted = sortByContentType(entries)
   return cleanEntries(sorted)
 }
