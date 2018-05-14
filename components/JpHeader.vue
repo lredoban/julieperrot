@@ -57,6 +57,7 @@ export default {
   header #top
     z-index: 27
     position: fixed
+    opacity: 1
     top: 0
     background: $white
     height: 50px
@@ -66,6 +67,8 @@ export default {
     align-items: center
     justify-items: end
     width: 100vw
+    @media #{$small-up}
+      opacity: var(--header-opacity)      
     a
       height: 40px
     img
@@ -93,6 +96,7 @@ export default {
     color: $white
     background: $black
     padding: 42px 30px
+    top: 50px
     left: 100%
     font-weight: 100
     font-size: 15px

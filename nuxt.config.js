@@ -94,5 +94,8 @@ module.exports = {
       })
     }
   },
-  loading: false
+  loading: false,
+  plugins: [
+    { src: '~/plugins/basicscroll.js', ssr: false }
+  ]
 }

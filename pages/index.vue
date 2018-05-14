@@ -1,6 +1,6 @@
 <template>
   <main class="container">
-    <section id="home-hero">
+    <section id="home-hero" v-basicscroll>
       <nav>
         <div class="h2">julie perrot</div>
         <ul class="doted">
@@ -67,6 +67,12 @@ export default {
     JpInstagram,
     JpContact
   },
+  mounted () {
+    document.querySelector('html').style.setProperty('--header-opacity', '0')
+  },
+  beforeDestroy () {
+    document.querySelector('html').style.setProperty('--header-opacity', '1')
+  },
   methods: {
     TBD () {
       alert('Lol genre le site est fini')
@@ -78,9 +84,6 @@ export default {
 
 <style lang="sass" scoped>
   @import '~assets/sass/helpers'
-
-  .container
-    margin-top: 50px
 
   #home-hero
     background: url(/images/bg-home-bleu.jpg)
