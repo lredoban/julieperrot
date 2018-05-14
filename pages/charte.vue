@@ -146,7 +146,7 @@
           <button class="btn btn-small" :class="['svg-' + svgClass, svgTop === 'right' ? 'btn-active' : '']" @click="svgTop = 'right'">Right</button>
           <button class="btn btn-small" :class="{'btn-active': svgTop !== 'right' && svgTop !== 'left' }" @click="svgTop = false">X</button>
         </div>
-        <jp-image class="showroom-img" :svg-type="svgClass" :svg-top="svgTop" img-src="/Audrey.jpg"/>
+        <jp-image class="showroom-img" :svg-type="svgClass" :img-size="{width: 827, height: 1240}" :svg-top="svgTop" img-src="/Audrey.jpg"/>
       </div>
       <h3>Pick an icon</h3>
       <div class="category">
@@ -261,7 +261,7 @@
       <h2>Image border gradient</h2>
       <hr>
       <div class="gradient-selector">
-        <jp-image :svg-type="svgClass" :svg-top="svgTop" img-src="/Audrey.jpg" :right-gradient="rightGradient" :bottom-gradient="bottomGradient"/>
+        <jp-image :svg-type="svgClass" :svg-top="svgTop" img-src="/Audrey.jpg" :img-size="{width: 827, height: 1240}" :right-gradient="rightGradient" :bottom-gradient="bottomGradient"/>
         <ul class="gradient-selector-right">
           <li class="gradient1" @click="rightGradient = 1" aria-hidden="true"></li>
           <li class="gradient2" @click="rightGradient = 2" aria-hidden="true"></li>

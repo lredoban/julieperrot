@@ -11,6 +11,10 @@
         :svg-type="image.icon"
         :svg-top="image.iconPosition"
         :img-src="image.url"
+        :img-size="image.size"
+        :desktopSize="25"
+        :tabletSize="50"
+        :phoneSize="50"
         :right-gradient="image.rightBorder"
         :bottom-gradient="image.bottomBorder"/>
       </nuxt-link>
@@ -35,7 +39,7 @@ export default {
     const galleryItems = [...gallery.children]
     const nbCol = Math.floor(this.getWidth(gallery) / this.getWidth(galleryItems[0]))
     const nbRowsByColumn = []
-
+    
     galleryItems.map((item, i) => {
       console.warn();
       const image = item.getElementsByTagName('img')[0] || false

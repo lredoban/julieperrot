@@ -17,6 +17,10 @@
         :svg-type="img.icon"
         :svg-top="img.iconPosition"
         :img-src="img.url"
+        :img-size="img.size"
+        :desktopSize="50"
+        :tabletSize="50"
+        :phoneSize="100"
         :right-gradient="img.rightBorder"
         :bottom-gradient="img.bottomBorder"/>
     </div>

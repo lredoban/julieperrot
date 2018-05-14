@@ -38,10 +38,11 @@ function cleanImage(image) {
   }
   return {
     url: image.fields.image.fields.file.url,
-    rightBorder: features.rightGradient ? features.rightGradient : false,
-    bottomBorder: features.bottomGradient ? features.bottomGradient : false,
-    iconPosition: features.svgTop ? features.svgTop : false,
-    icon: features.svgType ? features.svgType : false,
+    size: image.fields.image.fields.file.details.image,
+    rightBorder: features.rightGradient ? features.rightGradient : null,
+    bottomBorder: features.bottomGradient ? features.bottomGradient : null,
+    iconPosition: features.svgTop ? features.svgTop : null,
+    icon: features.svgType ? features.svgType : null,
   }
 }
 

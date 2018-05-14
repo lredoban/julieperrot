@@ -1,18 +1,55 @@
 <template>
   <div class="jp-img-container" :class="['svg-url-' + svgType, getSvgTop]">
-    <img :src="imgSrc" :alt="imgSrc" :class="'svg-' + svgType" @load="$emit('load')">
+    <vue-responsive-image
+      :image-url="baseUrl"
+      :image-ratio="ratio"
+      :alt="imgSrc"
+      :class="'svg-' + svgType"
+      @load="$emit('load')"
+      :width-on-screen="desktopSize"
+      :width-on-screen-tablet="tabletSize"
+      :width-on-screen-smartphone="phoneSize"
+      ></vue-responsive-image>
     <span class="border-right" :class="'gradient' + rightGradient"></span>
     <span class="border-bottom" :class="'gradient' + bottomGradient"></span>
   </div>
 </template>
 
 <script>
+import VueResponsiveImage from '~/components/VueResponsiveImage.vue'
+
 export default {
-  props: ['imgSrc', 'svgType', 'svgTop', 'right-gradient', 'bottom-gradient'],
+  components: { VueResponsiveImage },
+  props: {
+    imgSrc: String,
+    svgType: String,
+    svgTop: String,
+    'right-gradient': Number,
+    'bottom-gradient': Number,
+    imgSize: Object,
+    desktopSize: {
+      type: Number,
+      default: 100
+    },
+    tabletSize: {
+      type: Number,
+      default: 100
+    },
+    phoneSize: {
+      type: Number,
+      default: 100
+    }
+  },
   computed: {
     getSvgTop: function () {
       if ( this.svgTop !== 'right' && this.svgTop !== 'left') return false
       return 'svg-' + this.svgTop
+    },
+    baseUrl () {
+      return this.imgSrc + '?w=%width%&h=%height%'
+    },
+    ratio () {
+      return this.imgSize.width / this.imgSize.height
     }
   }
 }
