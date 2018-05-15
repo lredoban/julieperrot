@@ -1,18 +1,24 @@
 <template>
-  <div class="jp-img-container" :class="['svg-url-' + svgType, getSvgTop]">
+  <figure class="jp-img-container" :class="[{loaded}, svgType ? 'svg-url-' + svgType : '', getSvgTop]">
+    <div class="thumbnail">
+      <img
+        @load="$emit('load')"
+        :src="imgSrc + '?w=16'"
+        :alt="imgSrc + '-thumb'">
+    </div>
     <vue-responsive-image
       :image-url="baseUrl"
       :image-ratio="ratio"
       :alt="imgSrc"
-      :class="'svg-' + svgType"
-      @load="$emit('load')"
+      :class="['main-img', svgType ? 'svg-' + svgType : '']"
+      @load="loaded = true"
       :width-on-screen="desktopSize"
       :width-on-screen-tablet="tabletSize"
       :width-on-screen-smartphone="phoneSize"
       ></vue-responsive-image>
     <span class="border-right" :class="'gradient' + rightGradient"></span>
     <span class="border-bottom" :class="'gradient' + bottomGradient"></span>
-  </div>
+  </figure>
 </template>
 
 <script>
@@ -40,6 +46,11 @@ export default {
       default: 100
     }
   },
+  data () {
+    return {
+      loaded: false
+    } 
+  }, 
   computed: {
     getSvgTop: function () {
       if ( this.svgTop !== 'right' && this.svgTop !== 'left') return false
@@ -67,8 +78,6 @@ export default {
     line-height: 0
     padding-right: var(--gradient-border-right)
     padding-bottom: var(--gradient-border-bottom)
-    img
-      width: 100%
     @media #{$small-up}
       --gradient-border-right: 13px
       --gradient-border-bottom: 10px
@@ -108,5 +117,19 @@ export default {
       width: calc(100% - var(--gradient-border-right))
       transform-origin: top
       transform: skewX(53deg)
+    .thumbnail
+      opacity: 1
+      transition: opacity .6s ease
+      overflow: hidden
+      position: absolute
+      top: 0
+      bottom: var(--gradient-border-bottom)
+      left: 0
+      right: var(--gradient-border-right)
+      img
+        filter: blur(8px)
+        /* this is needed so Safari keeps sharp edges */
+        transform: scale(1)
+    &.loaded .thumbnail
+      opacity: 0
 </style>
-
