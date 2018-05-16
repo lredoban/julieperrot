@@ -71,16 +71,12 @@ export default {
   @import "../assets/sass/cursor"
 
   .jp-img-container
-    --gradient-border-right: 13px
-    --gradient-border-bottom: 10px
     position: relative
     height: fit-content
     line-height: 0
+    margin: 0
     padding-right: var(--gradient-border-right)
     padding-bottom: var(--gradient-border-bottom)
-    @media #{$small-up}
-      --gradient-border-right: 13px
-      --gradient-border-bottom: 10px
     &.svg-right::after
       content: var(--svg-url, url("/images/svg/avocat.svg"))
       position: absolute

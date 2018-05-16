@@ -121,6 +121,8 @@ export default {
         margin: 5px 0
     .gallery__filling
       background: $gradientBeta
+      margin-right: var(--gradient-border-right)
+      margin-bottom: var(--gradient-border-bottom)
     &.gallery-blank
       padding-top: 2em
       padding-bottom: 4em
