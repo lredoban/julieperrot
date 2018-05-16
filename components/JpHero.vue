@@ -1,6 +1,10 @@
 <template>
   <div id="hero">
-    <img :src="bgUrl" alt="Julie Perrot Hero">
+    <vue-responsive-image
+      :image-url="baseUrl"
+      :image-ratio="ratio"
+      alt="Julie Perrot Hero"
+      ></vue-responsive-image>
     <h1>
       <slot>The h1 title</slot>
     </h1>
@@ -11,11 +15,22 @@
 </template>
 
 <script>
+import VueResponsiveImage from '~/components/VueResponsiveImage.vue'
+
 export default {
-  props: ['bgUrl'],
+  components: { VueResponsiveImage },
+  props: ['background'],
  /* beforeMount () {
     document.body.style.setProperty('--bg-image', `url(${this.bgUrl})`);
   }*/
+  computed: {
+    baseUrl () {
+      return this.background.url + '?w=%width%&h=%height%&fm=jpg&q=70'
+    },
+    ratio () {
+      return this.background.size.width / this.background.size.height
+    }
+  }
 }
 </script>
 
@@ -35,10 +50,10 @@ export default {
     h1, .subtitle
       position: absolute
       left: 7vw
-      bottom: calc(23.8636364% - 5px)
+      bottom: calc(23.8636364% - 3px)
       @media #{$small-up}
         left: 17vw
-        bottom: calc(23.8636364% - 8px)
+        bottom: calc(23.8636364% - 6px)
     .subtitle
       transform: translateY(100%)
 </style>

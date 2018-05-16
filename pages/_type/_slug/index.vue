@@ -1,6 +1,6 @@
 <template>
   <main>
-    <jp-hero :bg-url="hero">
+    <jp-hero :background="hero">
       {{ type }}
       <div slot="subtitle">
         <div class="category-nav">

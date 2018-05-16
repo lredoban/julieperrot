@@ -1,6 +1,6 @@
 <template>
   <main>
-    <jp-hero :bg-url="hero">{{ title }}</jp-hero>
+    <jp-hero :background="hero">{{ title }}</jp-hero>
     <div>
       <jp-gallery :images="convertedCollections"/>
     </div>

@@ -61,7 +61,7 @@ function cleanEntries(entries) {
     return {
       slug: type.fields.slug,
       title: type.fields.title,
-      hero: type.fields.hero.fields.file.url,
+      hero: {url: type.fields.hero.fields.file.url, size: type.fields.hero.fields.file.details.image},
       collections: cleaned.collections.filter(col => col.type.includes(type.fields.title))
     }
   })
