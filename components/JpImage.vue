@@ -129,8 +129,6 @@ export default {
       right: var(--gradient-border-right)
       img
         filter: blur(8px)
-        /* this is needed so Safari keeps sharp edges */
-        transform: scale(1)
     &.loaded .thumbnail
       opacity: 0
 </style>

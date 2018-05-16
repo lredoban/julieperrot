@@ -1,6 +1,6 @@
 <template>
   <main>
-    <jp-hero bg-url="/images/stills.jpg">Charte</jp-hero>
+    <jp-hero :background="{url: '/images/stills.jpg', size: {widht: 1920, height: 704}}">Charte</jp-hero>
     <section class="typo">
       <h2>Typo</h2>
       <hr>
@@ -449,7 +449,8 @@ export default {
     grid-template-columns: 1fr 1fr
 
   #svg-hover > div.showroom
-    text-align: center
+    display: grid
+    justify-items: center
     img
       max-width: 360px
       display: block
