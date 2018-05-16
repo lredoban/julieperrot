@@ -77,6 +77,9 @@ export default {
     margin: 0
     padding-right: var(--gradient-border-right)
     padding-bottom: var(--gradient-border-bottom)
+    &.spread
+      @media #{$small-up}
+        grid-column: span 2  
     &.svg-right::after
       content: var(--svg-url, url("/images/svg/avocat.svg"))
       position: absolute

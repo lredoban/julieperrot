@@ -12,14 +12,15 @@
     </jp-hero>
     <div class="description" v-if="description" v-html="description"></div>
     <div class="images">
-      <jp-image v-for="img in images"
+      <jp-image v-for="(img, i) in images"
+        :class="{spread: isFirstLandscape(img.size, i)}"
         :key="img.url"
         :svg-type="img.icon"
         :svg-top="img.iconPosition"
         :img-src="img.url"
         :img-size="img.size"
-        :desktopSize="50"
-        :tabletSize="50"
+        :desktopSize="isFirstLandscape(img.size, i) ? 100 : 50"
+        :tabletSize="isFirstLandscape(img.size, i) ? 100 : 50"
         :phoneSize="100"
         :right-gradient="img.rightBorder"
         :bottom-gradient="img.bottomBorder"/>
@@ -67,11 +68,16 @@ export default {
 
       const alignement = randNum % 3 === 0 ? 'center' :
                           randNum % 3 === 1 ? 'left' : 'right'
-      const translation = randNum % 3 === 0 ? '0' :
-                          randNum % 3 === 1 ? '20px' : '-20px'
+      const translation = randNum2 % 3 === 0 ? '0' :
+                          randNum2 % 3 === 1 ? '20px' : '-20px'
       img.style.setProperty('--random-alignement', alignement)
       img.style.setProperty('--random-translation', translation)
     })
+  },
+  methods: {
+    isFirstLandscape(size, i) {
+      return !i && size.width > size.height
+    }
   }
 }
 </script>
