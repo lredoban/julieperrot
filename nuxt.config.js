@@ -92,7 +92,8 @@ module.exports = {
         }, [])
         callback(null, [...collectionTypesRoutes, ...collectionsRoutes])
       })
-    }
+    },
+    subFolders: false
   },
   loading: false,
   plugins: [
