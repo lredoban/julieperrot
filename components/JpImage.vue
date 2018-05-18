@@ -1,7 +1,7 @@
 <template>
   <figure
     class="jp-img-container"
-    :class="[{loaded}, svgType ? 'svg-url-' + svgType : '', getSvgTop]">
+    :class="[{loaded}, svgType ? 'svg-url-' + svgType : '', svgType ? 'svg-' + svgType : '', getSvgTop]">
     <div class="thumbnail">
       <img
         @load="$emit('load')"
@@ -12,7 +12,7 @@
       :image-url="baseUrl"
       :image-ratio="ratio"
       :alt="imgSrc"
-      :class="['jp-main-img', svgType ? 'svg-' + svgType : '']"
+      class="jp-main-img"
       @load="loaded = true"
       :width-on-screen="desktopSize"
       :width-on-screen-tablet="tabletSize"
