@@ -12,15 +12,15 @@
     </jp-hero>
     <div class="description" v-if="description" v-html="description"></div>
     <div class="images">
-      <jp-image v-for="(img, i) in images"
-        :class="{spread: isFirstLandscape(img.size, i)}"
+      <jp-image v-for="img in images"
+        :class="{spread: isPowtrait(img.size)}"
         :key="img.url"
         :svg-type="img.icon"
         :svg-top="img.iconPosition"
         :img-src="img.url"
         :img-size="img.size"
-        :desktopSize="isFirstLandscape(img.size, i) ? 100 : 50"
-        :tabletSize="isFirstLandscape(img.size, i) ? 100 : 50"
+        :desktopSize="isPowtrait(img.size) ? 100 : 50"
+        :tabletSize="isPowtrait(img.size) ? 100 : 50"
         :phoneSize="100"
         :right-gradient="img.rightBorder"
         :bottom-gradient="img.bottomBorder"/>
@@ -75,8 +75,8 @@ export default {
     })
   },
   methods: {
-    isFirstLandscape(size, i) {
-      return !i && size.width > size.height
+    isPowtrait(size) {
+      return size.width > size.height
     }
   }
 }

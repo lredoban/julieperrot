@@ -120,7 +120,7 @@ export default {
       h4
         margin: 5px 0
     .gallery__filling
-      background: $gradientBeta
+      background: $gradientAlpha
       margin-right: var(--gradient-border-right)
       margin-bottom: var(--gradient-border-bottom)
     &.gallery-blank

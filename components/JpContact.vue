@@ -2,16 +2,16 @@
   <section id="contact">
     <form action="contact">
       <div class="step" v-if="step === 1">
-        <textarea v-model="message" placeholder="Write me your message here"></textarea>
-        <button class="btn" @click.prevent="step = 2">Send a message</button>
+        <textarea v-model="message" placeholder="Any message?"></textarea>
+        <button class="btn" @click.prevent="step = 2">Next</button>
       </div>
       <div class="step" v-if="step === 2">
         <input type="textarea" name="name" id="name" placeholder="Ok. What is your name?" v-model="name">
-        <button class="btn" @click.prevent="step = 3">Send my Name?</button>
+        <button class="btn" @click.prevent="step = 3">Next</button>
       </div>
       <div class="step" v-if="step === 3">
-        <input type="email" name="email" id="email" placeholder="leave my your email" v-model="email">
-        <button type="submit" class="btn" @click.prevent="step = 1">Send my email</button>
+        <input type="email" name="email" id="email" placeholder="Your email?" v-model="email">
+        <button type="submit" class="btn" @click.prevent="step = 1">Submit!</button>
       </div>
     </form>
   </section>
@@ -46,7 +46,7 @@ export default {
     border: none
     resize: none
   ::placeholder
-    color: rgba($black, .55)
+    color: rgba($black, .3)
 
   #contact
     max-width: var(--max-width)

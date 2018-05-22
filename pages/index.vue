@@ -23,7 +23,7 @@
         <h2>Last Pro- jects</h2>
       </jp-gallery>
       <div class="more">
-        <button class="btn" @click="TBD">View More</button>
+        <nuxt-link tag="button" class="btn" to="/stories">View More</nuxt-link>
       </div>
     </section>
     <section class="about-container">
