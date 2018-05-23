@@ -6,7 +6,7 @@
         <ul>
           <nuxt-link to="/charte" title="Charte" tag="li">Charte</nuxt-link>
           <nuxt-link to="/commissioned" title="Commissioned" tag="li">Commissioned</nuxt-link>
-          <nuxt-link to="/escape" title="Escape" tag="li">Escape</nuxt-link>
+          <nuxt-link to="/escape/escape" title="Escape" tag="li">Escape</nuxt-link>
           <nuxt-link to="/films" title="Films" tag="li">Films</nuxt-link>
           <nuxt-link to="/stills" title="Stills" tag="li">Stills</nuxt-link>
           <nuxt-link to="/stories" title="Stories" tag="li">Stories</nuxt-link>
@@ -24,7 +24,7 @@
       <ul>
         <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/charte">Charte</nuxt-link>
         <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/commissioned">Commissioned</nuxt-link>
-        <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/escape">Escape</nuxt-link>
+        <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/escape/escape">Escape</nuxt-link>
         <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/films">Films</nuxt-link>
         <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/stills">Stills</nuxt-link>
         <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/stories">Stories</nuxt-link>
