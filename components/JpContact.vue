@@ -1,9 +1,6 @@
 <template>
   <section id="contact">
-    <form @submit.prevent="submit" rel="form" name="contact" netlify-honeypot="horse" method="POST" action="contact" data-netlify="true">
-      <p v-show="false">
-        <label>Why horse? I just do not know <input name="horse"/></label>
-      </p>
+    <form @submit.prevent="submit" rel="form" name="contact" method="POST" action="contact">
       <div class="step" v-show="step === 1">
         <textarea name="message" v-model="message" placeholder="Any message?"></textarea>
         <button class="btn" @click.prevent="step = 2">Next</button>
