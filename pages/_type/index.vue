@@ -1,6 +1,6 @@
 <template>
   <main>
-    <jp-hero :bg-url="hero">{{ title }}</jp-hero>
+    <jp-hero :background="hero">{{ title }}</jp-hero>
     <div>
       <jp-gallery :images="convertedCollections"/>
     </div>
@@ -38,7 +38,7 @@ export default {
           slug: col.slug,
           image: col.images[0],
           title: col.title,
-          type: this.$route.params.type
+          type: { slug: this.slug, title: this.title }
         }
       })
     }

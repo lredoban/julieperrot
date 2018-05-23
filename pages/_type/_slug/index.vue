@@ -1,8 +1,9 @@
 <template>
   <main>
-    <jp-hero :bg-url="hero">
-      {{ type }}
-      <div slot="subtitle">
+    <jp-hero :background="hero">
+      <nuxt-link v-if="type.slug !== slug" :to="'/' + type.slug">{{ type.title }}</nuxt-link>
+      <span v-else>{{ type.title }}</span>
+      <div slot="subtitle" v-if="type.slug !== slug">
         <div class="category-nav">
           <nuxt-link v-if="prev" :to="prev" class="category-prev"></nuxt-link>
           <h3>{{ title }}</h3>
@@ -13,10 +14,15 @@
     <div class="description" v-if="description" v-html="description"></div>
     <div class="images">
       <jp-image v-for="img in images"
+        :class="{spread: isPowtrait(img.size)}"
         :key="img.url"
         :svg-type="img.icon"
         :svg-top="img.iconPosition"
         :img-src="img.url"
+        :img-size="img.size"
+        :desktopSize="isPowtrait(img.size) ? 100 : 50"
+        :tabletSize="isPowtrait(img.size) ? 100 : 50"
+        :phoneSize="100"
         :right-gradient="img.rightBorder"
         :bottom-gradient="img.bottomBorder"/>
     </div>
@@ -37,10 +43,10 @@ export default {
       const currentIndex = contentful.getSideColllections(currentType.collections, params.slug)
       return {
         ...currentType.collections[currentIndex],
-        prev: currentIndex === 0 ? false : currentType.collections[currentIndex - 1].slug,
-        next: currentType.collections[currentIndex + 1] ? currentType.collections[currentIndex + 1].slug : false,
+        prev: currentIndex === 0 ? false : '/' + currentType.slug + '/' + currentType.collections[currentIndex - 1].slug,
+        next: currentType.collections[currentIndex + 1] ? '/' + currentType.slug + '/' + currentType.collections[currentIndex + 1].slug : false,
         hero: currentType.hero,
-        type: currentType.title
+        type: { title: currentType.title, slug: currentType.slug }
       }
     }
   },
@@ -63,11 +69,16 @@ export default {
 
       const alignement = randNum % 3 === 0 ? 'center' :
                           randNum % 3 === 1 ? 'left' : 'right'
-      const translation = randNum % 3 === 0 ? '0' :
-                          randNum % 3 === 1 ? '20px' : '-20px'
+      const translation = randNum2 % 3 === 0 ? '0' :
+                          randNum2 % 3 === 1 ? '20px' : '-20px'
       img.style.setProperty('--random-alignement', alignement)
       img.style.setProperty('--random-translation', translation)
     })
+  },
+  methods: {
+    isPowtrait(size) {
+      return size.width > size.height
+    }
   }
 }
 </script>

@@ -1,12 +1,12 @@
 <template>
   <main class="container">
-    <section id="home-hero">
+    <section id="home-hero" v-basicscroll>
       <nav>
         <div class="h2">julie perrot</div>
         <ul class="doted">
           <nuxt-link tag="li" to="/charte">Charte</nuxt-link>
           <nuxt-link tag="li" to="/commissioned">Commissioned</nuxt-link>
-          <nuxt-link tag="li" to="/escape">Escape</nuxt-link>
+          <nuxt-link tag="li" to="/escape/escape">Escape</nuxt-link>
           <nuxt-link tag="li" to="/faces">Faces</nuxt-link>
           <nuxt-link tag="li" to="/stills">Stills</nuxt-link>
           <nuxt-link tag="li" to="/stories">Stories</nuxt-link>
@@ -23,7 +23,7 @@
         <h2>Last Pro- jects</h2>
       </jp-gallery>
       <div class="more">
-        <button class="btn" @click="TBD">View More</button>
+        <nuxt-link tag="button" class="btn" to="/stories">View More</nuxt-link>
       </div>
     </section>
     <section class="about-container">
@@ -35,6 +35,10 @@
             :svg-type="homePage.about.image.icon"
             :svg-top="homePage.about.image.iconPosition"
             :img-src="homePage.about.image.url"
+            :img-size="homePage.about.image.size"
+            :desktopSize="42"
+            :tabletSize="42"
+            :phoneSize="42"
             :right-gradient="homePage.about.image.rightBorder"
             :bottom-gradient="homePage.about.image.bottomBorder"/>
         </div>
@@ -63,6 +67,12 @@ export default {
     JpInstagram,
     JpContact
   },
+  mounted () {
+    document.querySelector('html').style.setProperty('--header-opacity', '0')
+  },
+  beforeDestroy () {
+    document.querySelector('html').style.setProperty('--header-opacity', '1')
+  },
   methods: {
     TBD () {
       alert('Lol genre le site est fini')
@@ -74,9 +84,6 @@ export default {
 
 <style lang="sass" scoped>
   @import '~assets/sass/helpers'
-
-  .container
-    margin-top: 50px
 
   #home-hero
     background: url(/images/bg-home-bleu.jpg)

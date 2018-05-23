@@ -1,18 +1,68 @@
 <template>
-  <div class="jp-img-container" :class="['svg-url-' + svgType, getSvgTop]">
-    <img :src="imgSrc" :alt="imgSrc" :class="'svg-' + svgType" @load="$emit('load')">
+  <figure
+    class="jp-img-container"
+    :class="[{loaded}, svgType ? 'svg-url-' + svgType : '', svgType ? 'svg-' + svgType : '', getSvgTop]">
+    <div class="thumbnail">
+      <img
+        @load="$emit('load')"
+        :src="imgSrc + '?w=16'"
+        :alt="imgSrc + '-thumb'">
+    </div>
+    <vue-responsive-image
+      :image-url="baseUrl"
+      :image-ratio="ratio"
+      :alt="imgSrc"
+      class="jp-main-img"
+      @load="loaded = true"
+      :width-on-screen="desktopSize"
+      :width-on-screen-tablet="tabletSize"
+      :width-on-screen-smartphone="phoneSize"
+      ></vue-responsive-image>
     <span class="border-right" :class="'gradient' + rightGradient"></span>
     <span class="border-bottom" :class="'gradient' + bottomGradient"></span>
-  </div>
+  </figure>
 </template>
 
 <script>
+import VueResponsiveImage from '~/components/VueResponsiveImage.vue'
+
 export default {
-  props: ['imgSrc', 'svgType', 'svgTop', 'right-gradient', 'bottom-gradient'],
+  components: { VueResponsiveImage },
+  props: {
+    imgSrc: String,
+    svgType: String,
+    svgTop: String,
+    'right-gradient': Number,
+    'bottom-gradient': Number,
+    imgSize: Object,
+    desktopSize: {
+      type: Number,
+      default: 100
+    },
+    tabletSize: {
+      type: Number,
+      default: 100
+    },
+    phoneSize: {
+      type: Number,
+      default: 100
+    }
+  },
+  data () {
+    return {
+      loaded: false
+    } 
+  }, 
   computed: {
     getSvgTop: function () {
       if ( this.svgTop !== 'right' && this.svgTop !== 'left') return false
       return 'svg-' + this.svgTop
+    },
+    baseUrl () {
+      return this.imgSrc + '?w=%width%&h=%height%'
+    },
+    ratio () {
+      return this.imgSize.width / this.imgSize.height
     }
   }
 }
@@ -23,18 +73,15 @@ export default {
   @import "../assets/sass/cursor"
 
   .jp-img-container
-    --gradient-border-right: 13px
-    --gradient-border-bottom: 10px
     position: relative
     height: fit-content
     line-height: 0
+    margin: 0
     padding-right: var(--gradient-border-right)
     padding-bottom: var(--gradient-border-bottom)
-    img
-      width: 100%
-    @media #{$small-up}
-      --gradient-border-right: 13px
-      --gradient-border-bottom: 10px
+    &.spread
+      @media #{$small-up}
+        grid-column: span 2  
     &.svg-right::after
       content: var(--svg-url, url("/images/svg/avocat.svg"))
       position: absolute
@@ -71,5 +118,26 @@ export default {
       width: calc(100% - var(--gradient-border-right))
       transform-origin: top
       transform: skewX(53deg)
+    .thumbnail
+      opacity: 1
+      transition: opacity .6s ease
+      overflow: hidden
+      position: absolute
+      top: 0
+      bottom: var(--gradient-border-bottom)
+      left: 0
+      right: var(--gradient-border-right)
+      img
+        filter: blur(8px)
+    &.loaded .thumbnail
+      opacity: 0
 </style>
 
+<style lang="sass">
+  .jp-img-container.loaded
+    .jp-main-img
+      opacity: 1
+  .jp-main-img
+    transition: opacity .4s ease
+    opacity: 0
+</style>

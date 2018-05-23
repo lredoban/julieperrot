@@ -1,22 +1,27 @@
 <template>
-  <section class="gallery" :class="{'gallery-blank': !$slots.default}">
+  <section ref="gallery" class="gallery" :class="{'gallery-blank': !$slots.default}">
     <slot></slot>
     <div class="gallery__dummy" v-if="$slots.default"></div>
     <div class="gallery__dummy" v-if="$slots.default"></div>
     <div class="gallery__dummy" v-if="$slots.default"></div>
     <div class="gallery__item" v-for="{ slug, image, title, type } in images" :key="title">
-      <nuxt-link :to="`/${type}/${slug}`">
+      <nuxt-link :to="`/${type.slug}/${slug}`">
         <jp-image
         :key="image.url"
         :svg-type="image.icon"
         :svg-top="image.iconPosition"
         :img-src="image.url"
+        :img-size="image.size"
+        :desktopSize="25"
+        :tabletSize="50"
+        :phoneSize="50"
         :right-gradient="image.rightBorder"
-        :bottom-gradient="image.bottomBorder"/>
+        :bottom-gradient="image.bottomBorder"
+        @load="addLoad"/>
       </nuxt-link>
       <div class="gallery__item__info">
         <h4>{{title}}</h4>
-        <em v-if="$slots.default">{{type}}</em>
+        <em v-if="$slots.default">{{type.title}}</em>
       </div>
     </div>
   </section>
@@ -29,40 +34,50 @@ export default {
   name: 'JpGallery',
   components: { JpImage },
   props: ['images'],
-  mounted (){
-    const gallery = document.querySelector('.gallery') // if there is multiple galleries?
-    const fractionHeight = window.getComputedStyle(gallery).getPropertyValue('grid-auto-rows').replace('px', '')
-    const galleryItems = [...gallery.children]
-    const nbCol = Math.floor(this.getWidth(gallery) / this.getWidth(galleryItems[0]))
-    const nbRowsByColumn = []
-
-    galleryItems.map((item, i) => {
-      console.warn();
-      const image = item.getElementsByTagName('img')[0] || false
-      const nbRow = image ? Math.floor(image.height / fractionHeight) + 4 : Math.floor(this.getHeight(item) / fractionHeight)
-      const colIndex = Math.floor((item.getBoundingClientRect().x - gallery.getBoundingClientRect().x) / item.getBoundingClientRect().width)
-      if (image) {
-        item.style.gridRowEnd = `span ${nbRow}`
-      }
-      if (typeof nbRowsByColumn[colIndex] === 'undefined') {
-        nbRowsByColumn[colIndex] = 0
-      }
-      nbRowsByColumn[colIndex] += nbRow
-    })
-    if (!this.$slots.default) return
-    const gradientAngle = ['to right', 'to left', 'to top', 'to bottom']
-    const NMax = Math.max(...nbRowsByColumn)
-    nbRowsByColumn.sort().map((n, i) => {
-      gallery.insertAdjacentHTML('beforeend', `
-        <div class="gallery__filling" 
-          style="
-            grid-row: span ${NMax - n + 2};
-            --gradient-angle: ${gradientAngle[i % 4]}
-          "></div>
-      `)
-    })
+  data () {
+    return {
+      load: 0
+    }
   },
   methods: {
+    doTheMasonry () {
+      const gallery = this.$refs.gallery // if there is multiple galleries?
+      const fractionHeight = window.getComputedStyle(gallery).getPropertyValue('grid-auto-rows').replace('px', '')
+      const galleryItems = [...gallery.children]
+      const nbCol = Math.floor(this.getWidth(gallery) / this.getWidth(galleryItems[0]))
+      const nbRowsByColumn = []
+      
+      galleryItems.map((item, i) => {
+        const image = item.getElementsByTagName('img')[0] || false
+        const nbRow = image ? Math.floor(image.height / fractionHeight) + 4 : Math.floor(this.getHeight(item) / fractionHeight)
+        const colIndex = Math.floor((item.getBoundingClientRect().x - gallery.getBoundingClientRect().x) / item.getBoundingClientRect().width)
+        if (image) {
+          item.style.gridRowEnd = `span ${nbRow}`
+        }
+        if (typeof nbRowsByColumn[colIndex] === 'undefined') {
+          nbRowsByColumn[colIndex] = 0
+        }
+        nbRowsByColumn[colIndex] += nbRow
+      })
+      if (!this.$slots.default) return
+      const gradientAngle = ['to right', 'to left', 'to top', 'to bottom']
+      const NMax = Math.max(...nbRowsByColumn)
+      nbRowsByColumn.sort().map((n, i) => {
+        gallery.insertAdjacentHTML('beforeend', `
+          <div class="gallery__filling" 
+            style="
+              grid-row: span ${NMax - n + 2};
+              --gradient-angle: ${gradientAngle[i % 4]}
+            "></div>
+        `)
+      })
+    },
+    addLoad () {
+      this.load ++
+      if (this.images && this.images.length === this.load) {
+        this.doTheMasonry()
+      }
+    },
     getWidth (el) {
       return parseInt(window.getComputedStyle(el).width.replace('px', ''))
     },
@@ -105,7 +120,9 @@ export default {
       h4
         margin: 5px 0
     .gallery__filling
-      background: $gradientBeta
+      background: $gradientAlpha
+      margin-right: var(--gradient-border-right)
+      margin-bottom: var(--gradient-border-bottom)
     &.gallery-blank
       padding-top: 2em
       padding-bottom: 4em

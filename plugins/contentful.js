@@ -19,7 +19,7 @@ function sortByContentType(entries) {
   
   entries.items.map( entry => {
     const contentTypeId = entry.sys.contentType.sys.id
-    if (typeof contentTypes[contentTypeId] !== "undefined") {
+    if (typeof contentTypes[contentTypeId] !== 'undefined') {
       if (!(contentTypes[contentTypeId] in sorted)) {
         sorted[contentTypes[contentTypeId]] = []
       }
@@ -38,21 +38,35 @@ function cleanImage(image) {
   }
   return {
     url: image.fields.image.fields.file.url,
-    rightBorder: features.rightGradient ? features.rightGradient : false,
-    bottomBorder: features.bottomGradient ? features.bottomGradient : false,
-    iconPosition: features.svgTop ? features.svgTop : false,
-    icon: features.svgType ? features.svgType : false,
+    size: image.fields.image.fields.file.details.image,
+    rightBorder: features.rightGradient ? features.rightGradient : null,
+    bottomBorder: features.bottomGradient ? features.bottomGradient : null,
+    iconPosition: features.svgTop ? features.svgTop : null,
+    icon: features.svgType ? features.svgType : null,
   }
 }
 
 function cleanEntries(entries) {
   const cleaned = {}
+  const preTypes = entries.collectionTypes.reduce((ret, type) => {
+    if (!type.fields.collections) {
+      return ret
+    }
+    type.fields.collections.map(col => {
+      if (typeof ret[col.fields.slug] === 'undefined') {
+        ret[col.fields.slug] = []
+      }
+      ret[col.fields.slug].push({slug: type.fields.slug, title: type.fields.title})
+    })
+    return ret
+  }, {})
+
   cleaned.collections = entries.collections.map((collection, i) => {
     return {
       slug: collection.fields.slug,
       title: collection.fields.title,
       description: collection.fields.description ? marked(collection.fields.description, options) : false,
-      type: collection.fields.type ? collection.fields.type.map(t => t.fields.title) : false,
+      type: preTypes[collection.fields.slug] ?  preTypes[collection.fields.slug] : false,
       images: collection.fields.images.map(img => cleanImage(img))
     }
   })
@@ -60,8 +74,10 @@ function cleanEntries(entries) {
     return {
       slug: type.fields.slug,
       title: type.fields.title,
-      hero: type.fields.hero.fields.file.url,
-      collections: cleaned.collections.filter(col => col.type.includes(type.fields.title))
+      hero: {url: type.fields.hero.fields.file.url, size: type.fields.hero.fields.file.details.image},
+      collections: type.fields.collections ? 
+                      type.fields.collections.map(col => cleaned.collections.find(cl => cl.slug === col.fields.slug))
+                      : []
     }
   })
   cleaned.homePage = {
@@ -71,7 +87,7 @@ function cleanEntries(entries) {
         slug: feat.fields.slug,
         title: feat.fields.title,
         image: cleanImage(feat.fields.images[0]),
-        type: feat.fields.type ? feat.fields.type[0].fields.slug : '' 
+        type: preTypes[feat.fields.slug] ?  preTypes[feat.fields.slug][0] : ''
       }
     }),
     about: {

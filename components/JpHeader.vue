@@ -6,7 +6,7 @@
         <ul>
           <nuxt-link to="/charte" title="Charte" tag="li">Charte</nuxt-link>
           <nuxt-link to="/commissioned" title="Commissioned" tag="li">Commissioned</nuxt-link>
-          <nuxt-link to="/escape" title="Escape" tag="li">Escape</nuxt-link>
+          <nuxt-link to="/escape/escape" title="Escape" tag="li">Escape</nuxt-link>
           <nuxt-link to="/films" title="Films" tag="li">Films</nuxt-link>
           <nuxt-link to="/stills" title="Stills" tag="li">Stills</nuxt-link>
           <nuxt-link to="/stories" title="Stories" tag="li">Stories</nuxt-link>
@@ -24,7 +24,7 @@
       <ul>
         <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/charte">Charte</nuxt-link>
         <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/commissioned">Commissioned</nuxt-link>
-        <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/escape">Escape</nuxt-link>
+        <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/escape/escape">Escape</nuxt-link>
         <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/films">Films</nuxt-link>
         <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/stills">Stills</nuxt-link>
         <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/stories">Stories</nuxt-link>
@@ -57,6 +57,7 @@ export default {
   header #top
     z-index: 27
     position: fixed
+    opacity: 1
     top: 0
     background: $white
     height: 50px
@@ -66,6 +67,8 @@ export default {
     align-items: center
     justify-items: end
     width: 100vw
+    @media #{$small-up}
+      opacity: var(--header-opacity)      
     a
       height: 40px
     img
@@ -93,6 +96,7 @@ export default {
     color: $white
     background: $black
     padding: 42px 30px
+    top: 50px
     left: 100%
     font-weight: 100
     font-size: 15px

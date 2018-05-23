@@ -92,7 +92,11 @@ module.exports = {
         }, [])
         callback(null, [...collectionTypesRoutes, ...collectionsRoutes])
       })
-    }
+    },
+    subFolders: false
   },
-  loading: false
+  loading: false,
+  plugins: [
+    { src: '~/plugins/basicscroll.js', ssr: false }
+  ]
 }
