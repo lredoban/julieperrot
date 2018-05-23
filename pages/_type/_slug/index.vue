@@ -2,7 +2,7 @@
   <main>
     <jp-hero :background="hero">
       {{ type }}
-      <div slot="subtitle">
+      <div slot="subtitle" v-if="type.toLowerCase() !== title.toLowerCase()">
         <div class="category-nav">
           <nuxt-link v-if="prev" :to="prev" class="category-prev"></nuxt-link>
           <h3>{{ title }}</h3>
