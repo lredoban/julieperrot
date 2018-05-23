@@ -5,7 +5,7 @@
     <div class="gallery__dummy" v-if="$slots.default"></div>
     <div class="gallery__dummy" v-if="$slots.default"></div>
     <div class="gallery__item" v-for="{ slug, image, title, type } in images" :key="title">
-      <nuxt-link :to="`/${type}/${slug}`">
+      <nuxt-link :to="`/${type.slug}/${slug}`">
         <jp-image
         :key="image.url"
         :svg-type="image.icon"
@@ -21,7 +21,7 @@
       </nuxt-link>
       <div class="gallery__item__info">
         <h4>{{title}}</h4>
-        <em v-if="$slots.default">{{type}}</em>
+        <em v-if="$slots.default">{{type.title}}</em>
       </div>
     </div>
   </section>

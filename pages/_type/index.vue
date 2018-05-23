@@ -38,7 +38,7 @@ export default {
           slug: col.slug,
           image: col.images[0],
           title: col.title,
-          type: this.$route.params.type
+          type: { slug: this.slug, title: this.title }
         }
       })
     }

@@ -1,8 +1,9 @@
 <template>
   <main>
     <jp-hero :background="hero">
-      {{ type }}
-      <div slot="subtitle" v-if="type.toLowerCase() !== title.toLowerCase()">
+      <nuxt-link v-if="type.slug !== slug" :to="'/' + type.slug">{{ type.title }}</nuxt-link>
+      <span v-else>{{ type.title }}</span>
+      <div slot="subtitle" v-if="type.slug !== slug">
         <div class="category-nav">
           <nuxt-link v-if="prev" :to="prev" class="category-prev"></nuxt-link>
           <h3>{{ title }}</h3>
@@ -42,10 +43,10 @@ export default {
       const currentIndex = contentful.getSideColllections(currentType.collections, params.slug)
       return {
         ...currentType.collections[currentIndex],
-        prev: currentIndex === 0 ? false : currentType.collections[currentIndex - 1].slug,
-        next: currentType.collections[currentIndex + 1] ? currentType.collections[currentIndex + 1].slug : false,
+        prev: currentIndex === 0 ? false : '/' + currentType.slug + '/' + currentType.collections[currentIndex - 1].slug,
+        next: currentType.collections[currentIndex + 1] ? '/' + currentType.slug + '/' + currentType.collections[currentIndex + 1].slug : false,
         hero: currentType.hero,
-        type: currentType.title
+        type: { title: currentType.title, slug: currentType.slug }
       }
     }
   },

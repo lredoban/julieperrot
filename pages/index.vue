@@ -6,7 +6,7 @@
         <ul class="doted">
           <nuxt-link tag="li" to="/charte">Charte</nuxt-link>
           <nuxt-link tag="li" to="/commissioned">Commissioned</nuxt-link>
-          <nuxt-link tag="li" to="/escape">Escape</nuxt-link>
+          <nuxt-link tag="li" to="/escape/escape">Escape</nuxt-link>
           <nuxt-link tag="li" to="/faces">Faces</nuxt-link>
           <nuxt-link tag="li" to="/stills">Stills</nuxt-link>
           <nuxt-link tag="li" to="/stories">Stories</nuxt-link>

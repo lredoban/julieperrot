@@ -56,7 +56,7 @@ function cleanEntries(entries) {
       if (typeof ret[col.fields.slug] === 'undefined') {
         ret[col.fields.slug] = []
       }
-      ret[col.fields.slug].push(type.fields.slug)
+      ret[col.fields.slug].push({slug: type.fields.slug, title: type.fields.title})
     })
     return ret
   }, {})
