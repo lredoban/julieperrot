@@ -1,5 +1,5 @@
 <template>
-  <section class="gallery" :class="{'gallery-blank': !$slots.default}">
+  <section ref="gallery" class="gallery" :class="{'gallery-blank': !$slots.default}">
     <slot></slot>
     <div class="gallery__dummy" v-if="$slots.default"></div>
     <div class="gallery__dummy" v-if="$slots.default"></div>
@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     doTheMasonry () {
-      const gallery = document.querySelector('.gallery') // if there is multiple galleries?
+      const gallery = this.$refs.gallery // if there is multiple galleries?
       const fractionHeight = window.getComputedStyle(gallery).getPropertyValue('grid-auto-rows').replace('px', '')
       const galleryItems = [...gallery.children]
       const nbCol = Math.floor(this.getWidth(gallery) / this.getWidth(galleryItems[0]))
