@@ -1,23 +1,28 @@
 <template>
   <section id="contact">
-    <form action="contact">
-      <div class="step" v-if="step === 1">
-        <textarea v-model="message" placeholder="Any message?"></textarea>
+    <form @submit.prevent="submit" rel="form" name="contact" netlify-honeypot="horse" method="POST" action="contact" data-netlify="true">
+      <p v-show="false">
+        <label>Why horse? I just do not know <input name="horse"/></label>
+      </p>
+      <div class="step" v-show="step === 1">
+        <textarea name="message" v-model="message" placeholder="Any message?"></textarea>
         <button class="btn" @click.prevent="step = 2">Next</button>
       </div>
-      <div class="step" v-if="step === 2">
+      <div class="step" v-show="step === 2">
         <input type="textarea" name="name" id="name" placeholder="Ok. What is your name?" v-model="name">
         <button class="btn" @click.prevent="step = 3">Next</button>
       </div>
-      <div class="step" v-if="step === 3">
+      <div class="step" v-show="step === 3">
         <input type="email" name="email" id="email" placeholder="Your email?" v-model="email">
-        <button type="submit" class="btn" @click.prevent="step = 1">Submit!</button>
+        <button type="submit" class="btn">Submit!</button>
       </div>
     </form>
   </section>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data (){
     return {
@@ -25,6 +30,26 @@ export default {
       name: '',
       email: '',
       step: 1
+    }
+  },
+  methods: {
+    submit (){
+      const formData = new FormData()
+      formData.set('message', this.message)
+      formData.set('name', this.name)
+      formData.set('email', this.email)
+      axios({
+        method: 'post',
+        url: '/contact',
+        data: formData,
+        config: { headers: {'Content-Type': 'multipart/form-data' }}
+      })
+      .then(rep => {
+        console.log('good', rep)
+      })
+      .catch(err => {
+        console.log('ugly', err)
+      })
     }
   }
 }
