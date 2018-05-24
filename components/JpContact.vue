@@ -1,6 +1,6 @@
 <template>
   <section id="contact">
-    <form @submit.prevent="submit" rel="form" name="contact" method="POST" action="contact">
+    <form @submit.prevent="submit" rel="form">
       <div class="step" v-show="step === 1">
         <textarea name="message" v-model="message" placeholder="Any message?"></textarea>
         <button class="btn" @click.prevent="step = 2">Next</button>
@@ -30,16 +30,17 @@ export default {
     }
   },
   methods: {
+    encode (data){
+      return Object.keys(data)
+        .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+        .join("&");
+    },  
     submit (){
-      const formData = new FormData()
-      formData.set('message', this.message)
-      formData.set('name', this.name)
-      formData.set('email', this.email)
-      axios({
-        method: 'post',
-        url: '/contact',
-        data: formData,
-        config: { headers: {'Content-Type': 'multipart/form-data' }}
+      const {step, ...formData} = this.$data
+      fetch("/thank-you", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: this.encode({'form-name': 'contact', ...formData})
       })
       .then(rep => {
         console.log('good', rep)
