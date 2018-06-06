@@ -94,7 +94,7 @@ export default {
 
   .gallery
     padding: 0 5px
-    margin: -1em auto 0
+    margin: -0.8em auto 0
     max-width: var(--max-width)
     display: grid
     grid-auto-rows: 27px
@@ -104,8 +104,6 @@ export default {
       grid-template-columns: repeat(auto-fit, minmax(236px, 1fr))
       grid-gap: 0 40px
       padding: 0 60px
-      .gallery__dummy
-        grid-row-end: span 4
     h2
       margin-top: calc(-#{$h2LineHeight} / 2) 
       z-index: 1
@@ -113,6 +111,8 @@ export default {
       max-width: 200px
     .gallery__dummy
       grid-row-end: span 1
+      @media #{$medium-up}
+        grid-row-end: span 4
     .gallery__item
       opacity: var(--opacity, 1)
       will-change: opacity
