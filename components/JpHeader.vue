@@ -3,7 +3,7 @@
     <div id="top">
       <nuxt-link to="/"><img class="svg-avocat" src="/images/logo.png" alt="Julie Perrot Logo"></nuxt-link>
       <nav class="desktop">
-        <ul>
+        <ul class="navigation">
           <nuxt-link to="/charte" title="Charte" tag="li">Charte</nuxt-link>
           <nuxt-link to="/commissioned" title="Commissioned" tag="li">Commissioned</nuxt-link>
           <nuxt-link to="/escape/escape" title="Escape" tag="li">Escape</nuxt-link>
@@ -115,21 +115,6 @@ export default {
     @media #{$medium-up}
       display: block
     li
-      cursor: pointer
       display: inline-block
-      font-weight: 300
-      font-size: 13px
-      letter-spacing: 0.3em
-      text-transform: uppercase
       margin-left: 2em
-      &:hover, &.nuxt-link-active
-        font-weight: 700
-        text-decoration: underline
-      &::after
-        display: block
-        content: attr(title)
-        font-weight: 700
-        height: 0
-        overflow: hidden
-        visibility: hidden
 </style>

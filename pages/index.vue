@@ -1,9 +1,9 @@
 <template>
   <main class="container">
     <section id="home-hero" v-basicscroll>
-      <nav>
+      <nav class="desktop">
         <div class="h2">julie perrot</div>
-        <ul class="doted">
+        <ul class="navigation doted">
           <nuxt-link tag="li" to="/charte">Charte</nuxt-link>
           <nuxt-link tag="li" to="/commissioned">Commissioned</nuxt-link>
           <nuxt-link tag="li" to="/escape/escape">Escape</nuxt-link>
@@ -129,7 +129,6 @@ export default {
     nav
       display: none
     ul.doted > li
-      text-transform: uppercase
       grid-column-gap: 20px
     @media #{$xsmall-up}
       .presentation
