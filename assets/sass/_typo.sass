@@ -122,14 +122,23 @@ ul.navigation li
   font-size: 13px
   letter-spacing: 0.3em
   text-transform: uppercase
+  position: relative
+  span
+    transition: opacity .6s ease
   &:hover, &.nuxt-link-active
-    font-weight: 700
-    text-decoration: underline
+    span
+      opacity: 0
+    &::after
+      opacity: 1
   &::after
+    transition: opacity .4s ease
     display: block
+    position: absolute
+    top: 0
     content: attr(title)
     font-weight: 700
-    height: 0
-    overflow: hidden
-    visibility: hidden
-
+    opacity: 0
+    text-decoration: underline
+  
+ul.navigation.doted li::after
+  left: 28px
