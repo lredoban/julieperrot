@@ -41,12 +41,14 @@ a
     font-size: 10px
     margin: 0.5rem 0
     padding: 12px
+    &:active
+      padding: 13px 11px 11px 13px
     @media #{$small-up}
       font-size: 12px
   &.btn-active
     background: $beige
 
-  &:after
+  &::after
     position: absolute
     content: ""
     background: $black
@@ -58,6 +60,8 @@ a
     transition: all 0.3s ease-out
   &:active::after, &:hover::after, &.btn-active::after
     transform: translate(-6px, -6px)
+  &:active
+    padding: 17px 15px 15px 17px
 
 .btn-list
   > .btn
