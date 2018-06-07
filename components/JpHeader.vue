@@ -67,6 +67,7 @@ export default {
     align-items: center
     justify-items: end
     width: 100vw
+    transition: opacity .5s
     @media #{$small-up}
       opacity: var(--header-opacity)      
     a
