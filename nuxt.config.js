@@ -84,7 +84,7 @@ module.exports = {
                 prev: currentIndex === 0 ? false : currentType.collections[currentIndex - 1].slug,
                 next: currentType.collections[currentIndex + 1] ? currentType.collections[currentIndex + 1].slug : false,
                 hero: currentType.hero,
-                type: currentType.title
+                type: { title: currentType.title, slug: currentType.slug }
               }
             }
           }))
