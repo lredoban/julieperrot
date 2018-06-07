@@ -92,7 +92,7 @@ export default {
   @import "~assets/sass/helpers"
 
   #instagram
-    max-width: var(--max-width)
+    max-width: 1920px
     display: grid
     grid-template-columns: 1fr 1fr 1fr
     grid-gap: 10px
@@ -100,6 +100,8 @@ export default {
     @media #{$small-up}
       padding: 100px 10px
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))    
+    @media only screen and (min-width: 1480px) // when gallery grid add one column
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))    
     h2
       align-self: center
       justify-self: center
