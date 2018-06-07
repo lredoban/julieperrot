@@ -128,6 +128,8 @@ export default {
         margin-bottom: 1em
     nav
       display: none
+      &.desktop
+        margin-left: 2em
     ul.doted > li
       grid-column-gap: 20px
     @media #{$xsmall-up}
@@ -156,7 +158,9 @@ export default {
         align-self: start
         .h2
           text-transform: lowercase
-  
+    @media #{$medium-up}
+      nav.desktop
+        margin-left: 0
   .more
     margin: 4em
     text-align: center
