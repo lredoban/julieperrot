@@ -14,13 +14,13 @@
         </ul>
       </nav>
       <div class="presentation">
-        <h2>French Photo- grapher</h2>
+        <h1 class="h2">French Photo- grapher</h1>
         <p>Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'?</p>
       </div>
     </section>
     <section>
       <jp-gallery :images="homePage.featured">
-        <h2>Last Pro- jects</h2>
+        <h2 class="h1">Last Pro- jects</h2>
       </jp-gallery>
       <div class="more">
         <nuxt-link tag="button" class="btn" to="/stories">View More</nuxt-link>
@@ -120,7 +120,7 @@ export default {
       background-position: -50% 0%
       background-repeat: no-repeat
       background-size: auto 80%
-      h2
+      h1
         margin-top: 1.5em
         margin-bottom: 0
         max-width: 260px
@@ -194,5 +194,5 @@ export default {
     max-width: 42px
     margin-top: -36px
     @media #{$small-up}
-      margin-top: -45px
+      margin-top: -65px
 </style>

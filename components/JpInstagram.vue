@@ -1,6 +1,6 @@
 <template>
   <section id="instagram">
-    <h2>Follow Me!</h2>
+    <h2 class="h1">Follow Me!</h2>
     <a
       v-for="img in IGImages"
       :href="img.link"

@@ -3,7 +3,6 @@
     <slot></slot>
     <div class="gallery__dummy" v-if="$slots.default"></div>
     <div class="gallery__dummy" v-if="$slots.default"></div>
-    <div class="gallery__dummy" v-if="$slots.default"></div>
     <div class="gallery__item" v-for="{ slug, image, title, type } in images" :key="title">
       <nuxt-link :to="`/${type.slug}/${slug}`">
         <jp-image
@@ -46,14 +45,26 @@ export default {
       const galleryItems = [...gallery.children]
       const nbCol = Math.floor(this.getWidth(gallery) / this.getWidth(galleryItems[0]))
       const nbRowsByColumn = []
-      
+
       galleryItems.map((item, i) => {
         const image = item.getElementsByTagName('img')[0] || false
         const nbRow = image ? Math.floor(image.height / fractionHeight) + 4 : Math.floor(this.getHeight(item) / fractionHeight)
         const colIndex = Math.floor((item.getBoundingClientRect().x - gallery.getBoundingClientRect().x) / item.getBoundingClientRect().width)
+
         if (image) {
           item.style.gridRowEnd = `span ${nbRow}`
+        } 
+        // this ugly Kid handle the double column title
+        else {
+          const colSpan = window.getComputedStyle(item).getPropertyValue('grid-column-end')
+          if (colSpan === 'span 2') {
+            if (typeof nbRowsByColumn[colIndex + 1] === 'undefined') {
+              nbRowsByColumn[colIndex + 1] = 0
+            }
+            nbRowsByColumn[colIndex + 1] += nbRow
+          }
         }
+        // End of Ugly Kid
         if (typeof nbRowsByColumn[colIndex] === 'undefined') {
           nbRowsByColumn[colIndex] = 0
         }
@@ -105,13 +116,20 @@ export default {
       grid-gap: 0 40px
       padding: 0 60px
     h2
-      margin-top: calc(-#{$h2LineHeight} / 2) 
+      margin-top: calc(-1.4em / 2) 
       z-index: 1
-      grid-row-end: span 8
+      grid-row-end: span 6
+      grid-column-end: span 1
       max-width: 200px
+      @media #{$small-up}
+        grid-row-end: span 9
+        margin-top: calc(-1.7em / 2)
+      @media only screen and (min-width: 1184px) // when gallery grid add one column
+        margin-left: 1.3em
+        grid-column-end: span 2
     .gallery__dummy
       grid-row-end: span 1
-      @media #{$medium-up}
+      @media only screen and (min-width: 908px) // when gallery grid add one column
         grid-row-end: span 4
     .gallery__item
       opacity: var(--opacity, 1)
