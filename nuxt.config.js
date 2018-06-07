@@ -69,7 +69,7 @@ module.exports = {
       .then( data => {
         const collectionTypesRoutes = data.collectionTypes.map( type => {
           return {
-            route: `/${type.slug}/`,
+            route: `/${type.slug}`,
             payload: type
           }
         })
