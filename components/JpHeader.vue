@@ -3,14 +3,14 @@
     <div id="top">
       <nuxt-link to="/"><img class="svg-avocat" src="/images/logo.png" alt="Julie Perrot Logo"></nuxt-link>
       <nav class="desktop">
-        <ul>
-          <nuxt-link to="/charte" title="Charte" tag="li">Charte</nuxt-link>
-          <nuxt-link to="/commissioned" title="Commissioned" tag="li">Commissioned</nuxt-link>
-          <nuxt-link to="/escape/escape" title="Escape" tag="li">Escape</nuxt-link>
-          <nuxt-link to="/films" title="Films" tag="li">Films</nuxt-link>
-          <nuxt-link to="/stills" title="Stills" tag="li">Stills</nuxt-link>
-          <nuxt-link to="/stories" title="Stories" tag="li">Stories</nuxt-link>
-          <nuxt-link to="/video" title="Video" tag="li">Video</nuxt-link>
+        <ul class="navigation">
+          <nuxt-link to="/charte" title="Charte" tag="li"><span>Charte</span></nuxt-link>
+          <nuxt-link to="/commissioned" title="Commissioned" tag="li"><span>Commissioned</span></nuxt-link>
+          <nuxt-link to="/escape/escape" title="Escape" tag="li"><span>Escape</span></nuxt-link>
+          <nuxt-link to="/films" title="Films" tag="li"><span>Films</span></nuxt-link>
+          <nuxt-link to="/stills" title="Stills" tag="li"><span>Stills</span></nuxt-link>
+          <nuxt-link to="/stories" title="Stories" tag="li"><span>Stories</span></nuxt-link>
+          <nuxt-link to="/video" title="Video" tag="li"><span>Video</span></nuxt-link>
         </ul>
       </nav>
       <div class="menu-trigger" @click="toggleMenu">
@@ -67,6 +67,7 @@ export default {
     align-items: center
     justify-items: end
     width: 100vw
+    transition: opacity .5s
     @media #{$small-up}
       opacity: var(--header-opacity)      
     a
@@ -111,25 +112,9 @@ export default {
 
   nav.desktop
     display: none
-    margin-top: 4px
     @media #{$medium-up}
       display: block
     li
-      cursor: pointer
       display: inline-block
-      font-weight: 300
-      font-size: 13px
-      letter-spacing: 0.3em
-      text-transform: uppercase
       margin-left: 2em
-      &:hover, &.nuxt-link-active
-        font-weight: 700
-        text-decoration: underline
-      &::after
-        display: block
-        content: attr(title)
-        font-weight: 700
-        height: 0
-        overflow: hidden
-        visibility: hidden
 </style>

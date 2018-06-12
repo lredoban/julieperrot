@@ -60,6 +60,7 @@ export default {
     }
   },
   mounted () {
+    document.querySelector('html').style.setProperty('--header-opacity', '1')
     const gallery = document.querySelector('.images') // if there is multiple galleries?
     const images = [...gallery.children]
 

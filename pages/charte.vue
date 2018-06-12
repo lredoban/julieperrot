@@ -369,6 +369,8 @@ export default {
     JpImage
   },
   mounted () {
+    document.querySelector('html').style.setProperty('--header-opacity', '1')
+    
     const gradients = document.querySelectorAll('.gradient-figure > div')
     Object.keys(gradients).map(key => {
       const rgb = window.getComputedStyle(gradients[key], null).getPropertyValue('background-color')

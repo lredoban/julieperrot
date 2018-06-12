@@ -44,6 +44,8 @@ export default {
     background-size: cover
     display: grid
     //background-image: var(--bg-image, none)
+    @media only screen and (min-width: 1175px)
+      margin-top: calc(-2vw)
     h1
       margin: 0
       line-height: 1

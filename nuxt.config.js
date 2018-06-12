@@ -69,7 +69,7 @@ module.exports = {
       .then( data => {
         const collectionTypesRoutes = data.collectionTypes.map( type => {
           return {
-            route: `/${type.slug}/`,
+            route: `/${type.slug}`,
             payload: type
           }
         })
@@ -84,7 +84,7 @@ module.exports = {
                 prev: currentIndex === 0 ? false : currentType.collections[currentIndex - 1].slug,
                 next: currentType.collections[currentIndex + 1] ? currentType.collections[currentIndex + 1].slug : false,
                 hero: currentType.hero,
-                type: currentType.title
+                type: { title: currentType.title, slug: currentType.slug }
               }
             }
           }))
@@ -93,7 +93,8 @@ module.exports = {
         callback(null, [...collectionTypesRoutes, ...collectionsRoutes])
       })
     },
-    subFolders: false
+    subFolders: false,
+    fallback: true
   },
   loading: false,
   plugins: [

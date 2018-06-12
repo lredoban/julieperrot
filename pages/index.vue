@@ -1,26 +1,26 @@
 <template>
   <main class="container">
     <section id="home-hero" v-basicscroll>
-      <nav>
+      <nav class="desktop">
         <div class="h2">julie perrot</div>
-        <ul class="doted">
-          <nuxt-link tag="li" to="/charte">Charte</nuxt-link>
-          <nuxt-link tag="li" to="/commissioned">Commissioned</nuxt-link>
-          <nuxt-link tag="li" to="/escape/escape">Escape</nuxt-link>
-          <nuxt-link tag="li" to="/faces">Faces</nuxt-link>
-          <nuxt-link tag="li" to="/stills">Stills</nuxt-link>
-          <nuxt-link tag="li" to="/stories">Stories</nuxt-link>
-          <nuxt-link tag="li" to="/video">Video</nuxt-link>
+        <ul class="navigation doted">
+          <nuxt-link to="/charte" title="Charte" tag="li"><span>Charte</span></nuxt-link>
+          <nuxt-link to="/commissioned" title="Commissioned" tag="li"><span>Commissioned</span></nuxt-link>
+          <nuxt-link to="/escape/escape" title="Escape" tag="li"><span>Escape</span></nuxt-link>
+          <nuxt-link to="/films" title="Films" tag="li"><span>Films</span></nuxt-link>
+          <nuxt-link to="/stills" title="Stills" tag="li"><span>Stills</span></nuxt-link>
+          <nuxt-link to="/stories" title="Stories" tag="li"><span>Stories</span></nuxt-link>
+          <nuxt-link to="/video" title="Video" tag="li"><span>Video</span></nuxt-link>
         </ul>
       </nav>
       <div class="presentation">
-        <h2>French Photo- grapher</h2>
+        <h1 class="h2">French Photo- grapher</h1>
         <p>Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'?</p>
       </div>
     </section>
     <section>
       <jp-gallery :images="homePage.featured">
-        <h2>Last Pro- jects</h2>
+        <h2 class="h1">Last Pro- jects</h2>
       </jp-gallery>
       <div class="more">
         <nuxt-link tag="button" class="btn" to="/stories">View More</nuxt-link>
@@ -120,7 +120,7 @@ export default {
       background-position: -50% 0%
       background-repeat: no-repeat
       background-size: auto 80%
-      h2
+      h1
         margin-top: 1.5em
         margin-bottom: 0
         max-width: 260px
@@ -128,8 +128,9 @@ export default {
         margin-bottom: 1em
     nav
       display: none
+      &.desktop
+        margin-left: 2em
     ul.doted > li
-      text-transform: uppercase
       grid-column-gap: 20px
     @media #{$xsmall-up}
       .presentation
@@ -157,7 +158,9 @@ export default {
         align-self: start
         .h2
           text-transform: lowercase
-  
+    @media #{$medium-up}
+      nav.desktop
+        margin-left: 0
   .more
     margin: 4em
     text-align: center
@@ -195,5 +198,5 @@ export default {
     max-width: 42px
     margin-top: -36px
     @media #{$small-up}
-      margin-top: -45px
+      margin-top: -65px
 </style>
