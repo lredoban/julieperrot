@@ -99,5 +99,13 @@ module.exports = {
   loading: false,
   plugins: [
     { src: '~/plugins/basicscroll.js', ssr: false }
+  ],
+  modules: [
+    ['@nuxtjs/google-analytics', {
+      id: process.env.JULIEPERROT_UA,
+      autoTracking: {
+        skipSamePath: true
+      }
+    }]
   ]
 }
