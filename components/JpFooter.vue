@@ -20,7 +20,7 @@
       <div>
         <h4>Contact</h4>
         <ul class="doted">
-          <li>Write me</li>
+          <li @click="$emit('toggle-contact')" class="click"> Write me</li>
         </ul>
       </div>
     </div>
@@ -68,4 +68,6 @@ export default {
       text-align: center
       padding: 10px
       font-weight: 100
+    .click
+      cursor: pointer
 </style>
