@@ -47,6 +47,13 @@ a
       font-size: 12px
   &.btn-active
     background: $beige
+  &:disabled
+    opacity: 0.3
+    color: $black
+    box-shadow: 2px 2px
+    cursor: initial
+    &::after
+      content: none
 
   &::after
     position: absolute
