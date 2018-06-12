@@ -4,11 +4,9 @@
       <nav class="desktop">
         <div class="h2">julie perrot</div>
         <ul class="navigation doted">
-          <nuxt-link to="/charte" title="Charte" tag="li"><span>Charte</span></nuxt-link>
           <nuxt-link to="/commissioned" title="Commissioned" tag="li"><span>Commissioned</span></nuxt-link>
           <nuxt-link to="/escape/escape" title="Escape" tag="li"><span>Escape</span></nuxt-link>
           <nuxt-link to="/films" title="Films" tag="li"><span>Films</span></nuxt-link>
-          <nuxt-link to="/stills" title="Stills" tag="li"><span>Stills</span></nuxt-link>
           <nuxt-link to="/stories" title="Stories" tag="li"><span>Stories</span></nuxt-link>
           <nuxt-link to="/video" title="Video" tag="li"><span>Video</span></nuxt-link>
         </ul>

@@ -4,11 +4,9 @@
       <nuxt-link to="/"><img class="svg-avocat" src="/images/logo.png" alt="Julie Perrot Logo"></nuxt-link>
       <nav class="desktop">
         <ul class="navigation">
-          <nuxt-link to="/charte" title="Charte" tag="li"><span>Charte</span></nuxt-link>
           <nuxt-link to="/commissioned" title="Commissioned" tag="li"><span>Commissioned</span></nuxt-link>
           <nuxt-link to="/escape/escape" title="Escape" tag="li"><span>Escape</span></nuxt-link>
           <nuxt-link to="/films" title="Films" tag="li"><span>Films</span></nuxt-link>
-          <nuxt-link to="/stills" title="Stills" tag="li"><span>Stills</span></nuxt-link>
           <nuxt-link to="/stories" title="Stories" tag="li"><span>Stories</span></nuxt-link>
           <nuxt-link to="/video" title="Video" tag="li"><span>Video</span></nuxt-link>
         </ul>
@@ -22,11 +20,9 @@
     </div>
     <nav class="mobile" :class="{open: showMenu}">
       <ul>
-        <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/charte">Charte</nuxt-link>
         <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/commissioned">Commissioned</nuxt-link>
         <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/escape/escape">Escape</nuxt-link>
         <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/films">Films</nuxt-link>
-        <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/stills">Stills</nuxt-link>
         <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/stories">Stories</nuxt-link>
         <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/video">Video</nuxt-link>
       </ul>
