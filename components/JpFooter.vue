@@ -5,7 +5,7 @@
       <div>
         <h4>More ...</h4>
         <ul class="doted">
-          <li><nuxt-link to="/mariage">Mariage</nuxt-link></li>
+          <!-- <li><nuxt-link to="/mariage">Mariage</nuxt-link></li> -->
           <li><nuxt-link to="/mom-n-kidz">Mom & kidz</nuxt-link></li>
         </ul>
       </div>
@@ -25,7 +25,9 @@
       </div>
     </div>
     <div class="copyright">
-      © Juie Perrot tous droits réservés
+      <span>© Juie Perrot tous droits réservés</span>
+      <span> - <a href="https://heyoo.fr/" target="_blank">Designed by Anne-Sophie</a> - </span>
+      <span><a href="https://lovasoa.fr/" target="_blank">Powered by Lovasoa 🐯</a><nuxt-link to="/charte">💻</nuxt-link></span>
     </div>
   </footer>
 </template>
@@ -68,6 +70,11 @@ export default {
       text-align: center
       padding: 10px
       font-weight: 100
+      display: grid
+      grid-template-columns: 1fr
+      @media #{$small-up}
+        display: block      
+
     .click
       cursor: pointer
 </style>
