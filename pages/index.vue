@@ -83,9 +83,25 @@ export default {
 <style lang="sass" scoped>
   @import '~assets/sass/helpers'
 
+  #test
+    position: relative
+    height: 100vh
+    width: 100vw
+    background: #ccc7fd
+    background-image: url(/images/noise98op5.png)
+    background-image: url(/images/noise98op5.png), linear-gradient(135deg, #b0e7d6, #ccc7fd)
+    //background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAABS2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDAgNzkuMTYwNDUxLCAyMDE3LzA1LzA2LTAxOjA4OjIxICAgICAgICAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+CiA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgo8P3hwYWNrZXQgZW5kPSJyIj8+LUNEtwAAAARnQU1BAACxjwv8YQUAAAABc1JHQgCuzhzpAAAAFVBMVEX///8AAACwsLBOTk7X19cnJyd1dXWLZSL5AAAAB3RSTlMNDQ0NDQ0NQRAViQAAAsJJREFUOMttVMtunEAQrGKAczevM9hJzoMT5Qy2c4fIvoOd/P8vpBoniix5tdIuTD+qq6oHXhEz8jmShq5rjF565zDw2TxT74HCrErZBxxm1iI3Zr7l0saD2JRI0Os5Z7gTJ91BM96ZQZ/W2RLJ4AVLSytmH7Mbbny9BWrl9LRbI10R/tNWJeeqfgASQDT0s/BUvAMa+Nxe28TTheXzUCjSAqrlDtFXQE/FcFM+fcKK3gXm7BR05eu3BdQb+EbrI3Z39jyEgxhxTJMivS4Vu6oNmM7VI8zVMmpUVfTTseY9dCJcy+LoLRe0I6EXdnLWkTVMgUnQFgHDV2vAWoNsfgzodx1dlch7c6M1gmqziFyv12LId5HcvYVR8AUyKqnPJix7XiMOWccc8V8qfRWJ/e8cKKnynEInoVW/EQJpAR5B5Mkll2TDxTYLitseS+GiR61WLHhSkasusGngeatEqgjBHrzyE6aYD74XtZzxWmRjpdxnxWxfHj14t6tlYbhrBEgsewjGEPDjUdXh4YKHIwwRcKmJbJB+LzHJKDqN9VoCU0+/iShsoviApUW6Kqd3WXZQFdiD8IYeSUmXPdl1si0wk2HMykXrajLrEOHftQ36rdkUHtj0hNCnlgSCVSNzEwRrB15Y5hAhpoyJjiezOiZbREry1bFG27d3trhNR5uZvJ9Wl3eyMPgpuIIu73RappB6vXZhdJbSZwjd6oB+aYH34vtgk+VJ8qVI9g2/gjOpI1MyGJUFQjzEmlbhITSSWAElw9BSsAiGB/yOJ74IuMINg0T6uGImlpA2Lg8LKPqrzPGyqbaj10VRYci3Gnon+i1edyG8c1LVNJh3AtUXVpTQkoUfKZ5+qNiEo9KQm5XwZqR08Bj2qq21Gyc5RrtQRt8qrPPupsF9E8PEonJp2fjSqkVV2rUDutk6a/26L+D/VuAPpe5YWDBrRbkAAAAASUVORK5CYII=), linear-gradient(135deg, #b0e7d6, #ccc7fd)
+    svg
+      position: absolute
+      right: 10vw
+      bottom: 5vh
+      width: 50vw
+      height: auto
+  
   #home-hero
-    background: url(/images/bg-home-bleu.jpg)
-    background-size: cover
+    background: #ccc7fd
+    background-image: url(/images/noise98op5.png)
+    background-image: url(/images/noise98op5.png), linear-gradient(135deg, #b0e7d6, #ccc7fd)
     position: relative
     height: calc(90vh - 50px)
     display: grid
@@ -98,8 +114,7 @@ export default {
       left: 30%
       right: 0
       bottom: 50%
-      background: url(/images/bg-home-jaune.jpg)
-      background-size: cover
+      background: url(/images/bg-home-jaune.png)
     &::after
       content: ""
       position: absolute
@@ -107,9 +122,9 @@ export default {
       left: 50%
       right: 0
       bottom: 0
-      background: url(/images/bg-home-trame.jpg)
-      background-size: cover
-      background-repeat: no-repeat
+      background: url(/images/bg-home-trame.png)
+      background-size: contain
+      background-repeat: repeat-y
       background-position: 50%
     .presentation
       z-index: 2
