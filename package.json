@@ -22,7 +22,7 @@
     "marked": "^0.3.12",
     "modern-normalize": "^0.4.0",
     "node-sass": "^4.7.2",
-    "nuxt": "^1.0.0",
+    "nuxt": "^1.4.1",
     "sass-loader": "^6.0.6",
     "vuelidate": "^0.7.4"
   },
