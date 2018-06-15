@@ -12,7 +12,7 @@
         </ul>
       </nav>
       <div class="presentation">
-        <h1 class="h2">French Photo- grapher</h1>
+        <h1 class="h2">I<br>shoot Wild souls</h1>
         <div v-html="homePage.heroText"></div>
       </div>
     </section>
@@ -43,7 +43,9 @@
       </div>
     </section>
     <jp-contact></jp-contact>
-    <jp-instagram></jp-instagram>
+    <lazy-component>
+      <jp-instagram></jp-instagram>
+    </lazy-component>
   </main>
 </template>
 

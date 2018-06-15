@@ -5,19 +5,21 @@
     <div class="thumbnail">
       <img
         @load="$emit('load')"
-        :src="imgSrc + '?w=16'"
+        :src="imgSrc + '?w=16&h=' + (parseInt(16 / ratio) - 1)"
         :alt="imgSrc + '-thumb'">
     </div>
-    <vue-responsive-image
-      :image-url="baseUrl"
-      :image-ratio="ratio"
-      :alt="imgSrc"
-      class="jp-main-img"
-      @load="loaded = true"
-      :width-on-screen="desktopSize"
-      :width-on-screen-tablet="tabletSize"
-      :width-on-screen-smartphone="phoneSize"
-      ></vue-responsive-image>
+    <lazy-component class="image">
+      <vue-responsive-image
+        :image-url="baseUrl"
+        :image-ratio="ratio"
+        :alt="imgSrc"
+        class="jp-main-img"
+        @load="loaded = true"
+        :width-on-screen="desktopSize"
+        :width-on-screen-tablet="tabletSize"
+        :width-on-screen-smartphone="phoneSize"
+        ></vue-responsive-image>
+    </lazy-component>
     <span class="border-right" :class="'gradient' + rightGradient"></span>
     <span class="border-bottom" :class="'gradient' + bottomGradient"></span>
   </figure>
@@ -52,7 +54,7 @@ export default {
     return {
       loaded: false
     } 
-  }, 
+  },
   computed: {
     getSvgTop: function () {
       if ( this.svgTop !== 'right' && this.svgTop !== 'left') return false
@@ -74,11 +76,11 @@ export default {
 
   .jp-img-container
     position: relative
-    height: fit-content
     line-height: 0
     margin: 0
     padding-right: var(--gradient-border-right)
     padding-bottom: var(--gradient-border-bottom)
+    display: grid
     &.spread
       @media #{$small-up}
         grid-column: span 2  
@@ -118,15 +120,19 @@ export default {
       width: calc(100% - var(--gradient-border-right))
       transform-origin: top
       transform: skewX(53deg)
+    .image
+      grid-row: 1  
+      grid-column: 1
     .thumbnail
       opacity: 1
       transition-delay: .4s
       overflow: hidden
-      position: absolute
       top: 0
       bottom: var(--gradient-border-bottom)
       left: 0
       right: var(--gradient-border-right)
+      grid-row: 1  
+      grid-column: 1
       img
         filter: blur(8px)
     &.loaded .thumbnail
