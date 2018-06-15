@@ -114,7 +114,7 @@ export default {
       left: 30%
       right: 0
       bottom: 50%
-      background: url(/images/bg-home-jaune.png)
+      background: url(/images/bg-home-jaune.png) no-repeat
     &::after
       content: ""
       position: absolute

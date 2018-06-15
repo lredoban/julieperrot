@@ -52,10 +52,14 @@ export default {
     h1, .subtitle
       position: absolute
       left: 7vw
-      bottom: calc(23.8636364% - 3px)
+      bottom: calc(23.8636364% - 1px)
+      @media #{$xsmall-up}
+        bottom: calc(23.8636364% - 3px)
       @media #{$small-up}
-        left: 17vw
+        left: 10vw
         bottom: calc(23.8636364% - 6px)
+      @media #{$medium-up}
+        left: 17vw
     .subtitle
       transform: translateY(100%)
 </style>
