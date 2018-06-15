@@ -18,7 +18,11 @@ export default {
     if (payload) return payload
     else {
       let data = await contentful.getCMSData()
-      return data.collectionTypes.filter(type => type.slug === params.type)[0]
+      const collectionTypes = data.collectionTypes.filter(type => type.slug === params.type)
+      if (collectionTypes.length === 0) {
+        return error({ statusCode: 404, message: 'Collection Type not found' })
+      }
+      return collectionTypes[0]
     }
   },
   components: {

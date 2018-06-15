@@ -40,7 +40,13 @@ export default {
     else {
       let data = await contentful.getCMSData()
       const currentType = contentful.getIndexOfType(data, params.type)
+      if (typeof currentType === 'undefined'){
+        return error({ statusCode: 404, message: 'Collection Type not found' })
+      }
       const currentIndex = contentful.getSideColllections(currentType.collections, params.slug)
+      if (currentIndex === false){
+        return error({ statusCode: 404, message: 'Album not found' })
+      }
       return {
         ...currentType.collections[currentIndex],
         prev: currentIndex === 0 ? false : '/' + currentType.slug + '/' + currentType.collections[currentIndex - 1].slug,
