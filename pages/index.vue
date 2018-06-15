@@ -4,15 +4,15 @@
       <nav class="desktop">
         <div class="h2">julie perrot</div>
         <ul class="navigation doted">
-          <nuxt-link to="/commissioned" title="Commissioned" tag="li"><span>Commissioned</span></nuxt-link>
+          <nuxt-link to="/work" title="Work" tag="li"><span>Work</span></nuxt-link>
           <nuxt-link to="/escape/escape" title="Escape" tag="li"><span>Escape</span></nuxt-link>
           <nuxt-link to="/films" title="Films" tag="li"><span>Films</span></nuxt-link>
-          <nuxt-link to="/stories" title="Stories" tag="li"><span>Stories</span></nuxt-link>
+          <nuxt-link to="/digital" title="Digital" tag="li"><span>Digital</span></nuxt-link>
           <nuxt-link to="/video" title="Video" tag="li"><span>Video</span></nuxt-link>
         </ul>
       </nav>
       <div class="presentation">
-        <h1 class="h2">French Photo- grapher</h1>
+        <h1 class="h2">I<br>shoot Wild souls</h1>
         <div v-html="homePage.heroText"></div>
       </div>
     </section>
@@ -21,7 +21,7 @@
         <h2 class="h1">Last Pro- jects</h2>
       </jp-gallery>
       <div class="more">
-        <nuxt-link tag="button" class="btn" to="/stories">View More</nuxt-link>
+        <nuxt-link tag="button" class="btn" to="/digital">View More</nuxt-link>
       </div>
     </section>
     <section class="about-container">
@@ -43,7 +43,9 @@
       </div>
     </section>
     <jp-contact></jp-contact>
-    <jp-instagram></jp-instagram>
+    <lazy-component>
+      <jp-instagram></jp-instagram>
+    </lazy-component>
   </main>
 </template>
 

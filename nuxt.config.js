@@ -98,7 +98,8 @@ module.exports = {
   },
   loading: false,
   plugins: [
-    { src: '~/plugins/basicscroll.js', ssr: false }
+    { src: '~/plugins/basicscroll.js', ssr: false },
+    '~/plugins/lazyload.js'
   ],
   modules: [
     ['@nuxtjs/google-analytics', {

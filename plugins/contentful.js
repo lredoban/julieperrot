@@ -81,7 +81,7 @@ function cleanEntries(entries) {
     }
   })
   cleaned.homePage = {
-    heroText: marked(entries.homePage[0].fields.heroText, options),
+    heroText: entries.homePage[0].fields.heroText ? marked(entries.homePage[0].fields.heroText, options) : '',
     presentation: marked(entries.homePage[0].fields.presentation, options),
     featured: entries.homePage[0].fields.featured.map(feat => {
       return {
