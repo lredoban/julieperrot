@@ -12,14 +12,15 @@ const contentful = require('~/plugins/contentful.js')
 import JpImage from '~/components/JpImage.vue'
 import JpHero from '~/components/JpHero.vue'
 import JpGallery from '~/components/JpGallery.vue'
+import { collectionTypes } from '~/static/data/contentful.json'
 
 export default {
   async asyncData ({ params, error, payload }) {
-    if (payload) return payload
-    else {
-      let data = await contentful.getCMSData()
-      return data.collectionTypes.filter(type => type.slug === params.type)[0]
+    const filteredTypes = collectionTypes.filter(type => type.slug === params.type)
+    if (filteredTypes.length === 0) {
+      return error({ statusCode: 404, message: 'Collection Type not found' })
     }
+    return filteredTypes[0]
   },
   components: {
     JpImage,

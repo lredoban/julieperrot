@@ -64,6 +64,8 @@ module.exports = {
     accessToken: process.env.JULIEPERROT_TOKEN
   },
   generate: {
+    subFolders: false,
+    fallback: true,
     routes: function (callback) {
       contentful.getCMSData()
       .then( data => {
@@ -92,9 +94,7 @@ module.exports = {
         }, [])
         callback(null, [...collectionTypesRoutes, ...collectionsRoutes])
       })
-    },
-    subFolders: false,
-    fallback: true
+    }
   },
   loading: false,
   plugins: [
@@ -106,6 +106,7 @@ module.exports = {
       autoTracking: {
         skipSamePath: true
       }
-    }]
+    }],
+    '~/modules/contentful'
   ]
 }
