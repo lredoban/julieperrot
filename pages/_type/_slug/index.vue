@@ -6,6 +6,7 @@
       <div slot="subtitle" v-if="type.slug !== slug">
         <div class="category-nav">
           <nuxt-link v-if="prev" :to="prev" class="category-prev"></nuxt-link>
+          <div v-else></div>
           <h3>{{ title }}</h3>
           <nuxt-link v-if="next" :to="next" class="category-next"></nuxt-link>
         </div>
@@ -141,6 +142,7 @@ export default {
       --rotation: 45deg
   .category-next
     margin-left: .7rem
+    margin-right: .3rem
     &::before, &::after
       right: 27%
       transform-origin: right
