@@ -6,7 +6,7 @@
         <ul class="navigation">
           <nuxt-link to="/work" title="Work" tag="li"><span>Work</span></nuxt-link>
           <nuxt-link to="/escape/escape" title="Escape" tag="li"><span>Escape</span></nuxt-link>
-          <nuxt-link to="/films" title="Films" tag="li"><span>Films</span></nuxt-link>
+          <nuxt-link to="/film" title="Film" tag="li"><span>Film</span></nuxt-link>
           <nuxt-link to="/digital" title="Digital" tag="li"><span>Digital</span></nuxt-link>
           <nuxt-link to="/video" title="Video" tag="li"><span>Video</span></nuxt-link>
         </ul>
@@ -22,7 +22,7 @@
       <ul>
         <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/work">Work</nuxt-link>
         <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/escape/escape">Escape</nuxt-link>
-        <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/films">Films</nuxt-link>
+        <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/film">Film</nuxt-link>
         <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/digital">Digital</nuxt-link>
         <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/video">Video</nuxt-link>
       </ul>

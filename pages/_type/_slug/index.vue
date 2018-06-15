@@ -152,3 +152,9 @@ export default {
       --translation: 0
       --rotation: 45deg
 </style>
+
+<style lang="sass">
+  .description > p
+    text-transform: uppercase
+    font-weight: 400
+</style>

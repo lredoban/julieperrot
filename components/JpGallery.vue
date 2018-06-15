@@ -20,7 +20,7 @@
       </nuxt-link>
       <div class="gallery__item__info">
         <h4>{{title}}</h4>
-        <em v-if="$slots.default">{{type.title}}</em>
+        <small v-if="$slots.default">{{type.title}}</small>
       </div>
     </div>
   </section>

@@ -1,12 +1,19 @@
 const contentful = require('contentful')
 const marked = require('marked')
 
+const renderer = new marked.Renderer();
+const linkRenderer = renderer.link;
+renderer.link = (href, title, text) => {
+    const html = linkRenderer.call(renderer, href, title, text);
+    return html.replace(/^<a /, '<a target="_blank" ');
+};
+
 const client = contentful.createClient({
   space: process.env.JULIEPERROT_SPACE || process.env.space,
   accessToken: process.env.JULIEPERROT_TOKEN || process.env.accessToken
 })
 
-const options = { gfm: true, tables: true, sanitize: false }
+const options = { gfm: true, tables: true, sanitize: false, renderer }
 
 function sortByContentType(entries) {
   const sorted =  {}
@@ -82,7 +89,6 @@ function cleanEntries(entries) {
   })
   cleaned.homePage = {
     heroText: entries.homePage[0].fields.heroText ? marked(entries.homePage[0].fields.heroText, options) : '',
-    presentation: marked(entries.homePage[0].fields.presentation, options),
     featured: entries.homePage[0].fields.featured.map(feat => {
       return {
         slug: feat.fields.slug,
