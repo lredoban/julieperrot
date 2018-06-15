@@ -11,7 +11,7 @@
         </div>
       </div>
     </jp-hero>
-    <div class="description" v-if="description" v-html="description"></div>
+    <div class="description" v-html="description || ''"></div>
     <div class="images">
       <jp-image v-for="img in images"
         :class="{spread: isPowtrait(img.size)}"
