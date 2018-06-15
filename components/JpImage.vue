@@ -120,7 +120,7 @@ export default {
       transform: skewX(53deg)
     .thumbnail
       opacity: 1
-      transition: opacity .6s ease
+      transition-delay: .4s
       overflow: hidden
       position: absolute
       top: 0
