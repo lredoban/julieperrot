@@ -106,6 +106,7 @@ module.exports = {
       autoTracking: {
         skipSamePath: true
       }
-    }]
+    }],
+    '~/modules/contentful'
   ]
 }

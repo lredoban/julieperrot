@@ -33,27 +33,24 @@
 import JpImage from '~/components/JpImage.vue'
 import JpHero from '~/components/JpHero.vue'
 const contentful = require('~/plugins/contentful.js')
+import data from '~/static/data/contentful.json'
 
 export default {
   async asyncData ({ params, error, payload }) {
-    if (payload) return payload
-    else {
-      let data = await contentful.getCMSData()
-      const currentType = contentful.getIndexOfType(data, params.type)
-      if (typeof currentType === 'undefined'){
-        return error({ statusCode: 404, message: 'Collection Type not found' })
-      }
-      const currentIndex = contentful.getSideColllections(currentType.collections, params.slug)
-      if (currentIndex === false){
-        return error({ statusCode: 404, message: 'Album not found' })
-      }
-      return {
-        ...currentType.collections[currentIndex],
-        prev: currentIndex === 0 ? false : '/' + currentType.slug + '/' + currentType.collections[currentIndex - 1].slug,
-        next: currentType.collections[currentIndex + 1] ? '/' + currentType.slug + '/' + currentType.collections[currentIndex + 1].slug : false,
-        hero: currentType.hero,
-        type: { title: currentType.title, slug: currentType.slug }
-      }
+    const currentType = contentful.getIndexOfType(data, params.type)
+    if (typeof currentType === 'undefined'){
+      return error({ statusCode: 404, message: 'Collection Type not found' })
+    }
+    const currentIndex = contentful.getSideColllections(currentType.collections, params.slug)
+    if (currentIndex === false){
+      return error({ statusCode: 404, message: 'Album not found' })
+    }
+    return {
+      ...currentType.collections[currentIndex],
+      prev: currentIndex === 0 ? false : '/' + currentType.slug + '/' + currentType.collections[currentIndex - 1].slug,
+      next: currentType.collections[currentIndex + 1] ? '/' + currentType.slug + '/' + currentType.collections[currentIndex + 1].slug : false,
+      hero: currentType.hero,
+      type: { title: currentType.title, slug: currentType.slug }
     }
   },
   components: {
