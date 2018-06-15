@@ -190,6 +190,8 @@ export default {
     align-items: center
     grid-auto-flow: dense
     grid-row-gap: 50px
+    .about-image
+      width: 100%
     @media #{$xsmall-up}
       grid-column-gap: 20px
       grid-template-columns: 1fr 1fr
