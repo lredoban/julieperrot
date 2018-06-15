@@ -15,8 +15,8 @@ module.exports = function scraper() {
   }
 
   this.nuxt.hook('build:before', async builder => {
+    fs.remove('static/data/contentful.json')
     const scraper = writeData(await contentful.getCMSData())
-    fs.emptyDir('static/data')
 
     return scraper.then(() => {
       console.log('JSON Build Complete!')
