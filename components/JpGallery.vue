@@ -40,15 +40,16 @@ export default {
   },
   methods: {
     doTheMasonry () {
-      const gallery = this.$refs.gallery // if there is multiple galleries?
-      const fractionHeight = window.getComputedStyle(gallery).getPropertyValue('grid-auto-rows').replace('px', '')
+      const gallery = this.$refs.gallery
+      const fractionHeight = 27 //not dynamic, same value as in the css grid-auto-rows
       const galleryItems = [...gallery.children]
       const nbCol = Math.floor(this.getWidth(gallery) / this.getWidth(galleryItems[0]))
       const nbRowsByColumn = []
 
       galleryItems.map((item, i) => {
         const image = item.getElementsByTagName('img')[0] || false
-        const nbRow = image ? Math.floor(image.height / fractionHeight) + 4 : Math.floor(this.getHeight(item) / fractionHeight)
+        const nbRow = image ? Math.floor(image.height / fractionHeight) + 4
+          : this.getRowEnd(item)
         const colIndex = Math.floor((item.getBoundingClientRect().x - gallery.getBoundingClientRect().x) / item.getBoundingClientRect().width)
 
         if (image) {
@@ -73,7 +74,7 @@ export default {
       if (!this.$slots.default) return
       const gradientAngle = ['to right', 'to left', 'to top', 'to bottom']
       const NMax = Math.max(...nbRowsByColumn)
-      nbRowsByColumn.sort().map((n, i) => {
+      nbRowsByColumn.sort((a, b) => a - b).map((n, i) => {
         gallery.insertAdjacentHTML('beforeend', `
           <div class="gallery__filling" 
             style="
@@ -94,6 +95,10 @@ export default {
     },
     getHeight (el) {
       return parseInt(window.getComputedStyle(el).height.replace('px', ''))
+    },
+    getRowEnd (el) {
+      const str = window.getComputedStyle(el).getPropertyValue('grid-row-end')
+      return parseInt(str.substr(5,1))
     }
   }
 }
