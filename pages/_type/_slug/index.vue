@@ -59,8 +59,21 @@ export default {
     JpHero
   },
   head () {
+    const meta = [
+        { hid: 'socialTitle', property: 'og:title', content: 'Julie Perrot - ' + this.title },
+        { hid: 'socialImage', property: 'og:image', content: this.images[0].url + '?w=1200&h=627&fit=fill' },
+        { hid: 'twitterImage', property: 'twitter:image', content: this.images[0].url + '?w=1200&h=627&fit=fill' },
+        { hid: 'url', property: 'og:url', content: 'https://juliperrot.com' + this.$route.path }
+      ]
+    if (this.description) {
+      meta.push(
+        { hid: 'description', hid: 'description', name: 'description', content: this.description },
+        { hid: 'socialDescription', property: 'og:description', content: this.description }
+      )
+    }
     return {
-      title: 'Julie Perrot - ' + this.title
+      title: 'Julie Perrot - ' + this.title,
+      meta
     }
   },
   mounted () {

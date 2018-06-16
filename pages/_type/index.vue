@@ -29,7 +29,13 @@ export default {
   },
   head () {
     return {
-      title: 'Julie Perrot - ' + this.title
+      title: 'Julie Perrot - ' + this.title,
+      meta: [
+        { hid: 'socialTitle', property: 'og:title', content: 'Julie Perrot - ' + this.title },
+        { hid: 'socialImage', property: 'og:image', content: this.collections[0].images[0].url + '?w=1200&h=627&fit=fill' },
+        { hid: 'twitterImage', property: 'twitter:image', content: this.collections[0].images[0].url + '?w=1200&h=627&fit=fill' },
+        { hid: 'url', property: 'og:url', content: 'https://juliperrot.com' + this.$route.path }
+      ]
     }
   },
   mounted () {
