@@ -78,8 +78,8 @@ export default {
       meta: [
       { hid: 'description', hid: 'description', name: 'description', content: homePage.seoDescription },
       { hid: 'socialDescription', property: 'og:description', content: homePage.socialDescription },
-      { hid: 'socialImage', property: 'og:image', content: homePage.socialImage + '?w=1200&h=627&fit=fill' },
-      { hid: 'twitterImage', property: 'twitter:image', content: homePage.socialImage + '?w=1200&h=627&fit=fill' }
+      { hid: 'socialImage', property: 'og:image', content: 'https:' + homePage.socialImage + '?w=1200&h=627&fit=fill' },
+      { hid: 'twitterImage', property: 'twitter:image', content: 'https:' + homePage.socialImage + '?w=1200&h=627&fit=fill' }
       ]
     }
   },

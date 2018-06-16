@@ -61,8 +61,8 @@ export default {
   head () {
     const meta = [
         { hid: 'socialTitle', property: 'og:title', content: 'Julie Perrot - ' + this.title },
-        { hid: 'socialImage', property: 'og:image', content: this.images[0].url + '?w=1200&h=627&fit=fill' },
-        { hid: 'twitterImage', property: 'twitter:image', content: this.images[0].url + '?w=1200&h=627&fit=fill' },
+        { hid: 'socialImage', property: 'og:image', content: 'https:' + this.images[0].url + '?w=1200&h=627&fit=fill' },
+        { hid: 'twitterImage', property: 'twitter:image', content: 'https:' + this.images[0].url + '?w=1200&h=627&fit=fill' },
         { hid: 'url', property: 'og:url', content: 'https://juliperrot.com' + this.$route.path }
       ]
     if (this.description) {
