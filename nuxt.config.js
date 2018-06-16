@@ -1,4 +1,5 @@
-const contentful = require('./plugins/contentful.js');
+const contentful = require('./plugins/contentful.js')
+const { homePage } = require('./static/data/contentful.json')
 
 module.exports = {
   /*
@@ -12,14 +13,14 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' },
-      { hid: 'description', name: 'description', content: 'I SHOOT WILD SOULS. If you consider yourself as a wild one, please contact me.' },
-      { property: 'og:title', content: 'Julie Perrot' },
+      { hid: 'description', hid: 'description', name: 'description', content: homePage.seoDescription },
+      { hid: 'socialTitle', property: 'og:title', content: 'Julie Perrot' },
       { property: 'og:site_name', content: 'Julie Perrot' },
-      { property: 'og:url', content: 'https://juliperrot.com' },
+      { hid: 'url', property: 'og:url', content: 'https://juliperrot.com' },
       { property: 'og:type', content: 'website' },
-      { property: 'og:description', content: 'I SHOOT WILD SOULS. If you consider yourself as a wild one, please contact me.' },
-      { property: 'og:image', content: 'https://julieperrot.com/images/meta.jpg' },
-      { property: 'twitter:image', content: 'https://julieperrot.com/images/meta.jpg' },
+      { hid: 'socialDescription', property: 'og:description', content: homePage.socialDescription },
+      { hid: 'socialImage', property: 'og:image', content: homePage.socialImage + '?w=1200&h=627&fit=fill' },
+      { hid: 'twitterImage', property: 'twitter:image', content: homePage.socialImage + '?w=1200&h=627&fit=fill' },
       { name: 'theme-color', content: '#FCF0D9' }
     ],
     link: [
