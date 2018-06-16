@@ -1,5 +1,4 @@
 const contentful = require('./plugins/contentful.js')
-const { homePage } = require('./static/data/contentful.json')
 
 module.exports = {
   /*
@@ -13,15 +12,15 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' },
-      { hid: 'description', hid: 'description', name: 'description', content: homePage.seoDescription },
-      { hid: 'socialTitle', property: 'og:title', content: 'Julie Perrot' },
       { property: 'og:site_name', content: 'Julie Perrot' },
-      { hid: 'url', property: 'og:url', content: 'https://juliperrot.com' },
       { property: 'og:type', content: 'website' },
-      { hid: 'socialDescription', property: 'og:description', content: homePage.socialDescription },
-      { hid: 'socialImage', property: 'og:image', content: homePage.socialImage + '?w=1200&h=627&fit=fill' },
-      { hid: 'twitterImage', property: 'twitter:image', content: homePage.socialImage + '?w=1200&h=627&fit=fill' },
-      { name: 'theme-color', content: '#FCF0D9' }
+      { name: 'theme-color', content: '#FCF0D9' },
+      { hid: 'url', property: 'og:url', content: 'https://juliperrot.com' },
+      { hid: 'socialTitle', property: 'og:title', content: 'Julie Perrot' },
+      { hid: 'description', hid: 'description', name: 'description', content: 'Julie Perrot Portfolio' },
+      { hid: 'socialDescription', property: 'og:description', content: 'Julie Perrot Portfolio' },
+      { hid: 'socialImage', property: 'og:image', content: 'https://julieperrot.com/images/meta.jpg' },
+      { hid: 'twitterImage', property: 'twitter:image', content: 'https://julieperrot.com/images/meta.jpg' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
