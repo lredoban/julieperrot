@@ -4,14 +4,13 @@
     :class="[{loaded}, svgType ? 'svg-url-' + svgType : '', svgType ? 'svg-' + svgType : '', getSvgTop]">
     <div class="thumbnail">
       <img
-        @load="$emit('load')"
-        :src="imgSrc + '?w=16&h=' + (parseInt(16 / ratio) - 1)"
+        :src="thumbnailSrc"
         :alt="imgSrc + '-thumb'">
     </div>
     <lazy-component class="image">
       <vue-responsive-image
-        :image-url="baseUrl"
-        :image-ratio="ratio"
+        :image-url="$_baseUrl"
+        :image-ratio="$_ratio"
         :alt="imgSrc"
         class="jp-main-img"
         @load="loaded = true"
@@ -52,19 +51,26 @@ export default {
   },
   data () {
     return {
-      loaded: false
+      loaded: false,
+      thumbnailSrc: ""
     } 
+  },
+  created () {
+    this.$_ratio = this.imgSize.width / this.imgSize.height
+    this.$_baseUrl = this.imgSrc + '?w=%width%&h=%height%'
+  },
+  mounted () {
+    const img = new Image()
+    const height = parseInt(16 / this.$_ratio) - 1
+    
+    img.addEventListener('load', () => { this.$emit('load') }, false)
+    img.src = this.imgSrc + '?w=16&h=' + height
+    this.thumbnailSrc = img.src
   },
   computed: {
     getSvgTop: function () {
       if ( this.svgTop !== 'right' && this.svgTop !== 'left') return false
       return 'svg-' + this.svgTop
-    },
-    baseUrl () {
-      return this.imgSrc + '?w=%width%&h=%height%'
-    },
-    ratio () {
-      return this.imgSize.width / this.imgSize.height
     }
   }
 }
