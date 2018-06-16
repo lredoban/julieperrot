@@ -17,7 +17,7 @@ module.exports = {
       { property: 'og:site_name', content: 'Julie Perrot' },
       { property: 'og:url', content: 'https://juliperrot.com' },
       { property: 'og:type', content: 'website' },
-      { property: 'og:description', content: 'Julie Perrot Portfolio' },
+      { property: 'og:description', content: 'I SHOOT WILD SOULS. If you consider yourself as a wild one, please contact me.' },
       { property: 'og:image', content: 'https://julieperrot.com/images/meta.jpg' },
       { property: 'twitter:image', content: 'https://julieperrot.com/images/meta.jpg' },
       { name: 'theme-color', content: '#FCF0D9' }
