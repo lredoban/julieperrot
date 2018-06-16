@@ -15,12 +15,14 @@ module.exports = {
       { property: 'og:site_name', content: 'Julie Perrot' },
       { property: 'og:type', content: 'website' },
       { name: 'theme-color', content: '#FCF0D9' },
+      { property: 'twitter:card', content: 'summary' },
+      { property: 'twitter:site', content: '@JuliePerrot' },
+      { property: 'twitter:creator', content: '@JuliePerrot' },
       { hid: 'url', property: 'og:url', content: 'https://juliperrot.com' },
       { hid: 'socialTitle', property: 'og:title', content: 'Julie Perrot' },
       { hid: 'description', hid: 'description', name: 'description', content: 'Julie Perrot Portfolio' },
       { hid: 'socialDescription', property: 'og:description', content: 'Julie Perrot Portfolio' },
-      { hid: 'socialImage', property: 'og:image', content: 'https://julieperrot.com/images/meta.jpg' },
-      { hid: 'twitterImage', property: 'twitter:image', content: 'https://julieperrot.com/images/meta.jpg' },
+      { hid: 'socialImage', property: 'og:image', content: 'https://julieperrot.com/images/meta.jpg' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
