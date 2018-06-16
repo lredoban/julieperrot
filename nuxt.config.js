@@ -12,13 +12,14 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' },
-      { hid: 'description', name: 'description', content: 'Julie Perrot Portfolio' },
+      { hid: 'description', name: 'description', content: 'I SHOOT WILD SOULS. If you consider yourself as a wild one, please contact me.' },
       { property: 'og:title', content: 'Julie Perrot' },
       { property: 'og:site_name', content: 'Julie Perrot' },
       { property: 'og:url', content: 'https://juliperrot.com' },
       { property: 'og:type', content: 'website' },
       { property: 'og:description', content: 'Julie Perrot Portfolio' },
-      { property: 'og:image', content: 'img/Audrey.jpg' },
+      { property: 'og:image', content: 'https://julieperrot.com/images/meta.jpg' },
+      { property: 'twitter:image', content: 'https://julieperrot.com/images/meta.jpg' },
       { name: 'theme-color', content: '#FCF0D9' }
     ],
     link: [
