@@ -1,5 +1,26 @@
 const contentful = require('./plugins/contentful.js')
 
+const routesBackup = []
+const routes = function (callback) {
+  console.log('calling routes')
+  contentful.getCMSData()
+  .then( data => {
+    const collectionTypesRoutes = data.collectionTypes.map( type => {
+      return `/${type.slug}`
+    })
+    const collectionsRoutes = data.collectionTypes.reduce((acc ,type) => {
+      acc.push(...type.collections.map(col => {
+        const currentType = contentful.getIndexOfType(data, type.slug)
+        const currentIndex = contentful.getSideColllections(currentType.collections, col.slug)
+        return `/${type.slug}/${col.slug}`
+      }))
+      return acc
+    }, [])
+    routesBackup.push(...collectionTypesRoutes, ...collectionsRoutes)
+    callback(null, routesBackup)
+  })
+}
+
 module.exports = {
   /*
   ** Headers of the page
@@ -70,35 +91,7 @@ module.exports = {
   generate: {
     subFolders: false,
     fallback: true,
-    routes: function (callback) {
-      contentful.getCMSData()
-      .then( data => {
-        const collectionTypesRoutes = data.collectionTypes.map( type => {
-          return {
-            route: `/${type.slug}`,
-            payload: type
-          }
-        })
-        const collectionsRoutes = data.collectionTypes.reduce((acc ,type) => {
-          acc.push(...type.collections.map(col => {
-            const currentType = contentful.getIndexOfType(data, type.slug)
-            const currentIndex = contentful.getSideColllections(currentType.collections, col.slug)
-            return {
-              route: `/${type.slug}/${col.slug}`,
-              payload: {
-                ...col,
-                prev: currentIndex === 0 ? false : currentType.collections[currentIndex - 1].slug,
-                next: currentType.collections[currentIndex + 1] ? currentType.collections[currentIndex + 1].slug : false,
-                hero: currentType.hero,
-                type: { title: currentType.title, slug: currentType.slug }
-              }
-            }
-          }))
-          return acc
-        }, [])
-        callback(null, [...collectionTypesRoutes, ...collectionsRoutes])
-      })
-    }
+    routes: routesBackup
   },
   loading: false,
   plugins: [
@@ -112,6 +105,11 @@ module.exports = {
         skipSamePath: true
       }
     }],
-    '~/modules/contentful'
-  ]
+    '~/modules/contentful',
+    '@nuxtjs/sitemap'
+  ],
+  sitemap: {
+    generate: true,
+    routes
+  }
 }

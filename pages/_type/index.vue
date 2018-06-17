@@ -15,7 +15,7 @@ import JpGallery from '~/components/JpGallery.vue'
 import { collectionTypes } from '~/static/data/contentful.json'
 
 export default {
-  async asyncData ({ params, error, payload }) {
+  async asyncData ({ params, error }) {
     const filteredTypes = collectionTypes.filter(type => type.slug === params.type)
     if (filteredTypes.length === 0) {
       return error({ statusCode: 404, message: 'Collection Type not found' })
