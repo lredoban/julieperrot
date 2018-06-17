@@ -15,6 +15,7 @@ module.exports = {
       { property: 'og:site_name', content: 'Julie Perrot' },
       { property: 'og:type', content: 'website' },
       { name: 'theme-color', content: '#FCF0D9' },
+      { name: 'google-site-verification', content: 'oZxd8KSJUlri04cFZR3LWVB7rnT34kg2dBuVh-Mmot4' },
       { property: 'twitter:card', content: 'summary' },
       { property: 'twitter:site', content: '@JuliePerrot' },
       { property: 'twitter:creator', content: '@JuliePerrot' },
