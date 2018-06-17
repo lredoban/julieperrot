@@ -37,7 +37,7 @@ const contentful = require('~/plugins/contentful.js')
 import data from '~/static/data/contentful.json'
 
 export default {
-  async asyncData ({ params, error, payload }) {
+  async asyncData ({ params, error }) {
     const currentType = contentful.getIndexOfType(data, params.type)
     if (typeof currentType === 'undefined'){
       return error({ statusCode: 404, message: 'Collection Type not found' })

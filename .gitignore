@@ -12,4 +12,6 @@ dist
 
 .DS_Store
 
+# Generated Static files
 static/data/contentful.json
+static/sitemap.xml
