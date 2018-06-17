@@ -26,7 +26,7 @@ export default {
   @import "~assets/sass/helpers"
 
   section
-    background: url(http://images.ctfassets.net/bkf4htdwrnir/6ol7zMjxM4mWKeCAkcUEC2/da29e8badf87f0f802366825c158764a/0034_35.jpg) no-repeat
+    background: url(https://images.ctfassets.net/bkf4htdwrnir/6ol7zMjxM4mWKeCAkcUEC2/da29e8badf87f0f802366825c158764a/0034_35.jpg) no-repeat
     background-size: cover
     height: 80vh
     width: 100vw

@@ -89,6 +89,9 @@ function cleanEntries(entries) {
   })
   cleaned.homePage = {
     heroText: entries.homePage[0].fields.heroText ? marked(entries.homePage[0].fields.heroText, options) : '',
+    socialImage: entries.homePage[0].fields.socialImage.fields.file.url,
+    socialDescription: entries.homePage[0].fields.socialDescription,
+    seoDescription: entries.homePage[0].fields.seoDescription,
     featured: entries.homePage[0].fields.featured.map(feat => {
       return {
         slug: feat.fields.slug,

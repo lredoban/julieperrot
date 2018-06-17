@@ -73,6 +73,15 @@ export default {
   beforeDestroy () {
     document.querySelector('html').style.setProperty('--header-opacity', '1')
   },
+  head() {
+    return {
+      meta: [
+      { hid: 'description', hid: 'description', name: 'description', content: homePage.seoDescription },
+      { hid: 'socialDescription', property: 'og:description', content: homePage.socialDescription },
+      { hid: 'socialImage', property: 'og:image', content: 'https:' + homePage.socialImage + '?fm=jpg&w=1200&h=627&fit=fill' },
+      ]
+    }
+  },
   methods: {
     TBD () {
       alert('Lol genre le site est fini')
