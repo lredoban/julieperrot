@@ -2,7 +2,6 @@ const contentful = require('./plugins/contentful.js')
 
 const routesBackup = []
 const routes = function (callback) {
-  console.log('calling routes')
   contentful.getCMSData()
   .then( data => {
     const collectionTypesRoutes = data.collectionTypes.map( type => {
@@ -110,6 +109,7 @@ module.exports = {
   ],
   sitemap: {
     generate: true,
-    routes
+    routes,
+    hostname: 'https://julieperrot.com'
   }
 }
