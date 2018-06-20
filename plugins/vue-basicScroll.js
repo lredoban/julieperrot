@@ -4,19 +4,14 @@ export default {
   install(Vue, options) {
     Vue.$basicScroll = basicScroll
     Vue.directive('basicscroll', {
-      inserted (el) {
+      inserted (el, binding) {
         el.$BSInstance = basicScroll.create({
           elem: el,
-          from: 'bottom-middle',
-          to: 'bottom-top',
-          props: {
-            '--header-opacity': {
-              from: 0,
-              to: 1
-            }
-          }
+          ...binding.value
         })
-        el.$BSInstance.start()
+        if (typeof binding.modifiers.selfStart === 'undefined'){
+          el.$BSInstance.start()
+        }
       },
       unbind(el) {
         el.$BSInstance.destroy()
