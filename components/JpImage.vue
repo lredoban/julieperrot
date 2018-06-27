@@ -2,16 +2,33 @@
   <figure
     class="jp-img-container"
     :class="[{loaded}, svgType ? 'svg-url-' + svgType : '', svgType ? 'svg-' + svgType : '', getSvgTop]">
-    <div class="thumbnail">
+    <div v-if="!video" class="thumbnail">
       <img
         :src="thumbnailSrc"
         :alt="imgSrc + '-thumb'">
     </div>
     <lazy-component class="image">
+<<<<<<< HEAD
         <img :src="customSrc"
           @load="loaded = true"
           :alt="imgSrc"
           class="jp-main-img">
+=======
+      <video v-if="video" autoplay="" loop="" playsinline="" tabindex="-1">
+        <source :src="imgSrc" type="video/mp4">
+      </video>
+      <vue-responsive-image
+        v-else
+        :image-url="$_baseUrl"
+        :image-ratio="$_ratio"
+        :alt="imgSrc"
+        class="jp-main-img"
+        @load="loaded = true"
+        :width-on-screen="desktopSize"
+        :width-on-screen-tablet="tabletSize"
+        :width-on-screen-smartphone="phoneSize"
+        ></vue-responsive-image>
+>>>>>>> Save
     </lazy-component>
     <span class="border-right" :class="'gradient' + rightGradient"></span>
     <span class="border-bottom" :class="'gradient' + bottomGradient"></span>
@@ -27,6 +44,7 @@ export default {
     'right-gradient': Number,
     'bottom-gradient': Number,
     imgSize: Object,
+    video: Boolean,
     desktopSize: {
       type: Number,
       default: 100
@@ -58,9 +76,15 @@ export default {
     img.addEventListener('load', () => { this.$emit('load') }, false)
     img.src = this.imgSrc + '?w=16&h=' + height + '&fm=jpg&q=42'
     this.thumbnailSrc = img.src
+<<<<<<< HEAD
     const computedWidth = window.getComputedStyle(this.$el.querySelector('.thumbnail img')).width
     const widthWithRatio = parseInt(computedWidth.replace('px', '')) //* window.devicePixelRatio
     this.customSrc = this.imgSrc + '?w=' + widthWithRatio
+=======
+    if (this.video) {
+      this.$nextTick(() => this.$emit('load'))
+    }
+>>>>>>> Save
   },
   computed: {
     getSvgTop: function () {
@@ -138,6 +162,8 @@ export default {
         filter: blur(8px)
     &.loaded .thumbnail
       opacity: 0
+    video
+      width: 100%
 </style>
 
 <style lang="sass">

@@ -16,6 +16,7 @@
         :phoneSize="50"
         :right-gradient="image.rightBorder"
         :bottom-gradient="image.bottomBorder"
+        :video="image.video"
         @load="addLoad"/>
       </nuxt-link>
       <div class="gallery__item__info">
@@ -38,6 +39,14 @@ export default {
       load: 0
     }
   },
+  mounted() {
+    const gallery = this.$refs.gallery
+    const fractionHeight = 27 //not dynamic, same value as in the css grid-auto-rows
+    const galleryItems = [...gallery.children]
+    const nbCol = Math.floor(this.getWidth(gallery) / this.getWidth(galleryItems[0]))
+    const nbRowsByColumn = []
+    console.warn('mounted', nbCol)
+  },
   methods: {
     doTheMasonry () {
       const gallery = this.$refs.gallery
@@ -45,14 +54,15 @@ export default {
       const galleryItems = [...gallery.children]
       const nbCol = Math.floor(this.getWidth(gallery) / this.getWidth(galleryItems[0]))
       const nbRowsByColumn = []
+    console.warn('dothema', nbCol)
 
       galleryItems.map((item, i) => {
-        const image = item.getElementsByTagName('img')[0] || false
-        const nbRow = image ? Math.floor(image.height / fractionHeight) + 4
+        const media = item.getElementsByTagName('img')[0] || item.getElementsByTagName('video')[0] || false
+        const nbRow = media ? Math.floor(media.getBoundingClientRect().height / fractionHeight) + 4
           : this.getRowEnd(item)
         const colIndex = Math.floor((item.getBoundingClientRect().x - gallery.getBoundingClientRect().x) / item.getBoundingClientRect().width)
 
-        if (image) {
+        if (media) {
           item.style.gridRowEnd = `span ${nbRow}`
         } 
         // this ugly Kid handle the double column title
@@ -92,9 +102,6 @@ export default {
     },
     getWidth (el) {
       return parseInt(window.getComputedStyle(el).width.replace('px', ''))
-    },
-    getHeight (el) {
-      return parseInt(window.getComputedStyle(el).height.replace('px', ''))
     },
     getRowEnd (el) {
       const str = window.getComputedStyle(el).getPropertyValue('grid-row-end')
