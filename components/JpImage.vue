@@ -8,16 +8,10 @@
         :alt="imgSrc + '-thumb'">
     </div>
     <lazy-component class="image">
-      <vue-responsive-image
-        :image-url="$_baseUrl"
-        :image-ratio="$_ratio"
-        :alt="imgSrc"
-        class="jp-main-img"
-        @load="loaded = true"
-        :width-on-screen="desktopSize"
-        :width-on-screen-tablet="tabletSize"
-        :width-on-screen-smartphone="phoneSize"
-        ></vue-responsive-image>
+        <img :src="customSrc"
+          @load="loaded = true"
+          :alt="imgSrc"
+          class="jp-main-img">
     </lazy-component>
     <span class="border-right" :class="'gradient' + rightGradient"></span>
     <span class="border-bottom" :class="'gradient' + bottomGradient"></span>
@@ -25,10 +19,7 @@
 </template>
 
 <script>
-import VueResponsiveImage from '~/components/VueResponsiveImage.vue'
-
 export default {
-  components: { VueResponsiveImage },
   props: {
     imgSrc: String,
     svgType: String,
@@ -52,7 +43,8 @@ export default {
   data () {
     return {
       loaded: false,
-      thumbnailSrc: ""
+      thumbnailSrc: "",
+      customSrc: ""
     } 
   },
   created () {
@@ -64,8 +56,11 @@ export default {
     const height = parseInt(16 / this.$_ratio) - 1
     
     img.addEventListener('load', () => { this.$emit('load') }, false)
-    img.src = this.imgSrc + '?w=16&h=' + height
+    img.src = this.imgSrc + '?w=16&h=' + height + '&fm=jpg&q=42'
     this.thumbnailSrc = img.src
+    const computedWidth = window.getComputedStyle(this.$el.querySelector('.thumbnail img')).width
+    const widthWithRatio = parseInt(computedWidth.replace('px', '')) //* window.devicePixelRatio
+    this.customSrc = this.imgSrc + '?w=' + widthWithRatio
   },
   computed: {
     getSvgTop: function () {
