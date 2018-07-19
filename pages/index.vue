@@ -4,6 +4,7 @@
       <nav class="desktop">
         <div class="h2">julie perrot</div>
         <ul class="navigation doted">
+          <li><a href="https://julieperrot.bigcartel.com"><span>Prints</span></a></li>
           <nuxt-link to="/work" title="Work" tag="li"><span>Work</span></nuxt-link>
           <nuxt-link to="/escape/escape" title="Escape" tag="li"><span>Escape</span></nuxt-link>
           <nuxt-link to="/film" title="Film" tag="li"><span>Film</span></nuxt-link>
