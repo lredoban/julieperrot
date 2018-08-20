@@ -4,6 +4,7 @@
       <nuxt-link to="/"><img class="svg-avocat" src="/images/logo.png" alt="Julie Perrot Logo"></nuxt-link>
       <nav class="desktop">
         <ul class="navigation">
+          <li><a href="https://julieperrot.bigcartel.com"><span>Prints</span></a></li>
           <nuxt-link to="/work" title="Work" tag="li"><span>Work</span></nuxt-link>
           <nuxt-link to="/escape/escape" title="Escape" tag="li"><span>Escape</span></nuxt-link>
           <nuxt-link to="/film" title="Film" tag="li"><span>Film</span></nuxt-link>
@@ -20,6 +21,7 @@
     </div>
     <nav class="mobile" :class="{open: showMenu}">
       <ul>
+        <li onclick="window.location.href = 'https://julieperrot.bigcartel.com'">Prints</li>
         <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/work">Work</nuxt-link>
         <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/escape/escape">Escape</nuxt-link>
         <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/film">Film</nuxt-link>

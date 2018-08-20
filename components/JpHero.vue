@@ -1,10 +1,6 @@
 <template>
   <div id="hero">
-    <vue-responsive-image
-      :image-url="baseUrl"
-      :image-ratio="ratio"
-      alt="Julie Perrot Hero"
-      ></vue-responsive-image>
+    <img :src="url" alt="Julie Perrot Hero">
     <h1>
       <slot>The h1 title</slot>
     </h1>
@@ -15,21 +11,18 @@
 </template>
 
 <script>
-import VueResponsiveImage from '~/components/VueResponsiveImage.vue'
-
 export default {
-  components: { VueResponsiveImage },
   props: ['background'],
  /* beforeMount () {
     document.body.style.setProperty('--bg-image', `url(${this.bgUrl})`);
   }*/
-  computed: {
-    baseUrl () {
-      return this.background.url + '?w=%width%&h=%height%&fm=jpg&q=70'
-    },
-    ratio () {
-      return this.background.size.width / this.background.size.height
+  data () {
+    return {
+      url: ''
     }
+  },
+  mounted () {
+    this.url = this.background.url + '?fm=jpg&q=70&w=' + window.outerWidth
   }
 }
 </script>

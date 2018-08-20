@@ -2,22 +2,19 @@
   <figure
     class="jp-img-container"
     :class="[{loaded}, svgType ? 'svg-url-' + svgType : '', svgType ? 'svg-' + svgType : '', getSvgTop]">
-    <div class="thumbnail">
+    <div v-if="!video" class="thumbnail">
       <img
         :src="thumbnailSrc"
         :alt="imgSrc + '-thumb'">
     </div>
     <lazy-component class="image">
-      <vue-responsive-image
-        :image-url="$_baseUrl"
-        :image-ratio="$_ratio"
-        :alt="imgSrc"
-        class="jp-main-img"
-        @load="loaded = true"
-        :width-on-screen="desktopSize"
-        :width-on-screen-tablet="tabletSize"
-        :width-on-screen-smartphone="phoneSize"
-        ></vue-responsive-image>
+      <video v-if="video" autoplay="" loop="" playsinline="" tabindex="-1">
+        <source :src="imgSrc" type="video/mp4">
+      </video>
+      <img v-else :src="customSrc"
+          @load="loaded = true"
+          :alt="imgSrc"
+          class="jp-main-img">
     </lazy-component>
     <span class="border-right" :class="'gradient' + rightGradient"></span>
     <span class="border-bottom" :class="'gradient' + bottomGradient"></span>
@@ -25,10 +22,7 @@
 </template>
 
 <script>
-import VueResponsiveImage from '~/components/VueResponsiveImage.vue'
-
 export default {
-  components: { VueResponsiveImage },
   props: {
     imgSrc: String,
     svgType: String,
@@ -36,6 +30,7 @@ export default {
     'right-gradient': Number,
     'bottom-gradient': Number,
     imgSize: Object,
+    video: Boolean,
     desktopSize: {
       type: Number,
       default: 100
@@ -52,7 +47,8 @@ export default {
   data () {
     return {
       loaded: false,
-      thumbnailSrc: ""
+      thumbnailSrc: "",
+      customSrc: ""
     } 
   },
   created () {
@@ -60,11 +56,22 @@ export default {
     this.$_baseUrl = this.imgSrc + '?w=%width%&h=%height%'
   },
   mounted () {
+    if (this.video) {
+      this.$nextTick(() => this.$emit('load'))
+      return
+    }
+
     const img = new Image()
     const height = parseInt(16 / this.$_ratio) - 1
     
-    img.addEventListener('load', () => { this.$emit('load') }, false)
-    img.src = this.imgSrc + '?w=16&h=' + height
+    img.addEventListener('load', () => { 
+      const computedWidth = window.getComputedStyle(this.$el.querySelector('.thumbnail img')).width
+      const widthWithRatio = parseInt(computedWidth.replace('px', '')) * window.devicePixelRatio
+      
+      this.customSrc = this.imgSrc + '?w=' + widthWithRatio
+      this.$emit('load')
+    }, false)
+    img.src = this.imgSrc + '?w=16&h=' + height + '&fm=jpg&q=42'
     this.thumbnailSrc = img.src
   },
   computed: {
@@ -143,6 +150,8 @@ export default {
         filter: blur(8px)
     &.loaded .thumbnail
       opacity: 0
+    video
+      width: 100%
 </style>
 
 <style lang="sass">

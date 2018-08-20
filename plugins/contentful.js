@@ -38,20 +38,23 @@ function sortByContentType(entries) {
 }
 
 function cleanImage(image) {
+  const isMP4 = image.fields.image.fields.file.url.slice(0, 8) === '//videos'
   const features = image.fields.features ? image.fields.features : {
     rightGradient: false,
     bottomGradient: false,
     svgTop: false,
     svgType: false
   }
-  return {
+  const cleaned = {
     url: image.fields.image.fields.file.url,
-    size: image.fields.image.fields.file.details.image,
+    size: isMP4 ? {width: 386, height: 514} : image.fields.image.fields.file.details.image,
     rightBorder: features.rightGradient ? features.rightGradient : null,
     bottomBorder: features.bottomGradient ? features.bottomGradient : null,
     iconPosition: features.svgTop ? features.svgTop : null,
     icon: features.svgType ? features.svgType : null,
   }
+  cleaned.video = isMP4
+  return cleaned
 }
 
 function cleanEntries(entries) {
