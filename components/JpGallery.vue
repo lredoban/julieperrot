@@ -3,21 +3,21 @@
     <slot></slot>
     <div class="gallery__dummy" v-if="$slots.default"></div>
     <div class="gallery__dummy" v-if="$slots.default"></div>
-    <div class="gallery__item" v-for="{ slug, image, title, type } in images" :key="title">
+    <div class="gallery__item"
+      v-for="{ slug, image, title, type, rowEnd } in gImages"
+      :style="{gridRowEnd: rowEnd}"
+      :key="title">
       <nuxt-link :to="`/${type.slug}/${slug}`">
         <jp-image
-        :key="image.url"
-        :svg-type="image.icon"
-        :svg-top="image.iconPosition"
-        :img-src="image.url"
-        :img-size="image.size"
-        :desktopSize="25"
-        :tabletSize="50"
-        :phoneSize="50"
-        :right-gradient="image.rightBorder"
-        :bottom-gradient="image.bottomBorder"
-        :video="image.video"
-        @load="addLoad"/>
+          :key="image.url"
+          :svg-type="image.icon"
+          :svg-top="image.iconPosition"
+          :img-src="image.url"
+          :img-size="image.size"
+          :right-gradient="image.rightBorder"
+          :bottom-gradient="image.bottomBorder"
+          :video="image.video"
+          @load="addLoad"/>
       </nuxt-link>
       <div class="gallery__item__info">
         <h4>{{title}}</h4>
@@ -36,35 +36,38 @@ export default {
   props: ['images'],
   data () {
     return {
+      gImages: [],
       load: 0
     }
   },
+  created() {
+    this.gImages = this.images.map(img => {
+      return {...img, rowEnd: 'span 17'}
+    })
+  },
   mounted() {
-    const gallery = this.$refs.gallery
-    const fractionHeight = 27 //not dynamic, same value as in the css grid-auto-rows
-    const galleryItems = [...gallery.children]
-    const nbCol = Math.floor(this.getWidth(gallery) / this.getWidth(galleryItems[0]))
-    const nbRowsByColumn = []
+    this.$_fractionHeight = 27 //not dynamic, same value as in the css grid-auto-rows
+    this.$_gallery = this.$refs.gallery
+    this.$_galleryItems = [...this.$_gallery.children]
+
+    const colWidth = this.$_galleryItems[1].getBoundingClientRect().width
+    
+    this.gImages.map((item) => {
+      const nbRow = Math.floor(item.image.size.height * colWidth / item.image.size.width / this.$_fractionHeight) + 4
+      item.rowEnd = `span ${nbRow}`
+    })
   },
   methods: {
     doTheMasonry () {
-      const gallery = this.$refs.gallery
-      const fractionHeight = 27 //not dynamic, same value as in the css grid-auto-rows
-      const galleryItems = [...gallery.children]
-      const nbCol = Math.floor(this.getWidth(gallery) / this.getWidth(galleryItems[0]))
       const nbRowsByColumn = []
 
-      galleryItems.map((item, i) => {
+      this.$_galleryItems.map((item, i) => {
         const media = item.getElementsByTagName('img')[0] || item.getElementsByTagName('video')[0] || false
-        const nbRow = media ? Math.floor(media.getBoundingClientRect().height / fractionHeight) + 4
-          : this.getRowEnd(item)
-        const colIndex = Math.floor((item.getBoundingClientRect().x - gallery.getBoundingClientRect().x) / item.getBoundingClientRect().width)
+        const nbRow = this.getRowEnd(item)
+        const colIndex = Math.floor((item.getBoundingClientRect().x - this.$_gallery.getBoundingClientRect().x) / item.getBoundingClientRect().width)
 
-        if (media) {
-          item.style.gridRowEnd = `span ${nbRow}`
-        } 
+        if (!media) {
         // this ugly Kid handle the double column title
-        else {
           const colSpan = window.getComputedStyle(item).getPropertyValue('grid-column-end')
           if (colSpan === 'span 2') {
             if (typeof nbRowsByColumn[colIndex + 1] === 'undefined') {
@@ -79,11 +82,10 @@ export default {
         }
         nbRowsByColumn[colIndex] += nbRow
       })
-      if (!this.$slots.default) return
       const gradientAngle = ['to right', 'to left', 'to top', 'to bottom']
       const NMax = Math.max(...nbRowsByColumn)
       nbRowsByColumn.sort((a, b) => a - b).map((n, i) => {
-        gallery.insertAdjacentHTML('beforeend', `
+        this.$_gallery.insertAdjacentHTML('beforeend', `
           <div class="gallery__filling" 
             style="
               grid-row: span ${NMax - n + 2};
@@ -94,16 +96,13 @@ export default {
     },
     addLoad () {
       this.load ++
-      if (this.images && this.images.length === this.load) {
+      if (this.$slots.default && this.images && this.images.length === this.load) {
         this.doTheMasonry()
       }
     },
-    getWidth (el) {
-      return parseInt(window.getComputedStyle(el).width.replace('px', ''))
-    },
     getRowEnd (el) {
       const str = window.getComputedStyle(el).getPropertyValue('grid-row-end')
-      return parseInt(str.substr(5,1))
+      return parseInt(str.substr(5,2))
     }
   }
 }

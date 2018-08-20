@@ -30,19 +30,7 @@ export default {
     'right-gradient': Number,
     'bottom-gradient': Number,
     imgSize: Object,
-    video: Boolean,
-    desktopSize: {
-      type: Number,
-      default: 100
-    },
-    tabletSize: {
-      type: Number,
-      default: 100
-    },
-    phoneSize: {
-      type: Number,
-      default: 100
-    }
+    video: Boolean
   },
   data () {
     return {
