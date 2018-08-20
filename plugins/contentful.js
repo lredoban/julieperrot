@@ -21,7 +21,8 @@ function sortByContentType(entries) {
     collection: 'collections',
     collectionType: 'collectionTypes',
     homePage: 'homePage',
-    about: 'about'
+    about: 'about',
+    instagramPosts: 'instagramPosts'
   }
   
   entries.items.map( entry => {
@@ -87,6 +88,9 @@ function cleanEntries(entries) {
                       : []
     }
   })
+  cleaned.instagramPosts = entries.instagramPosts.map(post => {
+    return { ...post.fields }
+  }).slice(0, 11)
   cleaned.homePage = {
     heroText: entries.homePage[0].fields.heroText ? marked(entries.homePage[0].fields.heroText, options) : '',
     socialImage: entries.homePage[0].fields.socialImage.fields.file.url,
@@ -109,7 +113,7 @@ function cleanEntries(entries) {
 }
 
 const getCMSData = async function () {
-  let entries = await client.getEntries({limit: 1000})
+  let entries = await client.getEntries({limit: 1000, order: '-sys.createdAt'})
   const sorted = sortByContentType(entries)
   return cleanEntries(sorted)
 }
