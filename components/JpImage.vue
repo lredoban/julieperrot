@@ -2,13 +2,16 @@
   <figure
     class="jp-img-container"
     :class="[{loaded}, svgType ? 'svg-url-' + svgType : '', svgType ? 'svg-' + svgType : '', getSvgTop]">
-    <div class="thumbnail">
+    <div v-if="!video" class="thumbnail">
       <img
         :src="thumbnailSrc"
         :alt="imgSrc + '-thumb'">
     </div>
     <lazy-component class="image">
-        <img :src="customSrc"
+      <video v-if="video" autoplay="" loop="" playsinline="" tabindex="-1">
+        <source :src="imgSrc" type="video/mp4">
+      </video>
+      <img v-else :src="customSrc"
           @load="loaded = true"
           :alt="imgSrc"
           class="jp-main-img">
@@ -27,18 +30,7 @@ export default {
     'right-gradient': Number,
     'bottom-gradient': Number,
     imgSize: Object,
-    desktopSize: {
-      type: Number,
-      default: 100
-    },
-    tabletSize: {
-      type: Number,
-      default: 100
-    },
-    phoneSize: {
-      type: Number,
-      default: 100
-    }
+    video: Boolean
   },
   data () {
     return {
@@ -52,15 +44,23 @@ export default {
     this.$_baseUrl = this.imgSrc + '?w=%width%&h=%height%'
   },
   mounted () {
+    if (this.video) {
+      this.$nextTick(() => this.$emit('load'))
+      return
+    }
+
     const img = new Image()
     const height = parseInt(16 / this.$_ratio) - 1
     
-    img.addEventListener('load', () => { this.$emit('load') }, false)
+    img.addEventListener('load', () => { 
+      const computedWidth = window.getComputedStyle(this.$el.querySelector('.thumbnail img')).width
+      const widthWithRatio = parseInt(computedWidth.replace('px', '')) * window.devicePixelRatio
+      
+      this.customSrc = this.imgSrc + '?w=' + widthWithRatio
+      this.$emit('load')
+    }, false)
     img.src = this.imgSrc + '?w=16&h=' + height + '&fm=jpg&q=42'
     this.thumbnailSrc = img.src
-    const computedWidth = window.getComputedStyle(this.$el.querySelector('.thumbnail img')).width
-    const widthWithRatio = parseInt(computedWidth.replace('px', '')) //* window.devicePixelRatio
-    this.customSrc = this.imgSrc + '?w=' + widthWithRatio
   },
   computed: {
     getSvgTop: function () {
@@ -138,6 +138,8 @@ export default {
         filter: blur(8px)
     &.loaded .thumbnail
       opacity: 0
+    video
+      width: 100%
 </style>
 
 <style lang="sass">

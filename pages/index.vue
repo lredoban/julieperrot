@@ -35,9 +35,6 @@
             :svg-top="homePage.about.image.iconPosition"
             :img-src="homePage.about.image.url"
             :img-size="homePage.about.image.size"
-            :desktopSize="42"
-            :tabletSize="42"
-            :phoneSize="42"
             :right-gradient="homePage.about.image.rightBorder"
             :bottom-gradient="homePage.about.image.bottomBorder"/>
         </div>

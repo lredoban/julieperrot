@@ -21,11 +21,9 @@
         :svg-top="img.iconPosition"
         :img-src="img.url"
         :img-size="img.size"
-        :desktopSize="isPowtrait(img.size) ? 100 : 50"
-        :tabletSize="isPowtrait(img.size) ? 100 : 50"
-        :phoneSize="100"
         :right-gradient="img.rightBorder"
-        :bottom-gradient="img.bottomBorder"/>
+        :bottom-gradient="img.bottomBorder"
+        :video="img.video"/>
     </div>
   </main>
 </template>
