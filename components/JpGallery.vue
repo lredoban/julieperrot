@@ -45,7 +45,6 @@ export default {
     const galleryItems = [...gallery.children]
     const nbCol = Math.floor(this.getWidth(gallery) / this.getWidth(galleryItems[0]))
     const nbRowsByColumn = []
-    console.warn('mounted', nbCol)
   },
   methods: {
     doTheMasonry () {
@@ -54,7 +53,6 @@ export default {
       const galleryItems = [...gallery.children]
       const nbCol = Math.floor(this.getWidth(gallery) / this.getWidth(galleryItems[0]))
       const nbRowsByColumn = []
-    console.warn('dothema', nbCol)
 
       galleryItems.map((item, i) => {
         const media = item.getElementsByTagName('img')[0] || item.getElementsByTagName('video')[0] || false

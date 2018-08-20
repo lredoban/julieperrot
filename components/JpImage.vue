@@ -8,27 +8,13 @@
         :alt="imgSrc + '-thumb'">
     </div>
     <lazy-component class="image">
-<<<<<<< HEAD
-        <img :src="customSrc"
-          @load="loaded = true"
-          :alt="imgSrc"
-          class="jp-main-img">
-=======
       <video v-if="video" autoplay="" loop="" playsinline="" tabindex="-1">
         <source :src="imgSrc" type="video/mp4">
       </video>
-      <vue-responsive-image
-        v-else
-        :image-url="$_baseUrl"
-        :image-ratio="$_ratio"
-        :alt="imgSrc"
-        class="jp-main-img"
-        @load="loaded = true"
-        :width-on-screen="desktopSize"
-        :width-on-screen-tablet="tabletSize"
-        :width-on-screen-smartphone="phoneSize"
-        ></vue-responsive-image>
->>>>>>> Save
+      <img v-else :src="customSrc"
+          @load="loaded = true"
+          :alt="imgSrc"
+          class="jp-main-img">
     </lazy-component>
     <span class="border-right" :class="'gradient' + rightGradient"></span>
     <span class="border-bottom" :class="'gradient' + bottomGradient"></span>
@@ -70,21 +56,23 @@ export default {
     this.$_baseUrl = this.imgSrc + '?w=%width%&h=%height%'
   },
   mounted () {
+    if (this.video) {
+      this.$nextTick(() => this.$emit('load'))
+      return
+    }
+
     const img = new Image()
     const height = parseInt(16 / this.$_ratio) - 1
     
-    img.addEventListener('load', () => { this.$emit('load') }, false)
+    img.addEventListener('load', () => { 
+      const computedWidth = window.getComputedStyle(this.$el.querySelector('.thumbnail img')).width
+      const widthWithRatio = parseInt(computedWidth.replace('px', '')) * window.devicePixelRatio
+      
+      this.customSrc = this.imgSrc + '?w=' + widthWithRatio
+      this.$emit('load')
+    }, false)
     img.src = this.imgSrc + '?w=16&h=' + height + '&fm=jpg&q=42'
     this.thumbnailSrc = img.src
-<<<<<<< HEAD
-    const computedWidth = window.getComputedStyle(this.$el.querySelector('.thumbnail img')).width
-    const widthWithRatio = parseInt(computedWidth.replace('px', '')) //* window.devicePixelRatio
-    this.customSrc = this.imgSrc + '?w=' + widthWithRatio
-=======
-    if (this.video) {
-      this.$nextTick(() => this.$emit('load'))
-    }
->>>>>>> Save
   },
   computed: {
     getSvgTop: function () {
