@@ -8,7 +8,7 @@
         :alt="imgSrc + '-thumb'">
     </div>
     <lazy-component class="image">
-      <video v-if="video" autoplay="" loop="" playsinline="" tabindex="-1">
+      <video ref="video" v-if="video" autoplay="" muted="" loop="" playsinline="" tabindex="-1">
         <source :src="imgSrc" type="video/mp4">
       </video>
       <img v-else :src="customSrc"
