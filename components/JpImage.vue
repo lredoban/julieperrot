@@ -2,6 +2,9 @@
   <figure
     class="jp-img-container"
     :class="[{loaded}, svgType ? 'svg-url-' + svgType : '', svgType ? 'svg-' + svgType : '', getSvgTop]">
+    <div v-if="svgTop" class="top-icon">
+      <img :src="`/images/svg/${svgType}.svg`" :alt="svgType">
+    </div>
     <div v-if="!video" class="thumbnail">
       <img
         :src="thumbnailSrc"
@@ -83,25 +86,17 @@ export default {
     &.spread
       @media #{$small-up}
         grid-column: span 2  
-    &.svg-right::after
-      content: var(--svg-url, url("/images/svg/avocat.svg"))
+    .top-icon
       position: absolute
-      z-index: 27
       top: -21px
-      right: 14%
-      display: block
-      opacity: 1
+      z-index: 27
       transition: opacity .3s ease
-    &.svg-left::before
-      content: var(--svg-url, url("/images/svg/avocat.svg"))
-      position: absolute
-      z-index: 27
-      top: -21px
+      opacity: 1
+    &.svg-left .top-icon
       left: 14%
-      display: block
-      opacity: 1
-      transition: opacity .3s ease
-    &:hover::after, &:hover::before
+    &.svg-right .top-icon
+      right: 14%
+    &:hover .top-icon
       opacity: 0
     .border-right
       top: 0
