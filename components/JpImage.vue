@@ -50,7 +50,7 @@ export default {
     }
 
     const img = new Image()
-    const height = parseInt(16 / this.$_ratio) - 1
+    const height = parseInt(16 / this.$_ratio)
     
     img.addEventListener('load', () => { 
       const computedWidth = window.getComputedStyle(this.$el.querySelector('.thumbnail img')).width
