@@ -7,7 +7,7 @@
         :src="thumbnailSrc"
         :alt="imgSrc + '-thumb'">
     </div>
-    <lazy-component class="image">
+    <lazy-component :class="{image: !video}">
       <video ref="video" v-if="video" autoplay="" muted="" loop="" playsinline="" tabindex="-1">
         <source :src="imgSrc" type="video/mp4">
       </video>
@@ -52,12 +52,12 @@ export default {
     const img = new Image()
     const height = parseInt(16 / this.$_ratio)
     
-    img.addEventListener('load', () => { 
+    img.onload = () => { 
       const computedWidth = window.getComputedStyle(this.$el.querySelector('.thumbnail img')).width
       const widthWithRatio = parseInt(computedWidth.replace('px', '') * window.devicePixelRatio)
       this.customSrc = this.imgSrc + '?w=' + widthWithRatio
       this.$emit('load')
-    }, false)
+    }
     img.src = this.imgSrc + '?w=16&h=' + height + '&fm=jpg&q=42'
     this.thumbnailSrc = img.src
   },
@@ -80,13 +80,13 @@ export default {
     margin: 0
     padding-right: var(--gradient-border-right)
     padding-bottom: var(--gradient-border-bottom)
-    display: grid
     &.spread
       @media #{$small-up}
         grid-column: span 2  
     &.svg-right::after
       content: var(--svg-url, url("/images/svg/avocat.svg"))
       position: absolute
+      z-index: 27
       top: -21px
       right: 14%
       display: block
@@ -95,6 +95,7 @@ export default {
     &.svg-left::before
       content: var(--svg-url, url("/images/svg/avocat.svg"))
       position: absolute
+      z-index: 27
       top: -21px
       left: 14%
       display: block
@@ -121,31 +122,21 @@ export default {
       transform-origin: top
       transform: skewX(53deg)
     .image
-      grid-row: 1  
-      grid-column: 1
-    .thumbnail
-      opacity: 1
-      transition-delay: .4s
-      overflow: hidden
+      position: absolute
       top: 0
       bottom: var(--gradient-border-bottom)
       left: 0
       right: var(--gradient-border-right)
-      grid-row: 1  
-      grid-column: 1
+      overflow: hidden
+      img
+        opacity: 0
+    .thumbnail
+      overflow: hidden
       img
         filter: blur(8px)
-    &.loaded .thumbnail
-      opacity: 0
+    &.loaded .image img
+      opacity: 1
+      transition: opacity .6s ease-out
     video
       width: 100%
-</style>
-
-<style lang="sass">
-  .jp-img-container.loaded
-    .jp-main-img
-      opacity: 1
-  .jp-main-img
-    transition: opacity .4s ease
-    opacity: 0
 </style>
