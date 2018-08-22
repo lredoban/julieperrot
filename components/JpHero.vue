@@ -22,7 +22,7 @@ export default {
     }
   },
   mounted () {
-    this.url = this.background.url + '?fm=jpg&q=70&w=' + window.outerWidth
+    this.url = this.background.url + '?fm=jpg&q=70&w=' + window.innerWidth
   }
 }
 </script>
