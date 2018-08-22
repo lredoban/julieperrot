@@ -54,8 +54,7 @@ export default {
     
     img.addEventListener('load', () => { 
       const computedWidth = window.getComputedStyle(this.$el.querySelector('.thumbnail img')).width
-      const widthWithRatio = parseInt(computedWidth.replace('px', '')) * window.devicePixelRatio
-      
+      const widthWithRatio = parseInt(computedWidth.replace('px', '') * window.devicePixelRatio)
       this.customSrc = this.imgSrc + '?w=' + widthWithRatio
       this.$emit('load')
     }, false)
