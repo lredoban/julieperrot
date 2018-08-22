@@ -49,13 +49,6 @@ export default {
     this.$_fractionHeight = 27 //not dynamic, same value as in the css grid-auto-rows
     this.$_gallery = this.$refs.gallery
     this.$_galleryItems = [...this.$_gallery.children]
-
-    const colWidth = this.$_galleryItems[1].getBoundingClientRect().width
-    
-    this.gImages.map((item) => {
-      const nbRow = Math.floor(item.image.size.height * colWidth / item.image.size.width / this.$_fractionHeight) + 4
-      item.rowEnd = `span ${nbRow}`
-    })
   },
   methods: {
     doTheMasonry () {
@@ -94,8 +87,20 @@ export default {
         `)
       })
     },
+    setImagesRowEnd () {
+      const colWidth = this.$_galleryItems[1].getBoundingClientRect().width
+  
+      this.gImages.map((item) => {
+        const nbRow = Math.floor(item.image.size.height * colWidth / item.image.size.width / this.$_fractionHeight) + 4
+        item.rowEnd = `span ${nbRow}`
+      })
+    },
     addLoad () {
       this.load ++
+
+      if (this.load === 1) {
+        this.setImagesRowEnd()
+      }
       if (this.$slots.default && this.images && this.images.length === this.load) {
         this.doTheMasonry()
       }
