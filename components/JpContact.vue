@@ -16,8 +16,8 @@
           <textarea 
             required 
             name="message"
-            id="message"
             ref="message"
+            aria-label="message"
             v-model="message" 
             rows="1" 
             minlength="15" 
@@ -28,7 +28,7 @@
             class="btn" 
             @click.prevent="handleMessage"
             :disabled="message!== '' && $v.message.$invalid">Next</button>
-          <button class="btn-prev btn-prev-dummy" disabled></button>
+          <button class="btn-prev btn-prev-dummy" disabled aria-hidden="true"></button>
         </div>
         <div class="step" v-if="step === 2" key="name">
           <transition name="fade">

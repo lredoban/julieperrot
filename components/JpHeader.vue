@@ -1,7 +1,7 @@
 <template>
   <header>
     <div id="top">
-      <nuxt-link to="/"><img class="svg-avocat" src="/images/logo.png" alt="Julie Perrot Logo"></nuxt-link>
+      <nuxt-link to="/"><img class="svg-avocat" src="/images/svg/logo.svg" alt="Julie Perrot Logo"></nuxt-link>
       <nav class="desktop">
         <ul class="navigation">
           <li><a href="https://julieperrot.bigcartel.com"><span>Prints</span></a></li>
