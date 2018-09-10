@@ -53,7 +53,8 @@ export default {
     }
 
     const img = new Image()
-    const height = parseInt(16 / this.$_ratio)
+    const width = 64
+    const height = parseInt(width / this.$_ratio)
     
     img.onload = () => { 
       const computedWidth = window.getComputedStyle(this.$el.querySelector('.thumbnail img')).width
@@ -61,7 +62,7 @@ export default {
       this.customSrc = this.imgSrc + '?w=' + widthWithRatio
       this.$emit('load')
     }
-    img.src = this.imgSrc + '?w=16&h=' + height + '&fm=jpg&q=42'
+    img.src = this.imgSrc + '?w=' + width + '&h=' + height + '&fm=jpg&q=42'
     this.thumbnailSrc = img.src
   },
   computed: {
@@ -128,7 +129,8 @@ export default {
     .thumbnail
       overflow: hidden
       img
-        filter: blur(8px)
+        opacity: 0.4
+        filter: blur(7px)
     &.loaded .image img
       opacity: 1
       transition: opacity .6s ease-out
