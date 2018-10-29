@@ -10,6 +10,7 @@
       <div :style="`padding-bottom: ${img.height/img.width*100}%`"></div>
       <img v-lazy="img.src" :alt="img.alt" @load="loaded">
     </a>
+    <span id="IG-check" v-if="IGImages.length * 2 === loadedImgs">Julie's IG Feed</span>
   </section>
 </template>
 
@@ -137,5 +138,6 @@ export default {
           transition: transform .5s ease-out
         &:nth-child(2n + 1)
           transition: transform .7s ease-out
-
+    #IG-check
+      display: none
 </style>
