@@ -38,7 +38,8 @@ function sortByContentType(entries) {
 }
 
 function cleanImage(image) {
-  const isMP4 = image.fields.image.fields.file.url.slice(0, 8) === '//videos'
+  const url = image.fields.image.fields.file.url
+  const isMP4 = url.slice(0, 8) === '//videos'
   const features = image.fields.features ? image.fields.features : {
     rightGradient: false,
     bottomGradient: false,
@@ -46,8 +47,10 @@ function cleanImage(image) {
     svgType: false
   }
   const cleaned = {
-    url: image.fields.image.fields.file.url,
-    size: isMP4 ? {width: 386, height: 514} : image.fields.image.fields.file.details.image,
+    url: url,
+    size: isMP4 ? url.indexOf('SANDRO') !== -1 ?
+      {width: 237, height: 421} : {width: 386, height: 514} 
+      : image.fields.image.fields.file.details.image,
     rightBorder: features.rightGradient ? features.rightGradient : null,
     bottomBorder: features.bottomGradient ? features.bottomGradient : null,
     iconPosition: features.svgTop ? features.svgTop : null,
