@@ -12,15 +12,17 @@
         <div class="btn-list">
           <button class="btn btn-small" :class="['svg-' + svgType, svgTop === 'left' ? 'btn-active' : '']" @click="svgTop = 'left'">Left</button>
           <button class="btn btn-small" :class="['svg-' + svgType, svgTop === 'right' ? 'btn-active' : '']" @click="svgTop = 'right'">Right</button>
-          <button class="btn btn-small" :class="{'btn-active': svgTop !== 'right' && svgTop !== 'left' }" @click="svgTop = false">X</button>
+          <button class="btn btn-small" :class="{'btn-active': svgTop !== 'right' && svgTop !== 'left' }" @click="svgTop = ''">X</button>
         </div>
         <div class="gradient-selector">
           <jp-image
-            :imgSrc="imgSrc"
-            :svgType="svgType"
-            :svgTop="svgTop"
-            :rightGradient="rightGradient"
-            :bottomGradient="bottomGradient"
+            :svg-type="svgType"
+            :svg-top="svgTop"
+            :img-src="imgSrc"
+            :img-size="imgSize"
+            :right-gradient="rightGradient"
+            :bottom-gradient="bottomGradient"
+            :video="video"
             @load="updateHeight"/>
           <ul class="gradient-selector-right">
             <li class="gradient1" @click="rightGradient = 1" aria-hidden="true"></li>
@@ -121,12 +123,14 @@ export default {
   name: 'app',
   data () {
     return {
-      imgSrc: false,
-      svgType: false,
-      svgTop: false,
-      rightGradient: false,
-      bottomGradient: false,
-      show: false
+      imgSrc: "",
+      svgType: "",
+      svgTop: "",
+      rightGradient: -1,
+      bottomGradient: -1,
+      show: false,
+      video: false,
+      imgSize: {'width':270,'height':270}
     }
   },
   components: {
@@ -172,7 +176,8 @@ export default {
       }
       const imageId = imageLink.sys.id
       this.$_api.space.getAsset(imageId).then((data) => {
-        this.imgSrc = data.fields.file['fr-FR'].url + '?w=270'
+        this.imgSrc = data.fields.file['en-US'].url
+        this.video = this.imgSrc.slice(0, 8) === '//videos'
       })
     },
     updateHeight() {
