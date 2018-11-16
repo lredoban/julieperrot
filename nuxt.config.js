@@ -62,9 +62,6 @@ module.exports = {
         'postcss-custom-properties': false
       }
     },
-    babel: {
-      presets: ['vue-app', 'es2015']
-    },
     /*
     ** Run ESLint on save
     */

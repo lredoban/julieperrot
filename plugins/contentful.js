@@ -1,5 +1,5 @@
-const contentful = require('contentful')
-const marked = require('marked')
+import * as contentful from 'contentful'
+import marked from 'marked'
 
 const renderer = new marked.Renderer();
 const linkRenderer = renderer.link;
@@ -138,6 +138,4 @@ const getIndexOfType = function (data, type) {
   return data.collectionTypes.filter(cType => cType.slug === type)[0]
 }
 
-exports.getCMSData = getCMSData
-exports.getSideColllections = getSideColllections
-exports.getIndexOfType = getIndexOfType
+export { getCMSData, getSideColllections, getIndexOfType }

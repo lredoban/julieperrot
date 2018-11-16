@@ -1,5 +1,5 @@
-const fs = require('fs-extra')
-const contentful = require('../plugins/contentful.js')
+import * as fs from 'fs-extra'
+import * as contentful from '../plugins/contentful.js'
 
 module.exports = function scraper() {
   const writeData = (data) => {
