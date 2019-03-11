@@ -1,23 +1,18 @@
-const contentful = require('./plugins/contentful.js')
+import { collectionTypes } from './static/data/contentful.json'
 
 const routesBackup = []
 const routes = function (callback) {
-  contentful.getCMSData()
-  .then( data => {
-    const collectionTypesRoutes = data.collectionTypes.map( type => {
-      return `/${type.slug}`
-    })
-    const collectionsRoutes = data.collectionTypes.reduce((acc ,type) => {
-      acc.push(...type.collections.map(col => {
-        const currentType = contentful.getIndexOfType(data, type.slug)
-        const currentIndex = contentful.getSideColllections(currentType.collections, col.slug)
-        return `/${type.slug}/${col.slug}`
-      }))
-      return acc
-    }, [])
-    routesBackup.push(...collectionTypesRoutes, ...collectionsRoutes)
-    callback(null, routesBackup)
+  const collectionTypesRoutes = collectionTypes.map( type => {
+    return `/${type.slug}`
   })
+  const collectionsRoutes = collectionTypes.reduce((acc ,type) => {
+    acc.push(...type.collections.map(col => {
+      return `/${type.slug}/${col.slug}`
+    }))
+    return acc
+  }, [])
+  routesBackup.push(...collectionTypesRoutes, ...collectionsRoutes)
+  callback(null, routesBackup)
 }
 
 module.exports = {
@@ -101,7 +96,6 @@ module.exports = {
         skipSamePath: true
       }
     }],
-    '~/modules/contentful',
     '@nuxtjs/sitemap'
   ],
   sitemap: {

@@ -46,7 +46,6 @@
 </template>
 
 <script>
-const contentful = require('~/plugins/contentful.js')
 import JpGallery from '~/components/JpGallery.vue'
 import JpImage from '~/components/JpImage.vue'
 import JpInstagram from '~/components/JpInstagram.vue'

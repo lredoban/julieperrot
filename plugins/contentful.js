@@ -1,5 +1,7 @@
-import * as contentful from 'contentful'
-import marked from 'marked'
+const contentful = require("contentful")
+const fs = require('fs-extra')
+const marked = require('marked')
+const consola = require('consola')
 
 const renderer = new marked.Renderer();
 const linkRenderer = renderer.link;
@@ -24,7 +26,7 @@ function sortByContentType(entries) {
     about: 'about',
     instagramPosts: 'instagramPosts'
   }
-  
+
   entries.items.map( entry => {
     const contentTypeId = entry.sys.contentType.sys.id
     if (typeof contentTypes[contentTypeId] !== 'undefined') {
@@ -61,7 +63,6 @@ function cleanImage(image) {
 }
 
 function cleanEntries(entries) {
-  const cleaned = {}
   const preTypes = entries.collectionTypes.reduce((ret, type) => {
     if (!type.fields.collections) {
       return ret
@@ -75,7 +76,7 @@ function cleanEntries(entries) {
     return ret
   }, {})
 
-  cleaned.collections = entries.collections.map((collection, i) => {
+  const collections = entries.collections.map((collection, i) => {
     return {
       slug: collection.fields.slug,
       title: collection.fields.title,
@@ -84,20 +85,20 @@ function cleanEntries(entries) {
       images: collection.fields.images.map(img => cleanImage(img))
     }
   })
-  cleaned.collectionTypes = entries.collectionTypes.map(type => {
+  const collectionTypes = entries.collectionTypes.map(type => {
     return {
       slug: type.fields.slug,
       title: type.fields.title,
       hero: {url: type.fields.hero.fields.file.url, size: type.fields.hero.fields.file.details.image},
-      collections: type.fields.collections ? 
-                      type.fields.collections.map(col => cleaned.collections.find(cl => cl.slug === col.fields.slug))
+      collections: type.fields.collections ?
+                      type.fields.collections.map(col => collections.find(cl => cl.slug === col.fields.slug))
                       : []
     }
   })
-  cleaned.instagramPosts = entries.instagramPosts.map(post => {
+  const instagramPosts = entries.instagramPosts.map(post => {
     return { ...post.fields }
   }).slice(0, 11)
-  cleaned.homePage = {
+  const homePage = {
     heroText: entries.homePage[0].fields.heroText ? marked(entries.homePage[0].fields.heroText, options) : '',
     socialImage: entries.homePage[0].fields.socialImage.fields.file.url,
     socialDescription: entries.homePage[0].fields.socialDescription,
@@ -115,27 +116,33 @@ function cleanEntries(entries) {
       image: cleanImage(entries.about[0].fields.image),
     }
   }
-  return cleaned
+  return { collectionTypes, instagramPosts, homePage }
+}
+
+const writeData = (data) => {
+  return new Promise((resolve, reject) => {
+    try {
+      fs.ensureFileSync('static/data/contentful.json')
+      fs.writeJson('static/data/contentful.json', data, resolve(`Write Successful`) )
+    } catch (e) {
+      consola.error(`Write Failed. ${e}`)
+      reject(`Write Failed. ${e}`)
+    }
+  })
 }
 
 const getCMSData = async function () {
   let entries = await client.getEntries({limit: 1000, order: '-sys.createdAt'})
   const sorted = sortByContentType(entries)
-  return cleanEntries(sorted)
+  const cleaned = cleanEntries(sorted)
+  return writeData(cleaned)
 }
 
-const getSideColllections = function (collections, slug) {
-  return collections.reduce((currentIndex, col, i) => {
-    if (currentIndex !== false) return currentIndex
-    if (col.slug === slug) {
-      return i
-    }
-    return false
-  }, false)
-}
-
-const getIndexOfType = function (data, type) {
-  return data.collectionTypes.filter(cType => cType.slug === type)[0]
-}
-
-export { getCMSData, getSideColllections, getIndexOfType }
+fs.remove('../static/data/contentful.json')
+getCMSData()
+  .then(() => {
+    consola.success('JSON Build Complete!')
+  })
+  .catch(err => {
+    consola.error(err)
+  })

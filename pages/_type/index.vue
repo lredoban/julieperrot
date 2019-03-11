@@ -8,7 +8,6 @@
 </template>
 
 <script>
-const contentful = require('~/plugins/contentful.js')
 import JpImage from '~/components/JpImage.vue'
 import JpHero from '~/components/JpHero.vue'
 import JpGallery from '~/components/JpGallery.vue'
@@ -16,11 +15,11 @@ import { collectionTypes } from '~/static/data/contentful.json'
 
 export default {
   async asyncData ({ params, error }) {
-    const filteredTypes = collectionTypes.filter(type => type.slug === params.type)
-    if (filteredTypes.length === 0) {
+    const filteredType = collectionTypes.find(type => type.slug === params.type)
+    if (!filteredType) {
       return error({ statusCode: 404, message: 'Collection Type not found' })
     }
-    return filteredTypes[0]
+    return filteredType
   },
   components: {
     JpImage,
