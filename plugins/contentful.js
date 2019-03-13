@@ -27,7 +27,7 @@ function sortByContentType(entries) {
     instagramPosts: 'instagramPosts'
   }
 
-  entries.items.map( entry => {
+  entries.map( entry => {
     const contentTypeId = entry.sys.contentType.sys.id
     if (typeof contentTypes[contentTypeId] !== 'undefined') {
       if (!(contentTypes[contentTypeId] in sorted)) {
@@ -132,7 +132,16 @@ const writeData = (data) => {
 }
 
 const getCMSData = async function () {
-  let entries = await client.getEntries({limit: 1000, order: '-sys.createdAt'})
+  const entries = []
+  let skip = 0
+  let res = await client.getEntries({limit: 1000, skip, order: '-sys.createdAt'})
+  entries.push(...res.items)
+  while (entries.length === skip + 1000) {
+    skip += 1000
+    res = await client.getEntries({limit: 1000, skip, order: '-sys.createdAt'})
+    entries.push(...res.items)
+  }
+  consola.info(`number of entries: ${entries.length}`)
   const sorted = sortByContentType(entries)
   const cleaned = cleanEntries(sorted)
   return writeData(cleaned)
