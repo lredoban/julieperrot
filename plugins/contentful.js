@@ -40,6 +40,9 @@ function sortByContentType(entries) {
 }
 
 function cleanImage(image) {
+  if (typeof image.fields === 'undefined') {
+    consola.error(image)
+  }
   const url = image.fields.image.fields.file.url
   const isMP4 = url.slice(0, 8) === '//videos'
   const features = image.fields.features ? image.fields.features : {
@@ -134,11 +137,11 @@ const writeData = (data) => {
 const getCMSData = async function () {
   const entries = []
   let skip = 0
-  let res = await client.getEntries({limit: 1000, skip, order: '-sys.createdAt'})
+  let res = await client.getEntries({limit: 1000, include: 2, skip, order: '-sys.createdAt'})
   entries.push(...res.items)
   while (entries.length === skip + 1000) {
     skip += 1000
-    res = await client.getEntries({limit: 1000, skip, order: '-sys.createdAt'})
+    res = await client.getEntries({limit: 1000, include: 2, skip, order: '-sys.createdAt'})
     entries.push(...res.items)
   }
   consola.info(`number of entries: ${entries.length}`)
