@@ -40,9 +40,6 @@ function sortByContentType(entries) {
 }
 
 function cleanImage(image) {
-  if (typeof image.fields === 'undefined') {
-    consola.error(image)
-  }
   const url = image.fields.image.fields.file.url
   const isMP4 = url.slice(0, 8) === '//videos'
   const features = image.fields.features ? image.fields.features : {
