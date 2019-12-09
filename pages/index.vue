@@ -9,7 +9,6 @@
           <nuxt-link to="/escape/escape" title="Escape" tag="li"><span>Escape</span></nuxt-link>
           <nuxt-link to="/film" title="Film" tag="li"><span>Film</span></nuxt-link>
           <nuxt-link to="/digital" title="Digital" tag="li"><span>Digital</span></nuxt-link>
-          <nuxt-link to="/video" title="Video" tag="li"><span>Video</span></nuxt-link>
         </ul>
       </nav>
       <div class="presentation">
@@ -95,7 +94,7 @@ export default {
 
 <style lang="sass" scoped>
   @import '~assets/sass/helpers'
-  
+
   #home-hero
     background: #ccc7fd
     background-image: url(/images/noise98op5.png)
@@ -175,7 +174,7 @@ export default {
   .more
     margin: 4em
     text-align: center
-  
+
   .about-container
     background: $gradientBeta
     margin-top: 150px
