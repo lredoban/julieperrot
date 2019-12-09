@@ -9,7 +9,6 @@
           <nuxt-link to="/escape/escape" title="Escape" tag="li"><span>Escape</span></nuxt-link>
           <nuxt-link to="/film" title="Film" tag="li"><span>Film</span></nuxt-link>
           <nuxt-link to="/digital" title="Digital" tag="li"><span>Digital</span></nuxt-link>
-          <nuxt-link to="/video" title="Video" tag="li"><span>Video</span></nuxt-link>
         </ul>
       </nav>
       <div class="menu-trigger" @click="toggleMenu">
@@ -26,7 +25,6 @@
         <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/escape/escape">Escape</nuxt-link>
         <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/film">Film</nuxt-link>
         <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/digital">Digital</nuxt-link>
-        <nuxt-link tag="li" v-on:click.native="toggleMenu" to="/video">Video</nuxt-link>
       </ul>
     </nav>
   </header>
@@ -67,7 +65,7 @@ export default {
     width: 100vw
     transition: opacity .5s
     @media #{$small-up}
-      opacity: var(--header-opacity)      
+      opacity: var(--header-opacity)
     a
       height: 40px
     img
