@@ -1,6 +1,6 @@
-<template>
+<template functional>
   <div id="hero">
-    <img :src="url" alt="Julie Perrot Hero">
+    <img class="twic" alt="Julie Perrot Hero" :data-src="props.background.url"   data-src-transform="resize=(W/2)/quality=80">
     <h1>
       <slot>The h1 title</slot>
     </h1>
@@ -9,23 +9,6 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  props: ['background'],
- /* beforeMount () {
-    document.body.style.setProperty('--bg-image', `url(${this.bgUrl})`);
-  }*/
-  data () {
-    return {
-      url: ''
-    }
-  },
-  mounted () {
-    this.url = this.background.url + '?fm=jpg&q=70&w=' + window.innerWidth
-  }
-}
-</script>
 
 <style lang="sass" scoped>
   @import "~assets/sass/helpers"
