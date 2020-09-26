@@ -3,7 +3,7 @@
     <slot></slot>
     <div class="gallery__dummy" v-if="$slots.default"></div>
     <div class="gallery__dummy" v-if="$slots.default"></div>
-    <div class="gallery__item"
+    <div class="gallery__item twic-view"
       v-for="{ slug, image, title, type, rowEnd } in gImages"
       :style="{gridRowEnd: rowEnd}"
       :key="title">
@@ -79,7 +79,7 @@ export default {
       const NMax = Math.max(...nbRowsByColumn)
       nbRowsByColumn.sort((a, b) => a - b).map((n, i) => {
         this.$_gallery.insertAdjacentHTML('beforeend', `
-          <div class="gallery__filling" 
+          <div class="gallery__filling"
             style="
               grid-row: span ${NMax - n + 2};
               --gradient-angle: ${gradientAngle[i % 4]}
@@ -89,7 +89,7 @@ export default {
     },
     setImagesRowEnd () {
       const colWidth = this.$_galleryItems[1].getBoundingClientRect().width
-  
+
       this.gImages.map((item) => {
         const nbRow = Math.floor(item.image.size.height * colWidth / item.image.size.width / this.$_fractionHeight) + 4
         item.rowEnd = `span ${nbRow}`
@@ -130,7 +130,7 @@ export default {
       grid-gap: 0 40px
       padding: 0 60px
     h2
-      margin-top: calc(-1.4em / 2) 
+      margin-top: calc(-1.4em / 2)
       z-index: 1
       grid-row-end: span 6
       grid-column-end: span 1

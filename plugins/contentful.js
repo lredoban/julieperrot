@@ -49,9 +49,9 @@ function cleanImage(image) {
     svgType: false
   }
   const cleaned = {
-    url: url,
+    url: isMP4 ? url : twikify(url),
     size: isMP4 ? url.indexOf('SANDRO') !== -1 ?
-      {width: 237, height: 421} : {width: 386, height: 514} 
+      {width: 237, height: 421} : {width: 386, height: 514}
       : image.fields.image.fields.file.details.image,
     rightBorder: features.rightGradient ? features.rightGradient : null,
     bottomBorder: features.bottomGradient ? features.bottomGradient : null,
@@ -89,7 +89,7 @@ function cleanEntries(entries) {
     return {
       slug: type.fields.slug,
       title: type.fields.title,
-      hero: {url: type.fields.hero.fields.file.url, size: type.fields.hero.fields.file.details.image},
+      hero: {url: twikify(type.fields.hero.fields.file.url), size: type.fields.hero.fields.file.details.image},
       collections: type.fields.collections ?
                       type.fields.collections.map(col => collections.find(cl => cl.slug === col.fields.slug))
                       : []
@@ -145,6 +145,10 @@ const getCMSData = async function () {
   const sorted = sortByContentType(entries)
   const cleaned = cleanEntries(sorted)
   return writeData(cleaned)
+}
+
+const twikify = url => {
+  return url.split('//images.ctfassets.net/bkf4htdwrnir/').join('image:contentful/')
 }
 
 fs.remove('../static/data/contentful.json')

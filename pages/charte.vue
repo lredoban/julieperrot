@@ -1,6 +1,6 @@
 <template>
   <main>
-    <jp-hero :background="{url: '/images/stills.jpg', size: {widht: 1920, height: 704}}">Charte</jp-hero>
+    <jp-hero :background="{url: 'image:contentful/3ilaROK2DeEYkMQ6oGmmyy/f3a610b1fb1a99ba096de52946bd0e17/faces.jpg', size: {widht: 1920, height: 704}}">Charte</jp-hero>
     <section class="typo">
       <h2>Typo</h2>
       <hr>
@@ -16,7 +16,7 @@
         <h3>Para gra phe</h3>
         <div>
           <p>
-            Well, the way they make shows is, they make one show. That show's called a pilot. 
+            Well, the way they make shows is, they make one show. That show's called a pilot.
           </p>
           <p>
             Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows. Some pilots get picked and become television programs. Some don't, become nothing. She starred in one of the ones that became nothing.
@@ -146,7 +146,7 @@
           <button class="btn btn-small" :class="['svg-' + svgClass, svgTop === 'right' ? 'btn-active' : '']" @click="svgTop = 'right'">Right</button>
           <button class="btn btn-small" :class="{'btn-active': svgTop !== 'right' && svgTop !== 'left' }" @click="svgTop = false">X</button>
         </div>
-        <jp-image class="showroom-img" :svg-type="svgClass" :img-size="{width: 827, height: 1240}" :svg-top="svgTop" img-src="/Audrey.jpg"/>
+        <jp-image class="showroom-img" :svg-type="svgClass" :img-size="{width: 827, height: 1240}" :svg-top="svgTop" img-src="image:contentful/mbGwIwTA0Cy84WK8kgWke/4c52639c0afee6e97daff6cf8add8d50/Audrey0283_copie.jpg"/>
       </div>
       <h3>Pick an icon</h3>
       <div class="category">
@@ -261,7 +261,7 @@
       <h2>Image border gradient</h2>
       <hr>
       <div class="gradient-selector">
-        <jp-image :svg-type="svgClass" :svg-top="svgTop" img-src="/Audrey.jpg" :img-size="{width: 827, height: 1240}" :right-gradient="rightGradient" :bottom-gradient="bottomGradient"/>
+        <jp-image :svg-type="svgClass" :svg-top="svgTop" img-src="image:contentful/mbGwIwTA0Cy84WK8kgWke/4c52639c0afee6e97daff6cf8add8d50/Audrey0283_copie.jpg" :img-size="{width: 827, height: 1240}" :right-gradient="rightGradient" :bottom-gradient="bottomGradient"/>
         <ul class="gradient-selector-right">
           <li class="gradient1" @click="rightGradient = 1" aria-hidden="true"></li>
           <li class="gradient2" @click="rightGradient = 2" aria-hidden="true"></li>
@@ -370,7 +370,7 @@ export default {
   },
   mounted () {
     document.querySelector('html').style.setProperty('--header-opacity', '1')
-    
+
     const gradients = document.querySelectorAll('.gradient-figure > div')
     Object.keys(gradients).map(key => {
       const rgb = window.getComputedStyle(gradients[key], null).getPropertyValue('background-color')

@@ -42,6 +42,9 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+        { src: 'https://dz11y8g2.twic.pics/?v1', type: 'text/javascript'}
     ]
   },
   /*
