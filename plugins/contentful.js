@@ -90,7 +90,6 @@ function cleanEntries(entries) {
     return {
       slug: type.fields.slug,
       title: type.fields.title,
-      hero: {url: twikify(type.fields.hero.fields.file.url), size: type.fields.hero.fields.file.details.image},
       collections: type.fields.collections ?
                       type.fields.collections.map(col => collections.find(cl => cl.slug === col.fields.slug))
                       : []
