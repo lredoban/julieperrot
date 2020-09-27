@@ -293,10 +293,6 @@
 </template>
 
 <script>
-import JpHero from '~/components/JpHero.vue'
-import CategorySvg from '~/components/CategorySvg.vue'
-import JpImage from '~/components/JpImage.vue'
-
 const svgList = [
   'appareil',
   'avion',
@@ -362,11 +358,6 @@ export default {
       rightGradient: 3,
       bottomGradient: 4,
     }
-  },
-  components: {
-    JpHero,
-    CategorySvg,
-    JpImage
   },
   mounted () {
     document.querySelector('html').style.setProperty('--header-opacity', '1')

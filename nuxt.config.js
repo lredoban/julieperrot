@@ -105,6 +105,7 @@ module.exports = {
     routes,
     hostname: 'https://julieperrot.com'
   },
+  components: true,
   render: {
     static: {
       maxAge: 1000 * 60 * 60 * 24 * 7

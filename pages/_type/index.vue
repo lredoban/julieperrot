@@ -8,8 +8,6 @@
 </template>
 
 <script>
-import JpHero from '~/components/JpHero.vue'
-import JpGallery from '~/components/JpGallery.vue'
 import { collectionTypes } from '~/static/data/contentful.json'
 
 export default {
@@ -19,10 +17,6 @@ export default {
       return error({ statusCode: 404, message: 'Collection Type not found' })
     }
     return filteredType
-  },
-  components: {
-    JpHero,
-    JpGallery
   },
   head () {
     return {

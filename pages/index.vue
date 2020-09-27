@@ -45,21 +45,11 @@
 </template>
 
 <script>
-import JpGallery from '~/components/JpGallery.vue'
-import JpImage from '~/components/JpImage.vue'
-import JpInstagram from '~/components/JpInstagram.vue'
-import JpContact from '~/components/JpContact.vue'
 import { homePage, instagramPosts} from '~/static/data/contentful.json'
 
 export default {
   async asyncData () {
     return { homePage, instagramPosts }
-  },
-  components: {
-    JpGallery,
-    JpImage,
-    JpInstagram,
-    JpContact
   },
   created () {
     this.$_scrollOptions = {

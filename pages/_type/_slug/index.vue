@@ -29,8 +29,6 @@
 </template>
 
 <script>
-import JpImage from '~/components/JpImage.vue'
-import JpHero from '~/components/JpHero.vue'
 import { collectionTypes } from '~/static/data/contentful.json'
 
 export default {
@@ -46,10 +44,6 @@ export default {
       next: currentType.collections[currentIndex + 1] ? '/' + currentType.slug + '/' + currentType.collections[currentIndex + 1].slug : false,
       type: { title: currentType.title, slug: currentType.slug }
     }
-  },
-  components: {
-    JpImage,
-    JpHero
   },
   head () {
     const meta = [

@@ -28,11 +28,8 @@
 </template>
 
 <script>
-import JpImage from '~/components/JpImage.vue'
-
 export default {
   name: 'JpGallery',
-  components: { JpImage },
   props: ['images'],
   data () {
     return {
