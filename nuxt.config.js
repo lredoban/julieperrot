@@ -102,7 +102,6 @@ module.exports = {
     '@nuxtjs/sitemap'
   ],
   sitemap: {
-    generate: true,
     routes,
     hostname: 'https://julieperrot.com'
   },

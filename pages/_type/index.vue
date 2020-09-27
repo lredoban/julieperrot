@@ -1,6 +1,6 @@
 <template>
   <main>
-    <jp-hero :background="hero">{{ title }}</jp-hero>
+    <jp-hero>{{ title }}</jp-hero>
     <div>
       <jp-gallery :images="convertedCollections"/>
     </div>
@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import JpImage from '~/components/JpImage.vue'
 import JpHero from '~/components/JpHero.vue'
 import JpGallery from '~/components/JpGallery.vue'
 import { collectionTypes } from '~/static/data/contentful.json'
@@ -22,7 +21,6 @@ export default {
     return filteredType
   },
   components: {
-    JpImage,
     JpHero,
     JpGallery
   },
