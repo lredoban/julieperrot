@@ -1,6 +1,6 @@
 <template>
   <main>
-    <jp-hero :background="hero">
+    <jp-hero>
       <nuxt-link v-if="type.slug !== slug" :to="'/' + type.slug">{{ type.title }}</nuxt-link>
       <span v-else>{{ type.title }}</span>
       <div slot="subtitle" v-if="type.slug !== slug">
@@ -44,7 +44,6 @@ export default {
       ...currentType.collections[currentIndex],
       prev: currentIndex === 0 ? false : '/' + currentType.slug + '/' + currentType.collections[currentIndex - 1].slug,
       next: currentType.collections[currentIndex + 1] ? '/' + currentType.slug + '/' + currentType.collections[currentIndex + 1].slug : false,
-      hero: currentType.hero,
       type: { title: currentType.title, slug: currentType.slug }
     }
   },
@@ -98,7 +97,7 @@ export default {
   @import "~assets/sass/helpers"
 
   .description
-    margin: 5rem 10px 3rem 20%
+    margin: 0 10px 3rem 20%
   .images
     max-width: var(--max-width)
     padding-left: 10px
@@ -117,7 +116,7 @@ export default {
       justify-self: var(--random-alignement, center)
 
   .category-nav
-    display: grid
+    display: flex
     align-items: center
     grid-template-columns: 1fr auto 1fr
   .category-prev, .category-next
@@ -127,6 +126,7 @@ export default {
     border: 1px solid $black
     border-radius: 18px
     box-shadow: 1px 1px
+    flex-shrink: 0
     &::before, &::after
       content: ""
       position: absolute

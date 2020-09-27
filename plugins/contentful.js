@@ -3,6 +3,8 @@ const fs = require('fs-extra')
 const marked = require('marked')
 const consola = require('consola')
 
+const cloudinary = require('./cloudinary')
+
 const renderer = new marked.Renderer();
 const linkRenderer = renderer.link;
 renderer.link = (href, title, text) => {
@@ -23,8 +25,7 @@ function sortByContentType(entries) {
     collection: 'collections',
     collectionType: 'collectionTypes',
     homePage: 'homePage',
-    about: 'about',
-    instagramPosts: 'instagramPosts'
+    about: 'about'
   }
 
   entries.map( entry => {
@@ -89,15 +90,11 @@ function cleanEntries(entries) {
     return {
       slug: type.fields.slug,
       title: type.fields.title,
-      hero: {url: twikify(type.fields.hero.fields.file.url), size: type.fields.hero.fields.file.details.image},
       collections: type.fields.collections ?
                       type.fields.collections.map(col => collections.find(cl => cl.slug === col.fields.slug))
                       : []
     }
   })
-  const instagramPosts = entries.instagramPosts.map(post => {
-    return { ...post.fields }
-  }).slice(0, 11)
   const homePage = {
     heroText: entries.homePage[0].fields.heroText ? marked(entries.homePage[0].fields.heroText, options) : '',
     socialImage: entries.homePage[0].fields.socialImage.fields.file.url,
@@ -116,7 +113,7 @@ function cleanEntries(entries) {
       image: cleanImage(entries.about[0].fields.image),
     }
   }
-  return { collectionTypes, instagramPosts, homePage }
+  return { collectionTypes, homePage }
 }
 
 const writeData = (data) => {
@@ -144,6 +141,7 @@ const getCMSData = async function () {
   consola.info(`number of entries: ${entries.length}`)
   const sorted = sortByContentType(entries)
   const cleaned = cleanEntries(sorted)
+  cleaned.instagramPosts = await cloudinary.getImages()
   return writeData(cleaned)
 }
 
