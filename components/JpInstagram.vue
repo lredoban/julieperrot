@@ -8,7 +8,7 @@
       :style="translateImages(img.transform, img.offset)"
       target="_blank">
       <div :style="`padding-bottom: ${img.height/img.width*100}%`"></div>
-      <img v-lazy="img.src" :alt="img.alt" @load="loaded">
+      <img :src="img.thumbnail" :data-src="img.src" :alt="img.alt" @load="loaded" class="twic">
     </a>
     <span id="IG-check" v-if="IGImages.length * 2 === loadedImgs">Julie's IG Feed</span>
   </section>
@@ -106,13 +106,13 @@ export default {
     margin: 0 auto
     @media #{$small-up}
       padding: 100px 10px
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))    
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
     @media only screen and (min-width: 1480px) // when gallery grid add one column
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))    
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))
     h2
       align-self: center
       justify-self: center
-      width: min-content 
+      width: min-content
       grid-row-end: span 2
       grid-column: 1 / span 2
       @media #{$medium-up}
