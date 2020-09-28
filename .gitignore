@@ -15,3 +15,7 @@ dist
 # Generated Static files
 static/data/contentful.json
 static/sitemap.xml
+
+#storybook
+.nuxt-storybook
+storybook-static
