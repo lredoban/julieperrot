@@ -64,8 +64,6 @@ export default {
     justify-items: end
     width: 100vw
     transition: opacity .5s
-    @media #{$small-up}
-      opacity: var(--header-opacity)
     a
       height: 40px
     img

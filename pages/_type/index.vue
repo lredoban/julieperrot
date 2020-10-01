@@ -28,9 +28,6 @@ export default {
       ]
     }
   },
-  mounted () {
-    document.querySelector('html').style.setProperty('--header-opacity', '1')
-  },
   computed: {
     convertedCollections () {
       return this.collections.map(col => {

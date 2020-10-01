@@ -15,9 +15,6 @@ export default {
     return {
       title: '404 - Not Found'
     }
-  },
-  mounted () {
-    document.querySelector('html').style.setProperty('--header-opacity', '1')
   }
 }
 </script>

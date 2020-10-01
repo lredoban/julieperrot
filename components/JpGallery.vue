@@ -116,7 +116,7 @@ export default {
 
   .gallery
     padding: 0 5px
-    margin: -0.8em auto 0
+    margin: 0 auto
     max-width: var(--max-width)
     display: grid
     grid-auto-rows: 27px
@@ -127,17 +127,16 @@ export default {
       grid-gap: 0 40px
       padding: 0 60px
     h2
-      margin-top: calc(-1.4em / 2)
       z-index: 1
-      grid-row-end: span 6
+      grid-row-end: span 8
       grid-column-end: span 1
       max-width: 200px
       @media #{$small-up}
-        grid-row-end: span 9
-        margin-top: calc(-1.7em / 2)
+        grid-row-end: span 12
       @media only screen and (min-width: 1184px) // when gallery grid add one column
         margin-left: 1.3em
-        grid-column-end: span 2
+        grid-column-end: span 4
+        grid-row-end: span 8
     .gallery__dummy
       grid-row-end: span 1
       @media only screen and (min-width: 908px) // when gallery grid add one column
