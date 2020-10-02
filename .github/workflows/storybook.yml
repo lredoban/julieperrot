@@ -11,6 +11,9 @@ on:
 
 jobs:
   build-and-deploy:
+    env:
+      JULIEPERROT_SPACE: ${{ secrets.JULIEPERROT_SPACE }}
+      JULIEPERROT_TOKEN: ${{ secrets.JULIEPERROT_TOKEN }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
