@@ -22,6 +22,8 @@ jobs:
         env:
           JULIEPERROT_SPACE: ${{ secrets.JULIEPERROT_SPACE }}
           JULIEPERROT_TOKEN: ${{ secrets.JULIEPERROT_TOKEN }}
+          CLOUDINARY_KEY: ${{ secrets.CLOUDINARY_KEY }}
+          CLOUDINARY_SECRET: ${{ secrets.CLOUDINARY_SECRET }}
         run: |
           yarn
           node ./plugins/contentful.js
