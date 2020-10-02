@@ -11,9 +11,6 @@ on:
 
 jobs:
   build-and-deploy:
-    env:
-      JULIEPERROT_SPACE: ${{ secrets.JULIEPERROT_SPACE }}
-      JULIEPERROT_TOKEN: ${{ secrets.JULIEPERROT_TOKEN }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
@@ -26,6 +23,9 @@ jobs:
           yarn
           node ./plugins/contentful.js
           yarn storyBuild
+        env:
+          JULIEPERROT_SPACE: ${{ secrets.JULIEPERROT_SPACE }}
+          JULIEPERROT_TOKEN: ${{ secrets.JULIEPERROT_TOKEN }}
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.2

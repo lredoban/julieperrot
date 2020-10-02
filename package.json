@@ -9,6 +9,7 @@
     "prebuild": "node ./plugins/contentful.js",
     "pregenerate": "node ./plugins/contentful.js",
     "predevploy": "node ./plugins/contentful.js",
+    "prestoryBuild": "node ./plugins/contentful.js",
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",

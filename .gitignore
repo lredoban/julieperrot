@@ -19,3 +19,4 @@ static/sitemap.xml
 #storybook
 .nuxt-storybook
 storybook-static
+docs
