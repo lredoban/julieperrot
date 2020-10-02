@@ -1,0 +1,2 @@
+# Redirect default Netlify subdomain to primary domain
+https://peaceful-neumann-2ccba8.netlify.com/* https://julieperrot.com/:splat 301!

@@ -1,0 +1,5 @@
+/*
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  X-Content-Type-Options: nosniff
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'self'; img-src 'self' data: https://images.ctfassets.net https://dz11y8g2.twic.pics https://scontent.cdninstagram.com https://media.giphy.com/media/ https://www.google-analytics.com/; connect-src 'self' https://cdn.contentful.com  https://www.google-analytics.com; script-src 'self' 'unsafe-inline' https://dz11y8g2.twic.pics https://api.instagram.com https://www.google-analytics.com/analytics.js; style-src 'self' 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; media-src https://videos.ctfassets.net;
