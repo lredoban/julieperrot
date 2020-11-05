@@ -2,27 +2,22 @@
   <footer>
     <div class="main">
       <h3>julie perrot</h3>
-      <div>
-        <h4>More ...</h4>
-        <ul class="doted">
-          <li><nuxt-link to="/mom-n-kidz">Mom & kidz</nuxt-link></li>
-          <li><nuxt-link to="/wedding">Wedding</nuxt-link></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Follow</h4>
-        <ul class="doted">
-          <li><a href="https://www.instagram.com/julieperrot/" target="_blank">Instagram</a></li>
-          <li><a href="https://twitter.com/JuliePerrot" target="_blank">Twitter</a></li>
-          <li><a href="https://www.facebook.com/julieperrotphotography" target="_blank">Facebook</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <ul class="doted">
-          <li @click="$emit('toggle-contact')" class="click"> Write me</li>
-        </ul>
-      </div>
+      <nav>
+        <div>
+          <h4>More ...</h4>
+          <ul class="doted">
+            <li><nuxt-link to="/mom-n-kidz">Mom & kidz</nuxt-link></li>
+            <li><nuxt-link to="/wedding">Wedding</nuxt-link></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul class="doted">
+            <li @click="$emit('toggle-contact')" class="click"> Write me</li>
+            <li><a href="https://www.instagram.com/julieperrot/" target="_blank">Instagram</a></li>
+          </ul>
+        </div>
+      </nav>
     </div>
     <div class="copyright">
       <span>© Juie Perrot tous droits réservés</span>
@@ -54,7 +49,7 @@ export default {
         padding: 2em 8em
       @media #{$medium-up}
         padding: 4em 4em
-        grid-template-columns: auto 1fr 1fr 1fr
+        grid-template-columns: auto 1fr
         justify-items: center
         align-items: start
     h3
@@ -64,6 +59,19 @@ export default {
       margin-top: 0
     ul
       margin-top: 1.5rem
+    nav
+      width: 100%
+      > * + *
+        margin-top: 2em
+        @media #{$medium-up}
+          margin-top: 0
+      @media #{$medium-up}
+        display: flex
+        padding: 0 6em
+        justify-content: space-around
+      @media #{$large-up}
+        padding: 0 12em
+
 
     .copyright
       border-top: 1px solid rgba($black, .5)
@@ -73,7 +81,7 @@ export default {
       display: grid
       grid-template-columns: 1fr
       @media #{$small-up}
-        display: block      
+        display: block
 
     .click
       cursor: pointer
