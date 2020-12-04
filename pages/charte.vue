@@ -193,7 +193,7 @@
       </div>
       <div class="category">
         <div class="category-title">
-          <h5>Mom & Kids</h5><span></span>
+          <h5>Ohana Means Family</h5><span></span>
         </div>
         <category-svg type="ballon" :changeClass="changeSvgHover" :currentSvg="svgClass"/>
         <category-svg type="lune" :changeClass="changeSvgHover" :currentSvg="svgClass"/>

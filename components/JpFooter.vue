@@ -6,7 +6,7 @@
         <div>
           <h4>More ...</h4>
           <ul class="doted">
-            <li><nuxt-link to="/mom-n-kidz">Mom & kidz</nuxt-link></li>
+            <li><nuxt-link to="/ohana-means-family">Ohana Means Family</nuxt-link></li>
             <li><nuxt-link to="/wedding">Wedding</nuxt-link></li>
           </ul>
         </div>

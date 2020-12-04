@@ -99,7 +99,8 @@ module.exports = {
         skipSamePath: true
       }
     }],
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    '@nuxtjs/redirect-module'
   ],
   sitemap: {
     routes,
@@ -112,6 +113,9 @@ module.exports = {
       '@storybook/addon-controls'
     ]
   },
+  redirect: [
+    { from: '^/mom-n-kidz', to: '/ohana-means-family' }
+  ],
   render: {
     static: {
       maxAge: 1000 * 60 * 60 * 24 * 7
