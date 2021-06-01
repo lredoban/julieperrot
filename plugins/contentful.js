@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const contentful = require("contentful")
 const fs = require('fs-extra')
 const marked = require('marked')
