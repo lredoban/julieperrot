@@ -20,3 +20,5 @@ static/sitemap.xml
 .nuxt-storybook
 storybook-static
 docs
+
+.env
