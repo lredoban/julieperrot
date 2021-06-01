@@ -104,12 +104,6 @@ module.exports = {
     hostname: 'https://julieperrot.com'
   },
   components: true,
-  storybook: {
-    addons: [
-      '@storybook/addon-docs',
-      '@storybook/addon-controls'
-    ]
-  },
   render: {
     static: {
       maxAge: 1000 * 60 * 60 * 24 * 7

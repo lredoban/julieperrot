@@ -16,9 +16,4 @@ dist
 static/data/contentful.json
 static/sitemap.xml
 
-#storybook
-.nuxt-storybook
-storybook-static
-docs
-
 .env

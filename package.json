@@ -15,23 +15,19 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint",
-    "storyDev": "nuxt storybook",
-    "storyBuild": "nuxt storybook build -o docs"
+    "precommit": "npm run lint"
   },
   "dependencies": {
     "@nuxtjs/google-analytics": "^2.0.2",
     "@nuxtjs/sitemap": "^2.4.0",
-    "@storybook/addon-controls": "^6.0.22",
-    "@storybook/addon-docs": "^6.0.22",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "basicscroll": "^3.0.0",
     "cheerio": "^1.0.0-rc.3",
     "cloudinary": "^1.23.0",
     "consola": "^2.5.6",
-    "contentful": "^7.0.5",
-    "contentful-management": "^6.1.2",
-    "marked": "^1.1.1",
+    "contentful": "^8.3.7",
+    "contentful-management": "^7.22.4",
+    "marked": "^2.0.6",
     "modern-normalize": "^1.0.0",
     "node-sass": "^4.13.1",
     "nuxt": "^2.3.1",
@@ -40,12 +36,11 @@
     "vuelidate": "^0.7.4"
   },
   "devDependencies": {
-    "@nuxtjs/storybook": "^2.2.1",
     "babel-eslint": "^10.0.1",
     "babel-preset-es2015": "^6.24.1",
     "eslint": "^7.10.0",
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-loader": "^4.0.2",
-    "eslint-plugin-vue": "^6.2.2"
+    "eslint-plugin-vue": "^7.10.0"
   }
 }
