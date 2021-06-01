@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 import { collectionTypes } from './static/data/contentful.json'
 
 const routesBackup = []
@@ -78,10 +80,6 @@ module.exports = {
     'modern-normalize/modern-normalize.css',
     '@/assets/sass/style.sass'
   ],
-  env: {
-    space: process.env.JULIEPERROT_SPACE,
-    accessToken: process.env.JULIEPERROT_TOKEN
-  },
   generate: {
     subFolders: false,
     fallback: true,
