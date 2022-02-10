@@ -29,7 +29,7 @@
     "contentful-management": "^7.22.4",
     "marked": "^2.0.6",
     "modern-normalize": "^1.0.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "nuxt": "^2.3.1",
     "sass-loader": "^10.0.2",
     "vue-lazyload": "^1.2.6",
